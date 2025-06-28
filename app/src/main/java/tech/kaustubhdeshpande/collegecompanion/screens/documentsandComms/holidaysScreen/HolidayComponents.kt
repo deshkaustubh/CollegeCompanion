@@ -1,4 +1,4 @@
-package tech.kaustubhdeshpande.collegecompanion.screens.collegeLayer.academicCalendar
+package tech.kaustubhdeshpande.collegecompanion.screens.documentsandComms.holidaysScreen
 
 
 import androidx.compose.foundation.background
