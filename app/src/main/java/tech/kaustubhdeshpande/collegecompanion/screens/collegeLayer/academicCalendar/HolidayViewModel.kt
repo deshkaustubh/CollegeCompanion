@@ -1,7 +1,5 @@
 package tech.kaustubhdeshpande.collegecompanion.screens.collegeLayer.academicCalendar
 
-package com.example.holidaylist
-
 import android.os.Build
 import androidx.annotation.RequiresApi
 import androidx.lifecycle.ViewModel

@@ -1,6 +1,5 @@
 package tech.kaustubhdeshpande.collegecompanion.screens.collegeLayer.academicCalendar
 
-package com.example.holidaylist
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
