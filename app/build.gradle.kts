@@ -60,4 +60,25 @@ dependencies {
     androidTestImplementation(libs.androidx.ui.test.junit4)
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
+
+    // material 3 icons
+    implementation("androidx.compose.material:material-icons-extended:1.7.8")
+
+    // accompanist - to change status bar color
+    implementation("com.google.accompanist:accompanist-systemuicontroller:0.27.0")
+
+    // splash screen implementation
+    implementation("androidx.core:core-splashscreen:1.0.1")
+
+    // nav controller
+    implementation ("androidx.navigation:navigation-compose:2.9.0")
+
+    // ViewModel
+    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.7.0")
+
+    // Compose integration with ViewModel
+    implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.7.0")
+
+    // State handling and LiveData (optional if you're observing them)
+    implementation("androidx.lifecycle:lifecycle-runtime-compose:2.7.0")
 }
