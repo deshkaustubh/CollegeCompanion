@@ -1,4 +1,4 @@
-package tech.kaustubhdeshpande.collegecompanion.screens.cgpaCalculator
+package tech.kaustubhdeshpande.collegecompanion.screens.academicEssentials.cgpaCalculator
 
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement

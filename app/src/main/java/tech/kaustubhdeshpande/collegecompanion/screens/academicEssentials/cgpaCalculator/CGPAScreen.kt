@@ -1,5 +1,4 @@
-package tech.kaustubhdeshpande.collegecompanion.screens.sgpacalculator
-
+package tech.kaustubhdeshpande.collegecompanion.screens.academicEssentials.cgpaCalculator
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -24,7 +23,6 @@ import androidx.compose.runtime.SideEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -33,7 +31,7 @@ import com.google.accompanist.systemuicontroller.rememberSystemUiController
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun MyPaySlipsScreen(
+fun CGPAScreen(
     navigateBack: () -> Unit
 ) {
     val systemUiController = rememberSystemUiController()
@@ -73,56 +71,43 @@ fun MyPaySlipsScreen(
                 }
             )
         }) { innerPadding ->
-        SGPAContent(modifier = Modifier.padding(innerPadding))
-    }
-}
-
-
-@Composable
-fun SGPAContent(modifier : Modifier = Modifier) {
-    val viewModel: SGPAViewModel = viewModel()
-
-    val scroll = rememberScrollState()
-    val focus = LocalFocusManager.current
-
-    Column(
-        modifier = modifier
-            .fillMaxSize()
-            .verticalScroll(scroll)
-            .padding(16.dp)
-    ) {
-        Text(
-            "📗 SGPA Calculator",
-            style = MaterialTheme.typography.headlineSmall,
-            color = MaterialTheme.colorScheme.primary,
-            fontWeight = FontWeight.Bold
-        )
-        Spacer(Modifier.height(12.dp))
-
-        viewModel.subjects.forEachIndexed { index, subject ->
-            SubjectInputRow(
-                subject = subject,
-                onCreditChange = { viewModel.updateSubject(index, credit = it) },
-                onGradeChange = { viewModel.updateSubject(index, grade = it) },
-                onRemove = { viewModel.removeSubject(index) }
-            )
-            Spacer(Modifier.height(8.dp))
-        }
-
-        Button(
-            onClick = { viewModel.addSubject() },
-            modifier = Modifier.align(Alignment.CenterHorizontally)
+        val viewModel : CGPAViewModel = viewModel()
+        Column(
+            modifier = Modifier
+                .fillMaxSize()
+                .verticalScroll(rememberScrollState())
+                .padding(innerPadding)
+                .padding(16.dp)
         ) {
-            Text(" +1  Add Subject", fontWeight = FontWeight.Medium)
+            Text(
+                "📘 CGPA Calculator",
+                style = MaterialTheme.typography.headlineSmall,
+                color = MaterialTheme.colorScheme.primary,
+                fontWeight = FontWeight.Bold
+            )
+            Spacer(Modifier.height(12.dp))
+
+            viewModel.semesters.forEachIndexed { index, sem ->
+                SemesterInputRow(
+                    semester = sem,
+                    onSgpaChange = { viewModel.updateSemester(index, sgpa = it) },
+                    onCreditsChange = { viewModel.updateSemester(index, credits = it) },
+                    onRemove = { viewModel.removeSemester(index) }
+                )
+                Spacer(Modifier.height(8.dp))
+            }
+
+            Button(
+                onClick = { viewModel.addSemester() },
+                modifier = Modifier.align(Alignment.CenterHorizontally)
+            ) {
+                Text(" +1 Add Semester", fontWeight = FontWeight.Medium)
+            }
+
+            Spacer(Modifier.height(24.dp))
+
+            CgpaResultCard(cgpa = viewModel.calculateCGPA())
+            CgpaInstructionsBlock()
         }
-
-        Spacer(Modifier.height(24.dp))
-
-        SgpaResultCard(sgpa = viewModel.calculateSGPA())
-
-        InstructionsBlock()
     }
 }
-
-
-

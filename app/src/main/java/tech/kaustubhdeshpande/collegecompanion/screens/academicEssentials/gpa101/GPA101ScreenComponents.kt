@@ -1,4 +1,4 @@
-package tech.kaustubhdeshpande.collegecompanion.screens.gpa101
+package tech.kaustubhdeshpande.collegecompanion.screens.academicEssentials.gpa101
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column

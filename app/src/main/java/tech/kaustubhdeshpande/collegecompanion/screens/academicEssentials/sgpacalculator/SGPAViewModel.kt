@@ -1,4 +1,4 @@
-package tech.kaustubhdeshpande.collegecompanion.screens.sgpacalculator
+package tech.kaustubhdeshpande.collegecompanion.screens.academicEssentials.sgpacalculator
 
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf

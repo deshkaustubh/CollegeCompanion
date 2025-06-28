@@ -1,9 +1,9 @@
-package tech.kaustubhdeshpande.collegecompanion.screens.gpa101
+package tech.kaustubhdeshpande.collegecompanion.screens.academicEssentials.sgpacalculator
 
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
@@ -21,16 +21,19 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.SideEffect
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun GPA101Screen(
+fun MyPaySlipsScreen(
     navigateBack: () -> Unit
 ) {
     val systemUiController = rememberSystemUiController()
@@ -70,91 +73,56 @@ fun GPA101Screen(
                 }
             )
         }) { innerPadding ->
-        Gpa101Content(modifier = Modifier.padding(innerPadding))
+        SGPAContent(modifier = Modifier.padding(innerPadding))
     }
 }
 
 
 @Composable
-fun Gpa101Content(modifier: Modifier = Modifier) {
+fun SGPAContent(modifier : Modifier = Modifier) {
+    val viewModel: SGPAViewModel = viewModel()
+
+    val scroll = rememberScrollState()
+    val focus = LocalFocusManager.current
+
     Column(
         modifier = modifier
-            .verticalScroll(rememberScrollState())
+            .fillMaxSize()
+            .verticalScroll(scroll)
             .padding(16.dp)
     ) {
-        MythBustedCard()
-
-        Spacer(Modifier.height(20.dp))
-
         Text(
-            "📘 Why GPA 101 Exists",
-            style = MaterialTheme.typography.titleMedium,
+            "📗 SGPA Calculator",
+            style = MaterialTheme.typography.headlineSmall,
             color = MaterialTheme.colorScheme.primary,
             fontWeight = FontWeight.Bold
-        )
-        Spacer(Modifier.height(8.dp))
-        Text(
-            "Instead of guessing how your score is calculated, this screen clears things up. It's your shortcut to understanding how SGPA and CGPA really work.",
-            style = MaterialTheme.typography.bodyLarge
-        )
-
-        Spacer(Modifier.height(32.dp))
-
-        Text(
-            "📗 What is SGPA?",
-            style = MaterialTheme.typography.titleMedium,
-            color = MaterialTheme.colorScheme.primary,
-            fontWeight = FontWeight.Bold
-        )
-        Spacer(Modifier.height(8.dp))
-        Text(
-            "SGPA tells how you did in one semester. It depends on your grades and how many credits each subject carried.",
-            style = MaterialTheme.typography.bodyLarge
         )
         Spacer(Modifier.height(12.dp))
-        FormulaCard("SGPA = (Grade Points × Credits) ÷ Total Credits")
 
-        Spacer(Modifier.height(20.dp))
-        GradePointTable()
+        viewModel.subjects.forEachIndexed { index, subject ->
+            SubjectInputRow(
+                subject = subject,
+                onCreditChange = { viewModel.updateSubject(index, credit = it) },
+                onGradeChange = { viewModel.updateSubject(index, grade = it) },
+                onRemove = { viewModel.removeSubject(index) }
+            )
+            Spacer(Modifier.height(8.dp))
+        }
 
-        Spacer(modifier = Modifier.height(8.dp))
         Button(
-            onClick = { },
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(vertical = 8.dp)
+            onClick = { viewModel.addSubject() },
+            modifier = Modifier.align(Alignment.CenterHorizontally)
         ) {
-            Text("🎯 Try SGPA Calculator", style = MaterialTheme.typography.bodyMedium)
+            Text(" +1  Add Subject", fontWeight = FontWeight.Medium)
         }
 
         Spacer(Modifier.height(24.dp))
 
-        Text(
-            "📘 What is CGPA?",
-            style = MaterialTheme.typography.titleMedium,
-            color = MaterialTheme.colorScheme.primary,
-            fontWeight = FontWeight.Bold
-        )
-        Spacer(Modifier.height(8.dp))
-        Text(
-            "CGPA shows your average across all semesters. But bigger semesters (more credits) count more than smaller ones.",
-            style = MaterialTheme.typography.bodyLarge
-        )
-        Spacer(Modifier.height(12.dp))
-        FormulaCard("CGPA = (SGPA × Credits) + ... ÷ Total Credits")
+        SgpaResultCard(sgpa = viewModel.calculateSGPA())
 
-        Spacer(Modifier.height(32.dp))
-
-
-        Button(
-            onClick = { },
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(bottom = 16.dp)
-        ) {
-            Text("📊 Try CGPA Calculator", style = MaterialTheme.typography.bodyMedium)
-        }
+        InstructionsBlock()
     }
 }
+
 
 
