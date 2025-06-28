@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<!--
+  Lab Evaluation Sheet Calculator
+  Optimized for Android WebView integration via file:///android_asset/
+  - No external dependencies (fully offline)
+  - Mobile-first responsive design
+  - Native dark mode support via prefers-color-scheme
+  - Touch-friendly inputs (≥48px)
+  - Ready for Jetpack Compose WebView embedding
+-->
+<html lang="en">
+<head>
+	<title>Kaustubh Deshpande - Lab Evaluation</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+	<link rel="icon" href="profile.png" type="image/png">
+	<link rel="icon" href="favicon.ico" type="image/x-icon">
+	<link rel="apple-touch-icon" href="profile.jpg">
+	<link rel="stylesheet" href="style.css">
+	<script src="script.js" defer></script>
+</head>
+<body>
+	<div class="webview-container">
+		<!-- Main Content -->
+		<main class="webview-main">
+			<!-- Cycle Configuration -->
+			<section class="config-section">
+				<div class="card">
+					<h2>Cycle Configuration</h2>
+					<div class="cycle-inputs">
+						<div class="cycle-group">
+							<label for="cycle1-end">Cycle 1: 1 to</label>
+							<input type="number" id="cycle1-end" min="1" max="15" value="5" class="cycle-input">
+						</div>
+						<div class="cycle-group">
+							<label for="cycle2-end">Cycle 2: <span id="cycle2-start">6</span> to</label>
+							<input type="number" id="cycle2-end" min="6" max="30" value="10" class="cycle-input">
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<!-- Input Mode Toggle -->
+			<section class="mode-section">
+				<div class="card">
+					<div class="toggle-container">
+						<label class="toggle-label">
+							<input type="checkbox" id="manual-mode" class="toggle-input">
+							<span class="toggle-slider"></span>
+							<span class="toggle-text">Manual Input Mode</span>
+						</label>
+					</div>
+				</div>
+			</section>
+
+			<!-- Cycle 1 Input -->
+			<section class="cycle-section" id="cycle1-section">
+				<div class="card cycle-card">
+					<div class="card-header" onclick="toggleAccordion('cycle1-content')">
+						<h3>Cycle 1: Experiments 1-<span id="cycle1-range">5</span></h3>
+						<span class="accordion-icon">▼</span>
+					</div>
+					<div class="card-content accordion-content active" id="cycle1-content">
+						<div class="experiment-grid" id="cycle1-experiments">
+							<!-- Experiments will be generated dynamically -->
+						</div>
+						<div class="average-input">
+							<label for="cycle1-avg">Average Score:</label>
+							<input type="number" id="cycle1-avg" min="20" max="100" step="2" class="avg-input" placeholder="Auto-calculated" readonly>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<!-- Cycle 2 Input -->
+			<section class="cycle-section" id="cycle2-section">
+				<div class="card cycle-card">
+					<div class="card-header" onclick="toggleAccordion('cycle2-content')">
+						<h3>Cycle 2: Experiments <span id="cycle2-range-start">6</span>-<span id="cycle2-range-end">10</span></h3>
+						<span class="accordion-icon">▼</span>
+					</div>
+					<div class="card-content accordion-content active" id="cycle2-content">
+						<div class="experiment-grid" id="cycle2-experiments">
+							<!-- Experiments will be generated dynamically -->
+						</div>
+						<div class="average-input">
+							<label for="cycle2-avg">Average Score:</label>
+							<input type="number" id="cycle2-avg" min="20" max="100" step="2" class="avg-input" placeholder="Auto-calculated" readonly>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<!-- Evaluation Tables -->
+			<section class="evaluation-section">
+				<!-- Cycle 1 Evaluation -->
+				<div class="card evaluation-card">
+					<div class="card-header" onclick="toggleAccordion('eval1-content')">
+						<h3>Cycle 1 - Performance Evaluation</h3>
+						<span class="accordion-icon">▼</span>
+					</div>
+					<div class="card-content accordion-content" id="eval1-content">
+						<div class="evaluation-grid" id="eval1-grid">
+							<div class="eval-header">
+								<div class="criterion-cell">Parameter</div>
+								<div class="grade-cell tooltip-container">
+									E (5)
+									<span class="tooltip">Excellent</span>
+								</div>
+								<div class="grade-cell tooltip-container">
+									VG (4)
+									<span class="tooltip">Very Good</span>
+								</div>
+								<div class="grade-cell tooltip-container">
+									G (3)
+									<span class="tooltip">Good</span>
+								</div>
+								<div class="grade-cell tooltip-container">
+									A (2)
+									<span class="tooltip">Average</span>
+								</div>
+								<div class="grade-cell tooltip-container">
+									BA (1)
+									<span class="tooltip">Below Average</span>
+								</div>
+							</div>
+							<!-- Evaluation rows -->
+							<div class="eval-row">
+								<div class="criterion-cell tooltip-container">
+									TK (30)
+									<span class="tooltip">Task Knowledge</span>
+								</div>
+								<div class="grade-cell" data-grade="5" data-criterion="TK" data-cycle="1"></div>
+								<div class="grade-cell" data-grade="4" data-criterion="TK" data-cycle="1"></div>
+								<div class="grade-cell" data-grade="3" data-criterion="TK" data-cycle="1"></div>
+								<div class="grade-cell" data-grade="2" data-criterion="TK" data-cycle="1"></div>
+								<div class="grade-cell" data-grade="1" data-criterion="TK" data-cycle="1"></div>
+							</div>
+							<div class="eval-row">
+								<div class="criterion-cell tooltip-container">
+									TD (30)
+									<span class="tooltip">Task Delivery</span>
+								</div>
+								<div class="grade-cell" data-grade="5" data-criterion="TD" data-cycle="1"></div>
+								<div class="grade-cell" data-grade="4" data-criterion="TD" data-cycle="1"></div>
+								<div class="grade-cell" data-grade="3" data-criterion="TD" data-cycle="1"></div>
+								<div class="grade-cell" data-grade="2" data-criterion="TD" data-cycle="1"></div>
+								<div class="grade-cell" data-grade="1" data-criterion="TD" data-cycle="1"></div>
+							</div>
+							<div class="eval-row">
+								<div class="criterion-cell tooltip-container">
+									LI (10)
+									<span class="tooltip">Lab Involvement</span>
+								</div>
+								<div class="grade-cell" data-grade="5" data-criterion="LI" data-cycle="1"></div>
+								<div class="grade-cell" data-grade="4" data-criterion="LI" data-cycle="1"></div>
+								<div class="grade-cell" data-grade="3" data-criterion="LI" data-cycle="1"></div>
+								<div class="grade-cell" data-grade="2" data-criterion="LI" data-cycle="1"></div>
+								<div class="grade-cell" data-grade="1" data-criterion="LI" data-cycle="1"></div>
+							</div>
+							<div class="eval-row">
+								<div class="criterion-cell tooltip-container">
+									B (10)
+									<span class="tooltip">Behavior</span>
+								</div>
+								<div class="grade-cell" data-grade="5" data-criterion="B" data-cycle="1"></div>
+								<div class="grade-cell" data-grade="4" data-criterion="B" data-cycle="1"></div>
+								<div class="grade-cell" data-grade="3" data-criterion="B" data-cycle="1"></div>
+								<div class="grade-cell" data-grade="2" data-criterion="B" data-cycle="1"></div>
+								<div class="grade-cell" data-grade="1" data-criterion="B" data-cycle="1"></div>
+							</div>
+							<div class="eval-row">
+								<div class="criterion-cell tooltip-container">
+									C (20)
+									<span class="tooltip">Communication</span>
+								</div>
+								<div class="grade-cell" data-grade="5" data-criterion="C" data-cycle="1"></div>
+								<div class="grade-cell" data-grade="4" data-criterion="C" data-cycle="1"></div>
+								<div class="grade-cell" data-grade="3" data-criterion="C" data-cycle="1"></div>
+								<div class="grade-cell" data-grade="2" data-criterion="C" data-cycle="1"></div>
+								<div class="grade-cell" data-grade="1" data-criterion="C" data-cycle="1"></div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<!-- Cycle 2 Evaluation -->
+				<div class="card evaluation-card">
+					<div class="card-header" onclick="toggleAccordion('eval2-content')">
+						<h3>Cycle 2 - Performance Evaluation</h3>
+						<span class="accordion-icon">▼</span>
+					</div>
+					<div class="card-content accordion-content" id="eval2-content">
+						<div class="evaluation-grid" id="eval2-grid">
+							<div class="eval-header">
+								<div class="criterion-cell">Parameter</div>
+								<div class="grade-cell tooltip-container">
+									E (5)
+									<span class="tooltip">Excellent</span>
+								</div>
+								<div class="grade-cell tooltip-container">
+									VG (4)
+									<span class="tooltip">Very Good</span>
+								</div>
+								<div class="grade-cell tooltip-container">
+									G (3)
+									<span class="tooltip">Good</span>
+								</div>
+								<div class="grade-cell tooltip-container">
+									A (2)
+									<span class="tooltip">Average</span>
+								</div>
+								<div class="grade-cell tooltip-container">
+									BA (1)
+									<span class="tooltip">Below Average</span>
+								</div>
+							</div>
+							<!-- Evaluation rows -->
+							<div class="eval-row">
+								<div class="criterion-cell tooltip-container">
+									TK (30)
+									<span class="tooltip">Task Knowledge</span>
+								</div>
+								<div class="grade-cell" data-grade="5" data-criterion="TK" data-cycle="2"></div>
+								<div class="grade-cell" data-grade="4" data-criterion="TK" data-cycle="2"></div>
+								<div class="grade-cell" data-grade="3" data-criterion="TK" data-cycle="2"></div>
+								<div class="grade-cell" data-grade="2" data-criterion="TK" data-cycle="2"></div>
+								<div class="grade-cell" data-grade="1" data-criterion="TK" data-cycle="2"></div>
+							</div>
+							<div class="eval-row">
+								<div class="criterion-cell tooltip-container">
+									TD (30)
+									<span class="tooltip">Task Delivery</span>
+								</div>
+								<div class="grade-cell" data-grade="5" data-criterion="TD" data-cycle="2"></div>
+								<div class="grade-cell" data-grade="4" data-criterion="TD" data-cycle="2"></div>
+								<div class="grade-cell" data-grade="3" data-criterion="TD" data-cycle="2"></div>
+								<div class="grade-cell" data-grade="2" data-criterion="TD" data-cycle="2"></div>
+								<div class="grade-cell" data-grade="1" data-criterion="TD" data-cycle="2"></div>
+							</div>
+							<div class="eval-row">
+								<div class="criterion-cell tooltip-container">
+									LI (10)
+									<span class="tooltip">Lab Involvement</span>
+								</div>
+								<div class="grade-cell" data-grade="5" data-criterion="LI" data-cycle="2"></div>
+								<div class="grade-cell" data-grade="4" data-criterion="LI" data-cycle="2"></div>
+								<div class="grade-cell" data-grade="3" data-criterion="LI" data-cycle="2"></div>
+								<div class="grade-cell" data-grade="2" data-criterion="LI" data-cycle="2"></div>
+								<div class="grade-cell" data-grade="1" data-criterion="LI" data-cycle="2"></div>
+							</div>
+							<div class="eval-row">
+								<div class="criterion-cell tooltip-container">
+									B (10)
+									<span class="tooltip">Behavior</span>
+								</div>
+								<div class="grade-cell" data-grade="5" data-criterion="B" data-cycle="2"></div>
+								<div class="grade-cell" data-grade="4" data-criterion="B" data-cycle="2"></div>
+								<div class="grade-cell" data-grade="3" data-criterion="B" data-cycle="2"></div>
+								<div class="grade-cell" data-grade="2" data-criterion="B" data-cycle="2"></div>
+								<div class="grade-cell" data-grade="1" data-criterion="B" data-cycle="2"></div>
+							</div>
+							<div class="eval-row">
+								<div class="criterion-cell tooltip-container">
+									C (20)
+									<span class="tooltip">Communication</span>
+								</div>
+								<div class="grade-cell" data-grade="5" data-criterion="C" data-cycle="2"></div>
+								<div class="grade-cell" data-grade="4" data-criterion="C" data-cycle="2"></div>
+								<div class="grade-cell" data-grade="3" data-criterion="C" data-cycle="2"></div>
+								<div class="grade-cell" data-grade="2" data-criterion="C" data-cycle="2"></div>
+								<div class="grade-cell" data-grade="1" data-criterion="C" data-cycle="2"></div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<!-- Results Summary -->
+			<section class="results-section">
+				<div class="card results-card">
+					<div class="card-header" onclick="toggleAccordion('results-content')">
+						<h3>Final Results Summary</h3>
+						<span class="accordion-icon">▼</span>
+					</div>
+					<div class="card-content accordion-content active" id="results-content">
+						<div class="results-table">
+							<div class="results-header">
+								<div class="cycle-col">Cycle</div>
+								<div class="criteria-col">TK</div>
+								<div class="criteria-col">TD</div>
+								<div class="criteria-col">LI</div>
+								<div class="criteria-col">B</div>
+								<div class="criteria-col">C</div>
+								<div class="total-col">Total</div>
+							</div>
+							<div class="results-row">
+								<div class="cycle-col">Cycle 1</div>
+								<div class="criteria-col" id="c1-tk">-</div>
+								<div class="criteria-col" id="c1-td">-</div>
+								<div class="criteria-col" id="c1-li">-</div>
+								<div class="criteria-col" id="c1-b">-</div>
+								<div class="criteria-col" id="c1-c">-</div>
+								<div class="total-col" id="c1-total">-</div>
+							</div>
+							<div class="results-row">
+								<div class="cycle-col">Cycle 2</div>
+								<div class="criteria-col" id="c2-tk">-</div>
+								<div class="criteria-col" id="c2-td">-</div>
+								<div class="criteria-col" id="c2-li">-</div>
+								<div class="criteria-col" id="c2-b">-</div>
+								<div class="criteria-col" id="c2-c">-</div>
+								<div class="total-col" id="c2-total">-</div>
+							</div>
+							<div class="results-row results-total">
+								<div class="cycle-col">Total</div>
+								<div class="criteria-col" id="total-tk">-</div>
+								<div class="criteria-col" id="total-td">-</div>
+								<div class="criteria-col" id="total-li">-</div>
+								<div class="criteria-col" id="total-b">-</div>
+								<div class="criteria-col" id="total-c">-</div>
+								<div class="total-col" id="grand-total">-</div>
+							</div>
+							<div class="results-row results-average">
+								<div class="cycle-col">Average</div>
+								<div class="criteria-col" id="avg-tk">-</div>
+								<div class="criteria-col" id="avg-td">-</div>
+								<div class="criteria-col" id="avg-li">-</div>
+								<div class="criteria-col" id="avg-b">-</div>
+								<div class="criteria-col" id="avg-c">-</div>
+								<div class="total-col" id="final-avg">-</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+		</main>
+
+		<!-- Sticky Footer -->
+		<footer class="webview-footer sticky-footer">
+			<div class="footer-content">
+				<button class="reset-btn" onclick="resetAll()">
+					<span>🔄</span>
+					Reset All
+				</button>
+				<div class="total-display">
+					<span class="total-label">Final Average:</span>
+					<span class="total-value" id="final-average">--</span>
+				</div>
+			</div>
+		</footer>
+	</div>
+
+	<!-- Dark Mode Toggle -->
+	<button class="dark-mode-toggle" aria-label="Toggle dark mode">
+		<span class="sun-icon">☀️</span>
+		<span class="moon-icon">🌙</span>
+	</button>
+</body>
+</html>
