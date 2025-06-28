@@ -1,4 +1,4 @@
-package tech.kaustubhdeshpande.collegecompanion.screens.labsheet
+package tech.kaustubhdeshpande.collegecompanion.screens.collegeLayer.labsheet
 
 import android.annotation.SuppressLint
 import android.webkit.WebView
