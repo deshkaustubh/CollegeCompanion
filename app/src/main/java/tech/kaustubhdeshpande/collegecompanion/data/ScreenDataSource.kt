@@ -43,13 +43,10 @@ object ScreenDataSource {
         ScreenItem("Academic Calendar", Icons.Default.CalendarMonth),
         ScreenItem("Lab Evaluation", Icons.AutoMirrored.Filled.FactCheck),
         ScreenItem("Past Papers", Icons.AutoMirrored.Filled.MenuBook),
-        ScreenItem("Syllabus", Icons.AutoMirrored.Filled.Article),
-        ScreenItem("Resources", Icons.Default.Storage)
     )
 
     val focusAndExtras = listOf(
         ScreenItem("Pomodoro Timer", Icons.Default.Timer),
-        ScreenItem("Mini Game", Icons.Default.SportsEsports)
     )
 
     // Optional: All in one list for search/autocomplete use
