@@ -19,3 +19,17 @@
 # If you keep the line number information, uncomment this to
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
+
+# Keep Kotlin metadata
+-keepclassmembers class ** {
+    @kotlin.Metadata *;
+}
+
+# Keep Jetpack Compose-related classes
+-keep class androidx.compose.** { *; }
+
+# Keep ViewModels
+-keep class * extends androidx.lifecycle.ViewModel
+
+# Keep Gson / Moshi adapters (if used)
+-keep class com.example.** { *; }
