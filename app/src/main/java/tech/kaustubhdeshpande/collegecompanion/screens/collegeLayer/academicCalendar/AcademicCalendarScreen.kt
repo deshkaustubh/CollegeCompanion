@@ -1,5 +1,4 @@
-package com.example.academicscreens.academicCalendar
-
+package tech.kaustubhdeshpande.collegecompanion.screens.collegeLayer.academicCalendar
 
 import android.content.Intent
 import android.net.Uri

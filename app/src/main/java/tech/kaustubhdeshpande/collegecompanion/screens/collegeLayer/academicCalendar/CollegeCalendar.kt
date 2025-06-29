@@ -1,5 +1,4 @@
-package com.example.academicscreens.academicCalendar
-
+package tech.kaustubhdeshpande.collegecompanion.screens.collegeLayer.academicCalendar
 
 data class CollegeCalendar(
     val id: String,
