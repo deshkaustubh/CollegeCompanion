@@ -11,6 +11,9 @@ import tech.kaustubhdeshpande.collegecompanion.screens.academicEssentials.cgpaCa
 import tech.kaustubhdeshpande.collegecompanion.screens.academicEssentials.gpa101.GPA101Screen
 import tech.kaustubhdeshpande.collegecompanion.screens.academicEssentials.sgpacalculator.SGPAScreen
 import tech.kaustubhdeshpande.collegecompanion.screens.academicEssentials.simpleCalculator.SimpleCalculatorScreen
+import tech.kaustubhdeshpande.collegecompanion.screens.collegeLayer.academicCalendar.AcademicCalendarScreen
+import tech.kaustubhdeshpande.collegecompanion.screens.collegeLayer.labsheet.LabSheetScreen
+import tech.kaustubhdeshpande.collegecompanion.screens.collegeLayer.pyq.PYQScreen
 import tech.kaustubhdeshpande.collegecompanion.screens.dashboard.DashboardScreen
 import tech.kaustubhdeshpande.collegecompanion.screens.documentsandComms.excuseGenerator.ExcuseGeneratorScreen
 import tech.kaustubhdeshpande.collegecompanion.screens.documentsandComms.holidaysScreen.HolidaysScreen
@@ -30,6 +33,12 @@ enum class LettersAndCommunicationScreens {
     MailGenerator,
     ExcuseGenerator,
     Holidays
+}
+
+enum class CollegeLayerScreens {
+    AcademicCalendar,
+    LabSheet,
+    Pyq
 }
 
 @RequiresApi(Build.VERSION_CODES.O)
@@ -56,6 +65,10 @@ fun AllScreensGraph(
                             "Mail Generator" -> LettersAndCommunicationScreens.MailGenerator.name
                             "Excuse Generator" -> LettersAndCommunicationScreens.ExcuseGenerator.name
                             "Holidays Tracker" -> LettersAndCommunicationScreens.Holidays.name
+                            //College Layer cards
+                            "Academic Calendar" -> CollegeLayerScreens.AcademicCalendar.name
+                            "Lab Evaluation" -> CollegeLayerScreens.LabSheet.name
+                            "Past Papers" -> CollegeLayerScreens.Pyq.name
                             else -> AcademicEssentialsScreens.AcademicEssentialsDashboard.name
                         }
                     )
@@ -67,7 +80,7 @@ fun AllScreensGraph(
 
         composable(AcademicEssentialsScreens.SimpleCalculator.name) {
             SimpleCalculatorScreen(
-                navigateBack = {navController.popBackStack()}
+                navigateBack = { navController.popBackStack() }
             )
         }
 
@@ -114,6 +127,30 @@ fun AllScreensGraph(
                 navigateBack = { navController.popBackStack() }
             )
         }
+
+        // College Layer Screens
+
+        composable(CollegeLayerScreens.Pyq.name) {
+            PYQScreen(
+                navigateBack = { navController.popBackStack() }
+            )
+        }
+
+        composable(CollegeLayerScreens.LabSheet.name) {
+            LabSheetScreen(
+                navigateBack = { navController.popBackStack() }
+            )
+        }
+
+        composable(CollegeLayerScreens.AcademicCalendar.name) {
+            AcademicCalendarScreen(
+                navigateBack = { navController.popBackStack() }
+            )
+        }
+
+        // Focus and Extras
+
+
     }
 }
 
