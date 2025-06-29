@@ -21,6 +21,13 @@ enum class AcademicEssentialsScreens {
     SGPACalculator,
 }
 
+enum class LettersAndCommunicationScreens {
+    LetterLab,
+    MailGenerator,
+    ExcuseGenerator,
+    Holidays
+}
+
 @RequiresApi(Build.VERSION_CODES.O)
 @Composable
 fun AllScreensGraph(
@@ -45,6 +52,8 @@ fun AllScreensGraph(
                 }
             )
         }
+
+        // Academic Essentials Screens
 
         composable(AcademicEssentialsScreens.SimpleCalculator.name) {
             SimpleCalculatorScreen(
