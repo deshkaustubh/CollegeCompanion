@@ -59,7 +59,7 @@ fun PomodoroScreen(
             CenterAlignedTopAppBar(
                 title = {
                     Text(
-                        text = "",
+                        text = "Pomodoro",
                         style = MaterialTheme.typography.headlineLarge,
                         fontSize = 16.sp,
                         fontWeight = FontWeight.Bold
