@@ -55,7 +55,7 @@ fun AllScreensGraph(
                             "Letter Lab" -> LettersAndCommunicationScreens.LetterLab.name
                             "Mail Generator" -> LettersAndCommunicationScreens.MailGenerator.name
                             "Excuse Generator" -> LettersAndCommunicationScreens.ExcuseGenerator.name
-                            "National Holidays" -> LettersAndCommunicationScreens.Holidays.name
+                            "Holidays Tracker" -> LettersAndCommunicationScreens.Holidays.name
                             else -> AcademicEssentialsScreens.AcademicEssentialsDashboard.name
                         }
                     )
@@ -67,7 +67,7 @@ fun AllScreensGraph(
 
         composable(AcademicEssentialsScreens.SimpleCalculator.name) {
             SimpleCalculatorScreen(
-                navigateBack = { navController.popBackStack() }
+                navigateBack = {navController.popBackStack()}
             )
         }
 

@@ -33,7 +33,7 @@ object ScreenDataSource {
         ScreenItem("Letter Lab", Icons.Default.Description),
         ScreenItem("Mail Generator", Icons.AutoMirrored.Filled.Send),
         ScreenItem("Excuse Generator", Icons.AutoMirrored.Filled.Chat),
-        ScreenItem("National Holidays", Icons.Default.Event)
+        ScreenItem("Holidays Tracker", Icons.Default.Event)
     )
 
     val collegeLayer = listOf(
