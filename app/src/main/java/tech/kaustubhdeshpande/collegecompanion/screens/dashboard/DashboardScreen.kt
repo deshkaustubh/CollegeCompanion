@@ -16,6 +16,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalUriHandler
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.FontWeight
@@ -26,8 +27,6 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import tech.kaustubhdeshpande.collegecompanion.data.ScreenDataSource
 import tech.kaustubhdeshpande.collegecompanion.ui.theme.Internship1ProjectTheme
-import androidx.compose.ui.platform.LocalUriHandler
-
 
 
 @RequiresApi(Build.VERSION_CODES.O)
@@ -51,7 +50,7 @@ fun DashboardContent(
             title = "Academic Essentials",
             items = ScreenDataSource.academicEssentials,
             onClick = onCardClick,
-            modifier = Modifier.padding(start = 8.dp, end =8.dp)
+            modifier = Modifier.padding(start = 8.dp, end = 8.dp)
         )
 
         Spacer(modifier = Modifier.height(24.dp))
@@ -60,7 +59,7 @@ fun DashboardContent(
             title = "Letters & Communication",
             items = ScreenDataSource.documentsAndComms,
             onClick = onCardClick,
-            modifier = Modifier.padding(start = 8.dp, end =8.dp)
+            modifier = Modifier.padding(start = 8.dp, end = 8.dp)
         )
 
         Spacer(modifier = Modifier.height(24.dp))
@@ -69,7 +68,7 @@ fun DashboardContent(
             title = "College Toolkit",
             items = ScreenDataSource.collegeLayer,
             onClick = onCardClick,
-            modifier = Modifier.padding(start = 8.dp, end =8.dp)
+            modifier = Modifier.padding(start = 8.dp, end = 8.dp)
         )
 
         Spacer(modifier = Modifier.height(24.dp))
@@ -78,7 +77,7 @@ fun DashboardContent(
             title = "Focus & Enrichment",
             items = ScreenDataSource.focusAndExtras,
             onClick = onCardClick,
-            modifier = Modifier.padding(start = 8.dp, end =8.dp)
+            modifier = Modifier.padding(start = 8.dp, end = 8.dp)
         )
 
         Spacer(modifier = Modifier.height(24.dp))
@@ -111,7 +110,7 @@ fun DashboardContent(
 fun DashboardScreen(modifier: Modifier = Modifier, onCardClick: (String) -> Unit) {
     Scaffold(
         topBar = { DashboardTopAppBar() }
-    ) {innerPadding->
+    ) { innerPadding ->
         DashboardContent(onCardClick = onCardClick, modifier = Modifier.padding(innerPadding))
     }
 }
@@ -121,6 +120,6 @@ fun DashboardScreen(modifier: Modifier = Modifier, onCardClick: (String) -> Unit
 @Composable
 private fun DashboardScreenPreview() {
     Internship1ProjectTheme {
-        DashboardScreen {  }
+        DashboardScreen { }
     }
 }
