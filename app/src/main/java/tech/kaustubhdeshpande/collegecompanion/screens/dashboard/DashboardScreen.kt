@@ -82,12 +82,18 @@ fun DashboardContent(
 
         Spacer(modifier = Modifier.height(24.dp))
 
+
         Text(
             text = buildAnnotatedString {
-                append("Crafted by ")
-                pushStringAnnotation(tag = "URL", annotation = "https://kaustubhdeshpande.tech/")
-                withStyle(SpanStyle(color = Color(0xFF0D47A1), fontWeight = FontWeight.Bold)) {
-                    append("Kaustubh Deshpande")
+                append(" Privacy sealed by — ")
+                pushStringAnnotation(tag = "privacy", annotation = "https://kaustubhdeshpande.tech/privacypolicy-collegecompanion")
+                withStyle(
+                    style = SpanStyle(
+                        color = Color(0xFF0D47A1),
+                        fontWeight = FontWeight.Bold
+                    )
+                ) {
+                    append("@Kaustubh Deshpande")
                 }
                 pop()
             },
@@ -97,7 +103,7 @@ fun DashboardContent(
                 .fillMaxWidth()
                 .padding(bottom = 12.dp)
                 .clickable {
-                    uriHandler.openUri("https://kaustubhdeshpande.tech/")
+                    uriHandler.openUri("https://kaustubhdeshpande.tech/privacypolicy-collegecompanion")
                 }
         )
 
