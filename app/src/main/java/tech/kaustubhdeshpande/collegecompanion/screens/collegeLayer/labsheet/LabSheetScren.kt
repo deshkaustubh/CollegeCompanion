@@ -45,6 +45,8 @@ fun LabSheetScreen(
         systemUiController.setNavigationBarColor(color = navigationBarColor)
     }
 
+    val scrollBehavior = TopAppBarDefaults.exitUntilCollapsedScrollBehavior()
+
     Scaffold(
         topBar = {
             CenterAlignedTopAppBar(
@@ -70,7 +72,8 @@ fun LabSheetScreen(
                             tint = Color.Black,
                         )
                     }
-                }
+                },
+                scrollBehavior = scrollBehavior
             )
         },
     ) { innerPadding ->
