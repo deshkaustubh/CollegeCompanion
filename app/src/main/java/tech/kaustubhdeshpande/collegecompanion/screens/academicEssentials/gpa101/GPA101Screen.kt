@@ -129,7 +129,7 @@ fun Gpa101Content(
 
         Spacer(modifier = Modifier.height(8.dp))
         Button(
-            onClick = { onCgpaCalculatorClick() },
+            onClick = { onSgpaCalculatorClick() },
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(vertical = 8.dp)
