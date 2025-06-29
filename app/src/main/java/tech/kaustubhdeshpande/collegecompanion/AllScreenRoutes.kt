@@ -42,7 +42,7 @@ enum class CollegeLayerScreens {
     Pyq
 }
 
-enum class FocusAndExtrasScreens{
+enum class FocusAndExtrasScreens {
     Pomodoro
 }
 
@@ -159,7 +159,7 @@ fun AllScreensGraph(
 
         composable(FocusAndExtrasScreens.Pomodoro.name) {
             PomodoroScreen(
-                navigateBack = {navController.popBackStack()}
+                navigateBack = { navController.popBackStack() }
             )
         }
 
