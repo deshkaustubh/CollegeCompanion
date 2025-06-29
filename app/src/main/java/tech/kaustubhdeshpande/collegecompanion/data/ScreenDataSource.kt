@@ -30,7 +30,7 @@ object ScreenDataSource {
     )
 
     val documentsAndComms = listOf(
-        ScreenItem("LetterLab", Icons.Default.Description),
+        ScreenItem("Letter Lab", Icons.Default.Description),
         ScreenItem("Mail Generator", Icons.AutoMirrored.Filled.Send),
         ScreenItem("Excuse Generator", Icons.AutoMirrored.Filled.Chat),
         ScreenItem("National Holidays", Icons.Default.Event)

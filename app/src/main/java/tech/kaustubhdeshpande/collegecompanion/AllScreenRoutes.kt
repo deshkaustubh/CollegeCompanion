@@ -12,6 +12,10 @@ import tech.kaustubhdeshpande.collegecompanion.screens.academicEssentials.gpa101
 import tech.kaustubhdeshpande.collegecompanion.screens.academicEssentials.sgpacalculator.SGPAScreen
 import tech.kaustubhdeshpande.collegecompanion.screens.academicEssentials.simpleCalculator.SimpleCalculatorScreen
 import tech.kaustubhdeshpande.collegecompanion.screens.dashboard.DashboardScreen
+import tech.kaustubhdeshpande.collegecompanion.screens.documentsandComms.excuseGenerator.ExcuseGeneratorScreen
+import tech.kaustubhdeshpande.collegecompanion.screens.documentsandComms.holidaysScreen.HolidaysScreen
+import tech.kaustubhdeshpande.collegecompanion.screens.documentsandComms.letterGenerator.LetterLabHomeScreen
+import tech.kaustubhdeshpande.collegecompanion.screens.documentsandComms.mailGenerator.MailGeneratorScreen
 
 enum class AcademicEssentialsScreens {
     AcademicEssentialsDashboard,
@@ -42,10 +46,16 @@ fun AllScreensGraph(
                 onCardClick = { optionCardText ->
                     navController.navigate(
                         when (optionCardText) {
+                            // Academic Essentials cards
                             "CGPA Calculator" -> AcademicEssentialsScreens.CGPACalculator.name
                             "SGPA Calculator" -> AcademicEssentialsScreens.SGPACalculator.name
                             "GPA 1-0-1" -> AcademicEssentialsScreens.GPA101.name
                             "Simple Calculator" -> AcademicEssentialsScreens.SimpleCalculator.name
+                            //Letters and Communications Cards
+                            "Letter Lab" -> LettersAndCommunicationScreens.LetterLab.name
+                            "Mail Generator" -> LettersAndCommunicationScreens.MailGenerator.name
+                            "Excuse Generator" -> LettersAndCommunicationScreens.ExcuseGenerator.name
+                            "National Holidays" -> LettersAndCommunicationScreens.Holidays.name
                             else -> AcademicEssentialsScreens.AcademicEssentialsDashboard.name
                         }
                     )
@@ -75,6 +85,32 @@ fun AllScreensGraph(
 
         composable(AcademicEssentialsScreens.SGPACalculator.name) {
             SGPAScreen(
+                navigateBack = { navController.popBackStack() }
+            )
+        }
+
+        // Letters and Communications Screen
+
+        composable(LettersAndCommunicationScreens.LetterLab.name) {
+            LetterLabHomeScreen(
+                navigateBack = { navController.popBackStack() }
+            )
+        }
+
+        composable(LettersAndCommunicationScreens.Holidays.name) {
+            HolidaysScreen(
+                navigateBack = { navController.popBackStack() }
+            )
+        }
+
+        composable(LettersAndCommunicationScreens.MailGenerator.name) {
+            MailGeneratorScreen(
+                navigateBack = { navController.popBackStack() }
+            )
+        }
+
+        composable(LettersAndCommunicationScreens.ExcuseGenerator.name) {
+            ExcuseGeneratorScreen(
                 navigateBack = { navController.popBackStack() }
             )
         }
