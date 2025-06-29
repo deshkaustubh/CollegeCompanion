@@ -1,6 +1,8 @@
 package tech.kaustubhdeshpande.collegecompanion.screens.dashboard
 
 
+import android.os.Build
+import androidx.annotation.RequiresApi
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -8,6 +10,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -24,11 +27,17 @@ import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -41,11 +50,15 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import kotlinx.coroutines.delay
 import tech.kaustubhdeshpande.collegecompanion.R
 import tech.kaustubhdeshpande.collegecompanion.data.ScreenItem
 import tech.kaustubhdeshpande.collegecompanion.ui.theme.Internship1ProjectTheme
+import tech.kaustubhdeshpande.collegecompanion.ui.theme.Surface
+import java.time.LocalDate
 
 // Complete Punch card with background gradients
+@RequiresApi(Build.VERSION_CODES.O)
 @Composable
 fun DashboardPunchCard(modifier: Modifier = Modifier) {
     Box(
@@ -106,11 +119,16 @@ fun DashboardPunchCard(modifier: Modifier = Modifier) {
                         containerColor = Color(0xFFdaebfd)
                     )
                 ) {
-                    Image(
-                        painter = painterResource(id = R.drawable.collegecompanionsplash),
-                        contentDescription = "College Companion",
-                        modifier = Modifier.size(100.dp)
-                    )
+                    Row {
+
+                        Image(
+                            painter = painterResource(id = R.drawable.collegecompanionsplash),
+                            contentDescription = "College Companion",
+                            modifier = Modifier.size(100.dp)
+                        )
+
+                        MotivationalQuoteBanner()
+                    }
                 }
             }
         }
@@ -241,11 +259,89 @@ fun ScreenGrid(
     }
 }
 
+val dailyQuotes = listOf(
+    "GPA? Please. I built a flying suit in a cave… with a box of scraps.",
+    "Success isn't luck. It's attitude… and maybe a hint of nanotech.",
+    "Deadlines are just opportunities with better PR.",
+    "Sleep is great — but so is a 4.0.",
+    "If you're not breaking something, you're probably not building anything.",
+    "You can calculate SGPA. I’ll calculate the probability of multiverse collapse.",
+    "Not all heroes wear capes. Some craft perfect leave letters.",
+    "Don’t let perfection be the enemy of done. Ship it.",
+    "Overthinking is fine — until the reactor melts down.",
+    "You’re not behind. You’re just in stealth mode.",
+    "The difference between a dropout and a legend? Focus. And maybe lasers.",
+    "Procrastinate if you must… just make the comeback look effortless.",
+    "Style it. Ship it. Walk away while it explodes in the background.",
+    "Let your attendance be questionable. Never your ambition.",
+    "Innovation is just rebellion with a blueprint.",
+    "The tools don’t make the genius. But they *do* help.",
+    "When in doubt, upgrade your mindset. And your UI.",
+    "If it scares you a little, you’re doing it right.",
+    "Letters, GPA, excuses — all data. What you do with it? That’s the story.",
+    "No magic. Just math and momentum.",
+    "Keep your builds clean. And your intentions cleaner.",
+    "Sometimes the best feature is hitting 'Send'.",
+    "You're not an imposter. You're just pre-release.",
+    "Vision without execution? That’s a hallucination.",
+    "Let failure happen. Just make it beta-worthy.",
+    "Study like your AI assistant's watching.",
+    "Save the drama for your draft folder.",
+    "Logs exist so we don’t repeat the chaos. Use them.",
+    "Hack the system, but debug your mind.",
+    "You’re not just surviving college. You’re prototype-testing greatness.",
+    "Rewrite the script. Be the update."
+)
+
+
+@Composable
+fun TypewriterQuote(text: String, delayMillis: Long = 25L) {
+    var visibleText by remember { mutableStateOf("") }
+
+    LaunchedEffect(text) {
+        visibleText = ""
+        text.forEachIndexed { i, _ ->
+            delay(delayMillis)
+            visibleText = text.take(i + 1)
+        }
+    }
+
+    Text(
+        text = visibleText,
+        style = MaterialTheme.typography.bodyMedium,
+        color = MaterialTheme.colorScheme.primary,
+        modifier = Modifier.padding(horizontal = 16.dp),
+        fontWeight = FontWeight.Bold
+    )
+}
+
+
+@RequiresApi(Build.VERSION_CODES.O)
+@Composable
+fun MotivationalQuoteBanner(modifier: Modifier = Modifier) {
+    val today = LocalDate.now().dayOfMonth
+    val quote = dailyQuotes.getOrNull(today - 1) ?: "You showed up — that’s step one."
+
+    Surface(
+        color = Color.Transparent,
+        shape = RoundedCornerShape(12.dp),
+        tonalElevation = 4.dp,
+        modifier = modifier
+            .fillMaxSize()
+    ) {
+        Column(Modifier.padding(12.dp)) {
+            TypewriterQuote(quote)
+        }
+    }
+}
+
+
+@RequiresApi(Build.VERSION_CODES.O)
 @Preview
 @Composable
 private fun DashboardComposablePreview() {
     Internship1ProjectTheme {
-        DashboardTopAppBar()
+        DashboardPunchCard()
     }
 }
 
