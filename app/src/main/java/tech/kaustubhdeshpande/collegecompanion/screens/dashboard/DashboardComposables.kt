@@ -276,38 +276,40 @@ fun LayerSection(
 
 
 val dailyQuotes = listOf(
-    "GPA? Please. I built a flying suit in a cave… with a box of scraps.",
-    "Success isn't luck. It's attitude… and maybe a hint of nanotech.",
-    "Deadlines are just opportunities with better PR.",
-    "Sleep is great — but so is a 4.0.",
-    "If you're not breaking something, you're probably not building anything.",
-    "You can calculate SGPA. I’ll calculate the probability of multiverse collapse.",
-    "Not all heroes wear capes. Some craft perfect leave letters.",
-    "Don’t let perfection be the enemy of done. Ship it.",
-    "Overthinking is fine — until the reactor melts down.",
-    "You’re not behind. You’re just in stealth mode.",
-    "The difference between a dropout and a legend? Focus. And maybe lasers.",
-    "Procrastinate if you must… just make the comeback look effortless.",
-    "Style it. Ship it. Walk away while it explodes in the background.",
-    "Let your attendance be questionable. Never your ambition.",
-    "Innovation is just rebellion with a blueprint.",
-    "The tools don’t make the genius. But they *do* help.",
-    "When in doubt, upgrade your mindset. And your UI.",
-    "If it scares you a little, you’re doing it right.",
-    "Letters, GPA, excuses — all data. What you do with it? That’s the story.",
-    "No magic. Just math and momentum.",
-    "Keep your builds clean. And your intentions cleaner.",
-    "Sometimes the best feature is hitting 'Send'.",
-    "You're not an imposter. You're just pre-release.",
-    "Vision without execution? That’s a hallucination.",
-    "Let failure happen. Just make it beta-worthy.",
-    "Study like your AI assistant's watching.",
-    "Save the drama for your draft folder.",
-    "Logs exist so we don’t repeat the chaos. Use them.",
-    "Hack the system, but debug your mind.",
-    "You’re not just surviving college. You’re prototype-testing greatness.",
-    "Rewrite the script. Be the update."
+    "Built it solo. Zero sleep. Still overclocked",
+    "Don’t aim to survive. Architect your dominance.",
+    "Deadlines ≠ doom. They’re launchpads.",
+    "Chill is a feature. So is dominance.",
+    "If you don’t scare yourself, you’re doing it wrong.",
+    "Most quit before it gets interesting. You’re not most.",
+    "Heroes write letters. Legends excuse absences.",
+    "The system isn’t broken. It’s just never feared you.",
+    "Overthinking ends in meltdown.",
+    "Stealth mode ≠ stagnation.",
+    "Dropout or legend? Depends on focus.",
+    "Delay it. Then dominate it.",
+    "Character isn’t built. It’s proven — choice by choice.",
+    "Low attendance. High ambition.",
+    "Blueprints are just rebel plans.",
+    "Courage is quiet. But it shows up first.",
+    "Fear = feature. Keep going.",
+    "What you start today rewrites their tomorrow.",
+    "Nothing disrupts legacy like momentum in silence.",
+    "If they don’t misunderstand you, you’re doing it wrong.",
+    "They’ll remember your silence longer than their noise.",
+    "What you start today rewrites their tomorrow.",
+    "While they drafted whitepapers, I launched payloads.",
+    "Fail smart. Label it ‘beta.’",
+    "I don’t meet standards. I write them.",
+    "Drama? Keep it in drafts.",
+    "Plan like a villain. Execute like a monk.",
+    "I saw 14 million endings. I built the one I needed.",
+    "You’re prototyping greatness.",
+    "Fix yourself like the world depends on it — because it does.",
+    "Build like the world’s watching. Because one day it will.",
+    "Logs aren’t for history. They’re for survival."
 )
+
 
 
 @Composable
@@ -334,7 +336,7 @@ fun TypewriterQuote(
         style = MaterialTheme.typography.bodyMedium,
         color = MaterialTheme.colorScheme.primary,
         fontWeight = FontWeight.Medium,
-        modifier = Modifier.padding(horizontal = 16.dp)
+        modifier = Modifier.padding(horizontal = 4.dp)
     )
 }
 
