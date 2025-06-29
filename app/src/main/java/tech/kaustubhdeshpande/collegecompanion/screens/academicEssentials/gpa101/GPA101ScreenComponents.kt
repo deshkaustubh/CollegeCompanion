@@ -7,11 +7,11 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Button
-import androidx.compose.material3.ButtonDefaults
+import androidx.compose.foundation.layout.width
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Divider
+import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.MaterialTheme.colorScheme
 import androidx.compose.material3.Text
@@ -19,42 +19,103 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 
 @Composable
-fun SectionTitle(text: String) {
-    Text(
-        text = text,
-        style = MaterialTheme.typography.titleMedium,
-        color = colorScheme.primary
-    )
-}
-
-@Composable
-fun SectionText(text: String) {
-    Text(
-        text = text,
-        style = MaterialTheme.typography.bodyLarge,
-        color = colorScheme.onBackground,
-        modifier = Modifier.padding(top = 4.dp, bottom = 12.dp)
-    )
-}
-
-@Composable
-fun FormulaCard(formula: String) {
+fun FormulaCardSGPA() {
     Card(
         colors = CardDefaults.cardColors(containerColor = colorScheme.surface),
         elevation = CardDefaults.cardElevation(defaultElevation = 4.dp),
         modifier = Modifier.fillMaxWidth()
     ) {
-        Text(
-            text = formula,
-            style = MaterialTheme.typography.bodyLarge.copy(fontWeight = FontWeight.Bold),
-            color = colorScheme.onSurface,
-            modifier = Modifier.padding(16.dp)
-        )
+        Column(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(16.dp),
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
+            Text(
+                text = "SGPA =",
+                style = MaterialTheme.typography.bodyLarge.copy(fontWeight = FontWeight.Bold),
+                color = colorScheme.onSurface
+            )
+
+            Spacer(modifier = Modifier.height(12.dp))
+
+            Column(horizontalAlignment = Alignment.CenterHorizontally) {
+                Text(
+                    text = "Grade Points × Credits",
+                    style = MaterialTheme.typography.bodyLarge,
+                    color = colorScheme.onSurface
+                )
+
+                Divider(
+                    modifier = Modifier
+                        .padding(vertical = 4.dp)
+                        .width(180.dp)
+                        .height(1.dp),
+                    color = colorScheme.onSurface.copy(alpha = 0.4f)
+                )
+
+                Text(
+                    text = "Total Credits",
+                    style = MaterialTheme.typography.bodyLarge,
+                    color = colorScheme.onSurface
+                )
+            }
+        }
     }
 }
+
+
+@Composable
+fun FormulaCardCGPA() {
+    Card(
+        colors = CardDefaults.cardColors(containerColor = colorScheme.surface),
+        elevation = CardDefaults.cardElevation(defaultElevation = 4.dp),
+        modifier = Modifier.fillMaxWidth()
+    ) {
+        Column(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(16.dp),
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
+            Text(
+                text = "CGPA =",
+                style = MaterialTheme.typography.bodyLarge.copy(fontWeight = FontWeight.Bold),
+                color = colorScheme.onSurface
+            )
+
+            Spacer(modifier = Modifier.height(12.dp))
+
+            // Faux fraction layout
+            Column(horizontalAlignment = Alignment.CenterHorizontally) {
+                Text(
+                    text = "(SGPA × Credits) + …",
+                    style = MaterialTheme.typography.bodyLarge.copy(fontWeight = FontWeight.Normal),
+                    color = colorScheme.onSurface
+                )
+
+                Divider(
+                    modifier = Modifier
+                        .padding(vertical = 4.dp)
+                        .width(180.dp)
+                        .height(1.dp),
+                    color = colorScheme.onSurface.copy(alpha = 0.4f)
+                )
+
+                Text(
+                    text = "Total Credits",
+                    style = MaterialTheme.typography.bodyLarge.copy(fontWeight = FontWeight.Normal),
+                    color = colorScheme.onSurface
+                )
+            }
+        }
+    }
+}
+
 
 @Composable
 fun GradePointTable() {
@@ -82,20 +143,6 @@ fun GradePointTable() {
                 Text("Points: $point", color = colorScheme.onBackground)
             }
         }
-    }
-}
-
-@Composable
-fun ActionButton(text: String, onClick: () -> Unit) {
-    Button(
-        onClick = onClick,
-        modifier = Modifier.fillMaxWidth(),
-        colors = ButtonDefaults.buttonColors(
-            containerColor = colorScheme.primary,
-            contentColor = colorScheme.onPrimary
-        )
-    ) {
-        Text(text, style = MaterialTheme.typography.bodyMedium)
     }
 }
 
@@ -161,9 +208,11 @@ fun CgpaFormulaCard() {
                 Text(
                     text = "(SGPA₁ × Credits₁) + (SGPA₂ × Credits₂) +..",
                     style = MaterialTheme.typography.bodySmall.copy(fontWeight = FontWeight.Medium),
-                    color = MaterialTheme.colorScheme.onSurface
+                    color = MaterialTheme.colorScheme.onSurface,
+                    maxLines = 1,
+                    overflow = TextOverflow.Ellipsis
                 )
-                Divider(
+                HorizontalDivider(
                     modifier = Modifier
                         .fillMaxWidth(0.7f)
                         .padding(vertical = 4.dp),

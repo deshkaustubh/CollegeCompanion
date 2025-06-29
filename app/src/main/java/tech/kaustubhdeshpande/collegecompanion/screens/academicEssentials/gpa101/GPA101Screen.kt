@@ -122,12 +122,15 @@ fun Gpa101Content(
             style = MaterialTheme.typography.bodyLarge
         )
         Spacer(Modifier.height(12.dp))
-        FormulaCard("SGPA = (Grade Points × Credits) ÷ Total Credits")
+
+        FormulaCardSGPA()
 
         Spacer(Modifier.height(20.dp))
+
         GradePointTable()
 
         Spacer(modifier = Modifier.height(8.dp))
+
         Button(
             onClick = { onSgpaCalculatorClick() },
             modifier = Modifier
@@ -151,7 +154,8 @@ fun Gpa101Content(
             style = MaterialTheme.typography.bodyLarge
         )
         Spacer(Modifier.height(12.dp))
-        FormulaCard("CGPA = (SGPA × Credits) + ... ÷ Total Credits")
+
+        FormulaCardCGPA()
 
         Spacer(Modifier.height(32.dp))
 
