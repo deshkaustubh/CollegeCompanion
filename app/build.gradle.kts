@@ -81,4 +81,7 @@ dependencies {
 
     // State handling and LiveData (optional if you're observing them)
     implementation("androidx.lifecycle:lifecycle-runtime-compose:2.7.0")
+
+    //exp4j for simple calculator
+    implementation("net.objecthunter:exp4j:0.4.8")
 }
