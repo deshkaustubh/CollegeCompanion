@@ -54,7 +54,7 @@ fun HolidaysScreen(
             CenterAlignedTopAppBar(
                 title = {
                     Text(
-                        text = "",
+                        text = "Holidays Tracker",
                         style = MaterialTheme.typography.headlineLarge,
                         fontSize = 16.sp,
                         fontWeight = FontWeight.Bold
@@ -92,7 +92,7 @@ fun HolidaysContent(modifier: Modifier = Modifier) {
     var selectedTabIndex by remember { mutableIntStateOf(0) }
 
     Column(
-        modifier = Modifier
+        modifier = modifier
             .fillMaxSize()
     ) {
         TabRow(

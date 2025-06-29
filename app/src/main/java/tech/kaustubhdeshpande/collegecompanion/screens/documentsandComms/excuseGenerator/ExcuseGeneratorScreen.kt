@@ -48,7 +48,7 @@ fun ExcuseGeneratorScreen(
             CenterAlignedTopAppBar(
                 title = {
                     Text(
-                        text = "",
+                        text = "Excuse Generator",
                         style = MaterialTheme.typography.headlineLarge,
                         fontSize = 16.sp,
                         fontWeight = FontWeight.Bold
