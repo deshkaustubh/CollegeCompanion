@@ -311,7 +311,6 @@ val dailyQuotes = listOf(
 )
 
 
-
 @Composable
 fun TypewriterQuote(
     text: String,
