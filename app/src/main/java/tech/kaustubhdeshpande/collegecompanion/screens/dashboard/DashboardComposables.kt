@@ -236,33 +236,7 @@ fun DashboardOptionCard(
 }
 
 
-// option card Grid
-
-@Composable
-fun DashboardLayerOptionsGrid(
-    items: List<ScreenItem>,
-    modifier: Modifier = Modifier,
-    onCardClick: (String) -> Unit = {}
-) {
-    LazyVerticalGrid(
-        columns = GridCells.Fixed(2), // or GridCells.Adaptive(minSize = 140.dp)
-        modifier = modifier
-            .fillMaxSize()
-            .padding(8.dp),
-        horizontalArrangement = Arrangement.spacedBy(12.dp),
-        verticalArrangement = Arrangement.spacedBy(12.dp),
-        contentPadding = PaddingValues(8.dp)
-    ) {
-        items(items) { item ->
-            DashboardOptionCard(
-                optionIcon = item.icon,
-                optionCardText = item.title,
-                onClick = { onCardClick(item.title) },
-            )
-        }
-    }
-}
-
+// option card grid
 @Composable
 fun LayerSection(
     title: String,
