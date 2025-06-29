@@ -93,7 +93,9 @@ fun AllScreensGraph(
 
         composable(AcademicEssentialsScreens.GPA101.name) {
             GPA101Screen(
-                navigateBack = { navController.popBackStack() }
+                navigateBack = { navController.popBackStack() },
+                onCgpaCalculatorClick = { navController.navigate(AcademicEssentialsScreens.CGPACalculator.name) },
+                onSgpaCalculatorClick = { navController.navigate(AcademicEssentialsScreens.CGPACalculator.name) }
             )
         }
 

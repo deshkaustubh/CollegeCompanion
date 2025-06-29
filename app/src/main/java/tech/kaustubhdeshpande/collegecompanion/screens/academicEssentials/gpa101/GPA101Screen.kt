@@ -31,7 +31,9 @@ import com.google.accompanist.systemuicontroller.rememberSystemUiController
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun GPA101Screen(
-    navigateBack: () -> Unit
+    navigateBack: () -> Unit,
+    onCgpaCalculatorClick: () -> Unit,
+    onSgpaCalculatorClick: () -> Unit
 ) {
     val systemUiController = rememberSystemUiController()
     val statusBarColor = Color(0xFF0a3579)
@@ -70,13 +72,21 @@ fun GPA101Screen(
                 }
             )
         }) { innerPadding ->
-        Gpa101Content(modifier = Modifier.padding(innerPadding))
+        Gpa101Content(
+            modifier = Modifier.padding(innerPadding),
+            onCgpaCalculatorClick = { onCgpaCalculatorClick() },
+            onSgpaCalculatorClick = { onSgpaCalculatorClick() }
+        )
     }
 }
 
 
 @Composable
-fun Gpa101Content(modifier: Modifier = Modifier) {
+fun Gpa101Content(
+    modifier: Modifier = Modifier,
+    onCgpaCalculatorClick: () -> Unit,
+    onSgpaCalculatorClick: () -> Unit
+) {
     Column(
         modifier = modifier
             .verticalScroll(rememberScrollState())
@@ -119,7 +129,7 @@ fun Gpa101Content(modifier: Modifier = Modifier) {
 
         Spacer(modifier = Modifier.height(8.dp))
         Button(
-            onClick = { },
+            onClick = { onCgpaCalculatorClick() },
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(vertical = 8.dp)
@@ -147,7 +157,7 @@ fun Gpa101Content(modifier: Modifier = Modifier) {
 
 
         Button(
-            onClick = { },
+            onClick = { onCgpaCalculatorClick() },
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(bottom = 16.dp)
