@@ -5,6 +5,7 @@ import android.os.Build
 import androidx.annotation.RequiresApi
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -15,6 +16,7 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
@@ -54,7 +56,6 @@ import kotlinx.coroutines.delay
 import tech.kaustubhdeshpande.collegecompanion.R
 import tech.kaustubhdeshpande.collegecompanion.data.ScreenItem
 import tech.kaustubhdeshpande.collegecompanion.ui.theme.Internship1ProjectTheme
-import tech.kaustubhdeshpande.collegecompanion.ui.theme.Surface
 import java.time.LocalDate
 
 // Complete Punch card with background gradients
@@ -192,12 +193,14 @@ fun DashboardOptionCard(
         modifier = modifier
             .padding(bottom = 8.dp, top = 8.dp)
             .width(140.dp)
+            .border(1.dp, MaterialTheme.colorScheme.primary, RoundedCornerShape(16.dp))
             .height(120.dp)
             .clickable { onClick() },
         shape = RoundedCornerShape(15.dp),
+        border = CardDefaults.outlinedCardBorder(enabled = true),
         elevation = CardDefaults.cardElevation(8.dp),
         onClick = { onClick() },
-        colors = CardDefaults.cardColors(containerColor = Color.White)
+        colors = CardDefaults.cardColors(containerColor = Color(0xFFe3f2fd))
     ) {
         Column(
             modifier = Modifier.fillMaxSize(),
@@ -208,7 +211,7 @@ fun DashboardOptionCard(
             Icon(
                 imageVector = optionIcon,
                 contentDescription = null,
-                tint = Color.Unspecified,
+                tint = Color(0xFF1565C0),
                 modifier = Modifier
 //                    .width(46.dp)
 //                    .height(44.dp)
@@ -219,13 +222,14 @@ fun DashboardOptionCard(
 
             Text(
                 text = optionCardText,
-                fontSize = 10.sp,
+                fontSize = 12.sp,
                 style = MaterialTheme.typography.bodyLarge,
                 fontWeight = FontWeight.Bold,
                 modifier = Modifier
                     .padding(bottom = 2.dp, start = 4.dp, end = 4.dp),
                 maxLines = 1,
-                overflow = TextOverflow.Ellipsis
+                overflow = TextOverflow.Ellipsis,
+                color = MaterialTheme.colorScheme.primary
             )
         }
     }
@@ -235,7 +239,7 @@ fun DashboardOptionCard(
 // option card Grid
 
 @Composable
-fun ScreenGrid(
+fun DashboardLayerOptionsGrid(
     items: List<ScreenItem>,
     modifier: Modifier = Modifier,
     onCardClick: (String) -> Unit = {}
@@ -258,6 +262,44 @@ fun ScreenGrid(
         }
     }
 }
+
+@Composable
+fun LayerSection(
+    title: String,
+    items: List<ScreenItem>,
+    onClick: (String) -> Unit,
+    modifier: Modifier = Modifier
+) {
+    Column {
+        Text(
+            text = title,
+            style = MaterialTheme.typography.titleSmall,
+            modifier = modifier.padding(start = 8.dp, bottom = 8.dp, end = 8.dp, top = 8.dp),
+            color = MaterialTheme.colorScheme.primary,
+            fontWeight = FontWeight.Medium
+        )
+
+        LazyVerticalGrid(
+            columns = GridCells.Fixed(2),
+            horizontalArrangement = Arrangement.spacedBy(12.dp),
+            verticalArrangement = Arrangement.spacedBy(12.dp),
+            modifier = modifier
+                .fillMaxWidth()
+                .heightIn(min = 0.dp, max = 600.dp), // prevents inner scroll
+            userScrollEnabled = false, // disable nested scroll
+            contentPadding = PaddingValues(bottom = 8.dp)
+        ) {
+            items(items) { item ->
+                DashboardOptionCard(
+                    optionIcon = item.icon,
+                    optionCardText = item.title,
+                    onClick = { onClick(item.title) }
+                )
+            }
+        }
+    }
+}
+
 
 val dailyQuotes = listOf(
     "GPA? Please. I built a flying suit in a cave… with a box of scraps.",
@@ -295,14 +337,21 @@ val dailyQuotes = listOf(
 
 
 @Composable
-fun TypewriterQuote(text: String, delayMillis: Long = 25L) {
+fun TypewriterQuote(
+    text: String,
+    delayMillis: Long = 100L,
+    pauseMillis: Long = 2500L
+) {
     var visibleText by remember { mutableStateOf("") }
 
     LaunchedEffect(text) {
-        visibleText = ""
-        text.forEachIndexed { i, _ ->
-            delay(delayMillis)
-            visibleText = text.take(i + 1)
+        while (true) {
+            visibleText = ""
+            text.forEachIndexed { i, _ ->
+                delay(delayMillis)
+                visibleText = text.take(i + 1)
+            }
+            delay(pauseMillis) // Pause before restarting
         }
     }
 
@@ -310,8 +359,8 @@ fun TypewriterQuote(text: String, delayMillis: Long = 25L) {
         text = visibleText,
         style = MaterialTheme.typography.bodyMedium,
         color = MaterialTheme.colorScheme.primary,
-        modifier = Modifier.padding(horizontal = 16.dp),
-        fontWeight = FontWeight.Bold
+        fontWeight = FontWeight.Medium,
+        modifier = Modifier.padding(horizontal = 16.dp)
     )
 }
 
