@@ -33,7 +33,7 @@ import com.google.accompanist.systemuicontroller.rememberSystemUiController
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun MyPaySlipsScreen(
+fun SGPAScreen(
     navigateBack: () -> Unit
 ) {
     val systemUiController = rememberSystemUiController()
