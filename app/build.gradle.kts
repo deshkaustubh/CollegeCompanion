@@ -41,6 +41,17 @@ android {
     buildFeatures {
         compose = true
     }
+    bundle {
+        language {
+            enableSplit = true
+        }
+        density {
+            enableSplit = true
+        }
+        abi {
+            enableSplit = true
+        }
+    }
 }
 
 dependencies {
@@ -72,7 +83,7 @@ dependencies {
     implementation("androidx.core:core-splashscreen:1.0.1")
 
     // nav controller
-    implementation ("androidx.navigation:navigation-compose:2.9.0")
+    implementation("androidx.navigation:navigation-compose:2.9.0")
 
     // ViewModel
     implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.7.0")
