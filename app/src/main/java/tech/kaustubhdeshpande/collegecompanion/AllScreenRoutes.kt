@@ -19,6 +19,7 @@ import tech.kaustubhdeshpande.collegecompanion.screens.documentsandComms.excuseG
 import tech.kaustubhdeshpande.collegecompanion.screens.documentsandComms.holidaysScreen.HolidaysScreen
 import tech.kaustubhdeshpande.collegecompanion.screens.documentsandComms.letterGenerator.LetterLabHomeScreen
 import tech.kaustubhdeshpande.collegecompanion.screens.documentsandComms.mailGenerator.MailGeneratorScreen
+import tech.kaustubhdeshpande.collegecompanion.screens.focusAndExtras.pomodoro.PomodoroScreen
 
 enum class AcademicEssentialsScreens {
     AcademicEssentialsDashboard,
@@ -39,6 +40,10 @@ enum class CollegeLayerScreens {
     AcademicCalendar,
     LabSheet,
     Pyq
+}
+
+enum class FocusAndExtrasScreens{
+    Pomodoro
 }
 
 @RequiresApi(Build.VERSION_CODES.O)
@@ -69,6 +74,8 @@ fun AllScreensGraph(
                             "Academic Calendar" -> CollegeLayerScreens.AcademicCalendar.name
                             "Lab Evaluation" -> CollegeLayerScreens.LabSheet.name
                             "Past Papers" -> CollegeLayerScreens.Pyq.name
+                            //Focus And Extras cards
+                            "Pomodoro Timer" -> FocusAndExtrasScreens.Pomodoro.name
                             else -> AcademicEssentialsScreens.AcademicEssentialsDashboard.name
                         }
                     )
@@ -150,6 +157,11 @@ fun AllScreensGraph(
 
         // Focus and Extras
 
+        composable(FocusAndExtrasScreens.Pomodoro.name) {
+            PomodoroScreen(
+                navigateBack = {navController.popBackStack()}
+            )
+        }
 
     }
 }
