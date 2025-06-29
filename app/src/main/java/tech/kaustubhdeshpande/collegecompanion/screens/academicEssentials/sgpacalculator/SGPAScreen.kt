@@ -50,7 +50,7 @@ fun MyPaySlipsScreen(
             CenterAlignedTopAppBar(
                 title = {
                     Text(
-                        text = "",
+                        text = "SGPA Calculator",
                         style = MaterialTheme.typography.headlineLarge,
                         fontSize = 16.sp,
                         fontWeight = FontWeight.Bold

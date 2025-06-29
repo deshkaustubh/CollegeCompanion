@@ -48,7 +48,7 @@ fun CGPAScreen(
             CenterAlignedTopAppBar(
                 title = {
                     Text(
-                        text = "",
+                        text = "CGPA Calculator",
                         style = MaterialTheme.typography.headlineLarge,
                         fontSize = 16.sp,
                         fontWeight = FontWeight.Bold
