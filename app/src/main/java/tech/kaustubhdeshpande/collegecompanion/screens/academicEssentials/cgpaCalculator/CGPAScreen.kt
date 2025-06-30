@@ -80,7 +80,7 @@ fun CGPAScreen(
                 .padding(16.dp)
         ) {
             Text(
-                "📘 CGPA Calculator",
+                "CGPA Calculator",
                 style = MaterialTheme.typography.headlineSmall,
                 color = MaterialTheme.colorScheme.primary,
                 fontWeight = FontWeight.Bold

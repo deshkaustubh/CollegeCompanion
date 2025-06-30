@@ -92,7 +92,7 @@ fun SGPAContent(modifier : Modifier = Modifier) {
             .padding(16.dp)
     ) {
         Text(
-            "📗 SGPA Calculator",
+            "SGPA Calculator",
             style = MaterialTheme.typography.headlineSmall,
             color = MaterialTheme.colorScheme.primary,
             fontWeight = FontWeight.Bold
