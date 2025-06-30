@@ -191,7 +191,7 @@ fun DashboardOptionCard(
 ) {
     Card(
         modifier = modifier
-            .padding(bottom = 8.dp, top = 0.dp , start = 8.dp, end = 8.dp)
+            .padding(bottom = 8.dp, top = 0.dp, start = 8.dp, end = 8.dp)
             .width(140.dp)
             .border(1.dp, MaterialTheme.colorScheme.primary, RoundedCornerShape(16.dp))
             .height(120.dp)
@@ -200,7 +200,7 @@ fun DashboardOptionCard(
         border = CardDefaults.outlinedCardBorder(enabled = true),
         elevation = CardDefaults.cardElevation(8.dp),
         onClick = { onClick() },
-        colors = CardDefaults.cardColors(Color.White )
+        colors = CardDefaults.cardColors(Color.White)
 //        colors = CardDefaults.cardColors(containerColor = Color(0xFFe3f2fd))
     ) {
         Column(
