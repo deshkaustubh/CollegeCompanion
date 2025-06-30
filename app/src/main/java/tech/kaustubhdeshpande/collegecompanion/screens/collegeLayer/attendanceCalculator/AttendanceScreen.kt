@@ -1,5 +1,6 @@
 package tech.kaustubhdeshpande.collegecompanion.screens.collegeLayer.attendanceCalculator
 
+import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -9,6 +10,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
@@ -139,9 +141,10 @@ fun AttendanceContent(modifier: Modifier = Modifier) {
         Spacer(Modifier.height(24.dp))
 
         Card(
-            modifier = Modifier.fillMaxWidth(),
+            modifier = Modifier.fillMaxWidth().border(1.dp, MaterialTheme.colorScheme.primary, RoundedCornerShape(16.dp)),
             colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surface),
-            elevation = CardDefaults.cardElevation(16.dp)
+            elevation = CardDefaults.cardElevation(16.dp),
+            shape = RoundedCornerShape(16.dp)
         ) {
             Column(modifier = Modifier.padding(16.dp)) {
                 Column(
@@ -239,7 +242,7 @@ fun AttendanceContent(modifier: Modifier = Modifier) {
         Card(
             modifier = Modifier.fillMaxWidth(),
             colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.tertiaryContainer),
-            elevation = CardDefaults.cardElevation(16.dp)
+            elevation = CardDefaults.cardElevation(8.dp)
         ) {
             Column(Modifier.padding(16.dp)) {
                 Column(
@@ -276,6 +279,6 @@ fun AttendanceContent(modifier: Modifier = Modifier) {
                 Text(simVerdict, style = MaterialTheme.typography.bodyMedium)
             }
         }
-
+        Spacer(modifier = Modifier.height(24.dp))
     }
 }
