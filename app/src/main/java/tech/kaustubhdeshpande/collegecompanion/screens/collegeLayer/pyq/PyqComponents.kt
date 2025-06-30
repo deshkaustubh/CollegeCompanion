@@ -20,7 +20,6 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
@@ -31,7 +30,7 @@ fun ResourceCard(resource: PyqResource, context: Context) {
         modifier = Modifier
             .fillMaxWidth()
             .aspectRatio(1f)
-            .border(1.dp, MaterialTheme.colorScheme.primary , shape = RoundedCornerShape(16.dp))
+            .border(1.dp, MaterialTheme.colorScheme.primary, shape = RoundedCornerShape(16.dp))
             .clickable(enabled = resource.link.isNotBlank()) {
                 launchChromeTab(context, resource.link)
             },
