@@ -194,7 +194,7 @@ fun DashboardOptionCard(
             .border(1.dp, MaterialTheme.colorScheme.primary, RoundedCornerShape(16.dp))
             .height(120.dp)
             .clickable { onClick() },
-        shape = RoundedCornerShape(15.dp),
+        shape = RoundedCornerShape(16.dp),
         border = CardDefaults.outlinedCardBorder(enabled = true),
         elevation = CardDefaults.cardElevation(8.dp),
         onClick = { onClick() },
@@ -210,7 +210,8 @@ fun DashboardOptionCard(
             Icon(
                 imageVector = optionIcon,
                 contentDescription = null,
-                tint = Color(0xFF1565C0),
+//                tint = Color(0xFF1565C0),
+                tint = MaterialTheme.colorScheme.primary,
                 modifier = Modifier
 //                    .width(46.dp)
 //                    .height(44.dp)
