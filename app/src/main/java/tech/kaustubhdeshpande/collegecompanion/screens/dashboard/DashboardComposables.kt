@@ -191,7 +191,7 @@ fun DashboardOptionCard(
 ) {
     Card(
         modifier = modifier
-            .padding(bottom = 8.dp, top = 8.dp)
+            .padding(bottom = 8.dp, top = 0.dp , start = 8.dp, end = 8.dp)
             .width(140.dp)
             .border(1.dp, MaterialTheme.colorScheme.primary, RoundedCornerShape(16.dp))
             .height(120.dp)
@@ -200,7 +200,8 @@ fun DashboardOptionCard(
         border = CardDefaults.outlinedCardBorder(enabled = true),
         elevation = CardDefaults.cardElevation(8.dp),
         onClick = { onClick() },
-        colors = CardDefaults.cardColors(containerColor = Color(0xFFe3f2fd))
+        colors = CardDefaults.cardColors(Color.White )
+//        colors = CardDefaults.cardColors(containerColor = Color(0xFFe3f2fd))
     ) {
         Column(
             modifier = Modifier.fillMaxSize(),
@@ -229,7 +230,7 @@ fun DashboardOptionCard(
                     .padding(bottom = 2.dp, start = 4.dp, end = 4.dp),
                 maxLines = 1,
                 overflow = TextOverflow.Ellipsis,
-                color = MaterialTheme.colorScheme.primary
+//                color = MaterialTheme.colorScheme.primary
             )
         }
     }
@@ -249,14 +250,14 @@ fun LayerSection(
             text = title,
             style = MaterialTheme.typography.titleSmall,
             modifier = modifier.padding(start = 8.dp, bottom = 8.dp, end = 8.dp, top = 8.dp),
-            color = MaterialTheme.colorScheme.primary,
+//            color = MaterialTheme.colorScheme.primary,
             fontWeight = FontWeight.Medium
         )
 
         LazyVerticalGrid(
             columns = GridCells.Fixed(2),
-            horizontalArrangement = Arrangement.spacedBy(12.dp),
-            verticalArrangement = Arrangement.spacedBy(12.dp),
+            horizontalArrangement = Arrangement.spacedBy(2.dp),
+            verticalArrangement = Arrangement.spacedBy(8.dp),
             modifier = modifier
                 .fillMaxWidth()
                 .heightIn(min = 0.dp, max = 600.dp), // prevents inner scroll
@@ -333,7 +334,7 @@ fun TypewriterQuote(
     Text(
         text = visibleText,
         style = MaterialTheme.typography.bodyMedium,
-        color = MaterialTheme.colorScheme.primary,
+//        color = MaterialTheme.colorScheme.primary,
         fontWeight = FontWeight.Medium,
         modifier = Modifier.padding(horizontal = 4.dp)
     )
