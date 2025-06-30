@@ -93,7 +93,7 @@ fun ExcuseGeneratorContent(modifier: Modifier = Modifier) {
         verticalArrangement = Arrangement.spacedBy(24.dp)
     ) {
         Text(
-            text = "Excuse Generator 🤕",
+            text = "Excuse Generator",
             style = MaterialTheme.typography.headlineSmall,
             fontWeight = FontWeight.Bold
         )
