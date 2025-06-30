@@ -12,6 +12,7 @@ import tech.kaustubhdeshpande.collegecompanion.screens.academicEssentials.gpa101
 import tech.kaustubhdeshpande.collegecompanion.screens.academicEssentials.sgpacalculator.SGPAScreen
 import tech.kaustubhdeshpande.collegecompanion.screens.academicEssentials.simpleCalculator.SimpleCalculatorScreen
 import tech.kaustubhdeshpande.collegecompanion.screens.collegeLayer.academicCalendar.AcademicCalendarScreen
+import tech.kaustubhdeshpande.collegecompanion.screens.collegeLayer.attendanceCalculator.AttendanceScreen
 import tech.kaustubhdeshpande.collegecompanion.screens.collegeLayer.labsheet.LabSheetScreen
 import tech.kaustubhdeshpande.collegecompanion.screens.collegeLayer.pyq.PYQScreen
 import tech.kaustubhdeshpande.collegecompanion.screens.dashboard.DashboardScreen
@@ -39,7 +40,8 @@ enum class LettersAndCommunicationScreens {
 enum class CollegeLayerScreens {
     AcademicCalendar,
     LabSheet,
-    Pyq
+    Pyq,
+    Club75
 }
 
 enum class FocusAndExtrasScreens {
@@ -74,6 +76,7 @@ fun AllScreensGraph(
                             "Academic Calendar" -> CollegeLayerScreens.AcademicCalendar.name
                             "Lab Evaluation" -> CollegeLayerScreens.LabSheet.name
                             "Past Papers" -> CollegeLayerScreens.Pyq.name
+                            "75% Club" -> CollegeLayerScreens.Club75.name
                             //Focus And Extras cards
                             "Pomodoro Timer" -> FocusAndExtrasScreens.Pomodoro.name
                             else -> AcademicEssentialsScreens.AcademicEssentialsDashboard.name
@@ -153,6 +156,12 @@ fun AllScreensGraph(
 
         composable(CollegeLayerScreens.AcademicCalendar.name) {
             AcademicCalendarScreen(
+                navigateBack = { navController.popBackStack() }
+            )
+        }
+
+        composable(CollegeLayerScreens.Club75.name) {
+            AttendanceScreen(
                 navigateBack = { navController.popBackStack() }
             )
         }
