@@ -103,7 +103,7 @@ fun AttendanceContent(modifier: Modifier = Modifier) {
     ) {
 
         Text(
-            "🎯 Attendance Calculator",
+            "Attendance Calculator",
             style = MaterialTheme.typography.headlineSmall,
             color = MaterialTheme.colorScheme.primary,
             fontWeight = FontWeight.Bold
@@ -157,7 +157,7 @@ fun AttendanceContent(modifier: Modifier = Modifier) {
                         modifier = Modifier.fillMaxWidth()
                     ) {
                         Text(
-                            "📊 Current Attendance",
+                            "Current Attendance",
                             style = MaterialTheme.typography.bodyMedium,
                             fontWeight = FontWeight.Medium
                         )
@@ -175,7 +175,7 @@ fun AttendanceContent(modifier: Modifier = Modifier) {
                         modifier = Modifier.fillMaxWidth()
                     ) {
                         Text(
-                            "😎 You can bunk",
+                            "You can bunk",
                             style = MaterialTheme.typography.bodySmall,
                             fontWeight = FontWeight.Medium
                         )
@@ -187,7 +187,7 @@ fun AttendanceContent(modifier: Modifier = Modifier) {
                         modifier = Modifier.fillMaxWidth()
                     ) {
                         Text(
-                            "🏃‍♂ You must attend next",
+                            "You must attend next",
                             style = MaterialTheme.typography.bodySmall,
                             fontWeight = FontWeight.Medium
                         )
@@ -198,7 +198,7 @@ fun AttendanceContent(modifier: Modifier = Modifier) {
                 HorizontalDivider()
                 Spacer(Modifier.height(8.dp))
                 Text(
-                    "💬 Sidekick's Verdict:-\n $verdict",
+                    " 💬 Sidekick's Verdict:-\n $verdict",
                     color = MaterialTheme.colorScheme.primary,
                     style = MaterialTheme.typography.bodyMedium,
                     fontWeight = FontWeight.Medium
@@ -208,7 +208,7 @@ fun AttendanceContent(modifier: Modifier = Modifier) {
 
         Spacer(Modifier.height(24.dp))
         Text(
-            "🌀 Simulate Scenario",
+            "Simulate Scenario",
             style = MaterialTheme.typography.titleMedium,
             fontWeight = FontWeight.Medium
         )
@@ -255,7 +255,7 @@ fun AttendanceContent(modifier: Modifier = Modifier) {
                         modifier = Modifier.fillMaxWidth()
                     ) {
                         Text(
-                            "\uD83D\uDCC8 Projected Attendance",
+                            "Projected Attendance",
                             style = MaterialTheme.typography.bodyMedium,
                             fontWeight = FontWeight.Medium
                         )
