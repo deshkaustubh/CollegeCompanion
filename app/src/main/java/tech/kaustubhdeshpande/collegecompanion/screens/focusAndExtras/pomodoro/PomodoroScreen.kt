@@ -1,6 +1,7 @@
 package tech.kaustubhdeshpande.collegecompanion.screens.focusAndExtras.pomodoro
 
 import android.os.Vibrator
+import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -127,11 +128,11 @@ fun PomodoroContent(modifier: Modifier = Modifier) {
         Spacer(Modifier.height(20.dp))
 
         CircularProgressIndicator(
-            progress = progress,
-            strokeWidth = 12.dp,
+            progress = { progress },
             modifier = Modifier.size(180.dp),
             color = if (state.phase == TimerPhase.FOCUS) Color(0xFFe74c3c) else Color(0xFF3498db),
-            trackColor = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.2f)
+            strokeWidth = 12.dp,
+            trackColor = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.2f),
         )
 
         Text(formattedTime, fontSize = 48.sp, fontWeight = FontWeight.Bold)
