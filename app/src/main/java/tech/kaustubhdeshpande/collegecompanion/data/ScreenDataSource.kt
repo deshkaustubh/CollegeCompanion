@@ -12,6 +12,7 @@ import androidx.compose.material.icons.filled.Event
 import androidx.compose.material.icons.filled.Info
 import androidx.compose.material.icons.filled.School
 import androidx.compose.material.icons.filled.Timer
+import androidx.compose.material.icons.outlined.Percent
 import androidx.compose.ui.graphics.vector.ImageVector
 
 data class ScreenItem(
@@ -40,6 +41,7 @@ object ScreenDataSource {
         ScreenItem("Academic Calendar", Icons.Default.CalendarMonth),
         ScreenItem("Lab Evaluation", Icons.AutoMirrored.Filled.FactCheck),
         ScreenItem("Past Papers", Icons.AutoMirrored.Filled.MenuBook),
+        ScreenItem("75% Club", Icons.Outlined.Percent),
     )
 
     val focusAndExtras = listOf(
