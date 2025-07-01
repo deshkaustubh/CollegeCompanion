@@ -141,7 +141,9 @@ fun AttendanceContent(modifier: Modifier = Modifier) {
         Spacer(Modifier.height(24.dp))
 
         Card(
-            modifier = Modifier.fillMaxWidth().border(1.dp, MaterialTheme.colorScheme.primary, RoundedCornerShape(16.dp)),
+            modifier = Modifier
+                .fillMaxWidth()
+                .border(1.dp, MaterialTheme.colorScheme.primary, RoundedCornerShape(16.dp)),
             colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surface),
             elevation = CardDefaults.cardElevation(16.dp),
             shape = RoundedCornerShape(16.dp)
@@ -240,9 +242,12 @@ fun AttendanceContent(modifier: Modifier = Modifier) {
         val simVerdict = viewModel.verdictAfterScenario()
 
         Card(
-            modifier = Modifier.fillMaxWidth(),
+            modifier = Modifier
+                .fillMaxWidth()
+                .border(1.dp, Color.Gray, RoundedCornerShape(16.dp)),
             colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.tertiaryContainer),
-            elevation = CardDefaults.cardElevation(8.dp)
+            elevation = CardDefaults.cardElevation(16.dp),
+            shape = RoundedCornerShape(16.dp)
         ) {
             Column(Modifier.padding(16.dp)) {
                 Column(
