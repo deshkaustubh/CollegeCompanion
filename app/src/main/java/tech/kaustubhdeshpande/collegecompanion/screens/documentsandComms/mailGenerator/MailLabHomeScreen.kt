@@ -1,6 +1,7 @@
 package tech.kaustubhdeshpande.collegecompanion.screens.documentsandComms.mailGenerator
 
 import android.widget.Toast
+import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -11,6 +12,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material3.Card
@@ -135,9 +137,15 @@ fun MailLabContent(modifier: Modifier = Modifier) {
                     Card(
                         modifier = Modifier
                             .fillMaxWidth()
+                            .border(
+                                1.dp,
+                                MaterialTheme.colorScheme.primary,
+                                RoundedCornerShape(8.dp)
+                            )
                             .clickable { selectedTemplate = item },
-                        elevation = CardDefaults.cardElevation(8.dp),
-                        colors = CardDefaults.cardColors(containerColor = Color(0xFFbbdefb))
+                        elevation = CardDefaults.cardElevation(12.dp),
+                        colors = CardDefaults.cardColors(containerColor = Color(0xFFbbdefb)),
+                        shape = RoundedCornerShape(8.dp)
                     ) {
                         Column(Modifier.padding(16.dp)) {
                             Text(
@@ -160,6 +168,6 @@ fun MailLabContent(modifier: Modifier = Modifier) {
 @Composable
 private fun MailPreview() {
     Internship1ProjectTheme {
-        MailGeneratorScreen {  }
+        MailGeneratorScreen { }
     }
 }
