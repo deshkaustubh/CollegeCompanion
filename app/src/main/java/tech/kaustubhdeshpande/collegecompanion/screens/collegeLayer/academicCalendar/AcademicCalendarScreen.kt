@@ -93,7 +93,7 @@ fun AcademicCalendarContent(modifier: Modifier = Modifier) {
     // changing to resolve the issue
     val currentContext by rememberUpdatedState(newValue = LocalContext.current)
 
-    var lastClickTime by remember { mutableStateOf(0L)}
+    var lastClickTime by remember { mutableStateOf(0L) }
     val clickCoolDown = 500L
 
     Column(
