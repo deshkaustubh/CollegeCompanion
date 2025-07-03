@@ -2,7 +2,9 @@ package tech.kaustubhdeshpande.collegecompanion.screens.collegeLayer.academicCal
 
 import android.content.Intent
 import android.net.Uri
+import android.util.Log
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -13,6 +15,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
+import androidx.compose.material.ripple.rememberRipple
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.CenterAlignedTopAppBar
@@ -25,6 +28,11 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.SideEffect
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberUpdatedState
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
@@ -81,7 +89,12 @@ fun AcademicCalendarScreen(
 
 @Composable
 fun AcademicCalendarContent(modifier: Modifier = Modifier) {
-    val context = LocalContext.current
+//    val context = LocalContext.current
+    // changing to resolve the issue
+    val currentContext by rememberUpdatedState(newValue = LocalContext.current)
+
+    var lastClickTime by remember { mutableStateOf(0L)}
+    val clickCoolDown = 500L
 
     Column(
         modifier = modifier
@@ -100,12 +113,20 @@ fun AcademicCalendarContent(modifier: Modifier = Modifier) {
                 Card(
                     modifier = Modifier
                         .fillMaxWidth()
-                        .clickable {
-                            val intent =
-                                Intent(Intent.ACTION_VIEW, Uri.parse(calendar.pdfUrl)).apply {
-                                    flags = Intent.FLAG_ACTIVITY_NEW_TASK
-                                }
-                            context.startActivity(intent)
+                        .clickable(
+                            indication = rememberRipple(),
+                            interactionSource = remember { MutableInteractionSource() }
+                        ) {
+                            val currentTime = System.currentTimeMillis()
+                            if (currentTime - lastClickTime > clickCoolDown) {
+                                lastClickTime = currentTime
+                                val intent =
+                                    Intent(Intent.ACTION_VIEW, Uri.parse(calendar.pdfUrl)).apply {
+                                        flags = Intent.FLAG_ACTIVITY_NEW_TASK
+                                    }
+                                currentContext.startActivity(intent)
+                                Log.d("Calendar Card", calendar.title)
+                            }
                         },
                     colors = CardDefaults.cardColors(containerColor = Color.LightGray)
                 ) {
