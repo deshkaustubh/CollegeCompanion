@@ -389,8 +389,7 @@ fun TopSection(modifier: Modifier = Modifier) {
             Spacer(modifier = Modifier.height(16.dp))
             Row(
                 modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(end = 40.dp),
+                    .fillMaxWidth(),
                 horizontalArrangement = Arrangement.SpaceBetween,
                 verticalAlignment = Alignment.CenterVertically
             ) {
@@ -420,19 +419,21 @@ fun TopSection(modifier: Modifier = Modifier) {
                     )
                 }
 
-                Image(
-                    painter = painterResource(R.drawable.ghibli_kd_stripped_shirt_profile),
-                    contentDescription = "College companion",
-                    modifier = Modifier
-                        .clip(CircleShape)
-                        .size(40.dp)
-                        .border(
-                            1.dp,
-                            color = MaterialTheme.colorScheme.onPrimary,
-                            shape = CircleShape
-                        ),
-                    contentScale = ContentScale.Crop
-                )
+                Column(modifier = Modifier.padding(bottom = 24.dp, end = 32.dp)) {
+                    Image(
+                        painter = painterResource(R.drawable.ghibli_kd_stripped_shirt_profile),
+                        contentDescription = "College companion",
+                        modifier = Modifier
+                            .clip(CircleShape)
+                            .size(56.dp)
+                            .border(
+                                2.dp,
+                                color = MaterialTheme.colorScheme.onPrimary,
+                                shape = CircleShape
+                            ),
+                        contentScale = ContentScale.Crop
+                    )
+                }
             }
 
             Spacer(modifier = Modifier.height(32.dp))
@@ -442,12 +443,17 @@ fun TopSection(modifier: Modifier = Modifier) {
                     .padding(start = 16.dp, end = 16.dp)
                     .fillMaxWidth()
                     .height(120.dp)
+                    .border(
+                        1.dp,
+                        MaterialTheme.colorScheme.onPrimary.copy(0.4f),
+                        shape = RoundedCornerShape(16.dp)
+                    )
                     .clip(
                         RoundedCornerShape(
-                            bottomStart = 32.dp,
-                            bottomEnd = 32.dp,
-                            topStart = 32.dp,
-                            topEnd = 32.dp
+                            bottomStart = 16.dp,
+                            bottomEnd = 16.dp,
+                            topEnd = 16.dp,
+                            topStart = 16.dp
                         )
                     ),
                 colors = CardDefaults.cardColors(
