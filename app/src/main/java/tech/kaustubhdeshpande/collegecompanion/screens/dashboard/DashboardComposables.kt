@@ -428,7 +428,7 @@ fun TopSection(modifier: Modifier = Modifier) {
                             .size(56.dp)
                             .border(
                                 2.dp,
-                                color = MaterialTheme.colorScheme.onPrimary,
+                                color = MaterialTheme.colorScheme.onPrimary.copy(0.5f),
                                 shape = CircleShape
                             ),
                         contentScale = ContentScale.Crop
