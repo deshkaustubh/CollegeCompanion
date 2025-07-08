@@ -5,7 +5,6 @@ import android.os.Build
 import androidx.annotation.RequiresApi
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
-import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -42,12 +41,12 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -184,51 +183,55 @@ fun DashboardTopAppBar() {
 fun DashboardOptionCard(
     optionIcon: ImageVector,
     optionCardText: String,
+    IconBackgroundColor: Color,
     onClick: () -> Unit,
     modifier: Modifier = Modifier
 ) {
     Card(
         modifier = modifier
             .padding(bottom = 8.dp, top = 0.dp, start = 8.dp, end = 8.dp)
-            .width(140.dp)
-            .border(1.dp, MaterialTheme.colorScheme.primary, RoundedCornerShape(16.dp))
-            .height(120.dp)
+            .width(120.dp)
+//            .border(1.dp, MaterialTheme.colorScheme.primary, RoundedCornerShape(16.dp))
+            .height(140.dp)
+            .shadow(8.dp, shape = RoundedCornerShape(16.dp))
             .clickable { onClick() },
         shape = RoundedCornerShape(16.dp),
-        border = CardDefaults.outlinedCardBorder(enabled = true),
-        elevation = CardDefaults.cardElevation(8.dp),
+//        border = CardDefaults.outlinedCardBorder(enabled = true),
+        elevation = CardDefaults.cardElevation(12.dp),
         onClick = { onClick() },
         colors = CardDefaults.cardColors(Color.White)
 //        colors = CardDefaults.cardColors(containerColor = Color(0xFFe3f2fd))
     ) {
         Column(
-            modifier = Modifier.fillMaxSize(),
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(start = 16.dp, end = 16.dp),
             verticalArrangement = Arrangement.SpaceEvenly,
-            horizontalAlignment = Alignment.CenterHorizontally
+            horizontalAlignment = Alignment.Start
         ) {
             Spacer(modifier = Modifier.height(16.dp))
             Icon(
                 imageVector = optionIcon,
                 contentDescription = null,
 //                tint = Color(0xFF1565C0),
-                tint = MaterialTheme.colorScheme.primary,
+                tint = MaterialTheme.colorScheme.onPrimary,
                 modifier = Modifier
 //                    .width(46.dp)
 //                    .height(44.dp)
-                    .size(46.dp)
-                    .padding(top = 8.dp)
+                    .size(56.dp)
+                    .background(IconBackgroundColor, shape = RoundedCornerShape(16.dp))
+                    .padding(14.dp)
             )
             Spacer(modifier = Modifier.height(16.dp))
 
             Text(
                 text = optionCardText,
-                fontSize = 12.sp,
+                fontSize = 14.sp,
                 style = MaterialTheme.typography.bodyLarge,
-                fontWeight = FontWeight.Bold,
+                fontWeight = FontWeight.SemiBold,
                 modifier = Modifier
                     .padding(bottom = 2.dp, start = 4.dp, end = 4.dp),
-                maxLines = 1,
-                overflow = TextOverflow.Ellipsis,
+                maxLines = 2,
 //                color = MaterialTheme.colorScheme.primary
             )
         }
@@ -267,7 +270,8 @@ fun LayerSection(
                 DashboardOptionCard(
                     optionIcon = item.icon,
                     optionCardText = item.title,
-                    onClick = { onClick(item.title) }
+                    onClick = { onClick(item.title) },
+                    IconBackgroundColor = item.backgroundColor,
                 )
             }
         }
