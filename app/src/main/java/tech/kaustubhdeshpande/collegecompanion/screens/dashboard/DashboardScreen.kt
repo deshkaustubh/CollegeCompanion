@@ -89,7 +89,10 @@ fun DashboardContent(
         Text(
             text = buildAnnotatedString {
                 append(" Privacy sealed by — ")
-                pushStringAnnotation(tag = "privacy", annotation = "https://kaustubhdeshpande.tech/privacypolicy-collegecompanion")
+                pushStringAnnotation(
+                    tag = "privacy",
+                    annotation = "https://kaustubhdeshpande.tech/privacypolicy-collegecompanion"
+                )
                 withStyle(
                     style = SpanStyle(
                         color = Color(0xFF0D47A1),
@@ -120,7 +123,7 @@ fun DashboardScreen(modifier: Modifier = Modifier, onCardClick: (String) -> Unit
 
     val systemUiController = rememberSystemUiController()
 
-    val statusBarColor  = MaterialTheme.colorScheme.primary
+    val statusBarColor = MaterialTheme.colorScheme.primary
     val navigationBarColor = MaterialTheme.colorScheme.background
 
     SideEffect {
