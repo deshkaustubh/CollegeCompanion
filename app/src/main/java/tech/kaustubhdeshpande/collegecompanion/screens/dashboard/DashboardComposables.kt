@@ -5,6 +5,7 @@ import android.os.Build
 import androidx.annotation.RequiresApi
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -22,6 +23,8 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
+import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.shape.CutCornerShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
@@ -45,6 +48,7 @@ import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
@@ -253,9 +257,9 @@ fun LayerSection(
             style = MaterialTheme.typography.titleSmall,
             modifier = modifier.padding(start = 8.dp, bottom = 8.dp, end = 8.dp, top = 8.dp),
 //            color = MaterialTheme.colorScheme.primary,
-            fontWeight = FontWeight.Medium
+            fontWeight = FontWeight.Bold
         )
-
+        Spacer(modifier = Modifier.height(8.dp))
         LazyVerticalGrid(
             columns = GridCells.Fixed(2),
             horizontalArrangement = Arrangement.spacedBy(2.dp),
@@ -337,7 +341,7 @@ fun TypewriterQuote(
     Text(
         text = visibleText,
         style = MaterialTheme.typography.bodyMedium,
-//        color = MaterialTheme.colorScheme.primary,
+        color = MaterialTheme.colorScheme.onPrimary,
         fontWeight = FontWeight.Medium,
         modifier = Modifier.padding(horizontal = 4.dp)
     )
@@ -365,11 +369,113 @@ fun MotivationalQuoteBanner(modifier: Modifier = Modifier) {
 
 
 @RequiresApi(Build.VERSION_CODES.O)
-@Preview
+@Composable
+fun TopSection(modifier: Modifier = Modifier) {
+    Box(
+        modifier = modifier
+            .fillMaxWidth()
+            .height(320.dp)
+            .clip(CutCornerShape(bottomStart = 16.dp, bottomEnd = 16.dp))
+            .background(
+                Brush.verticalGradient(
+                    colors = listOf(
+                        MaterialTheme.colorScheme.primary,
+                        Color(0xFF1976D2), // Medium blue
+                        Color(0xFF00AAFF),  // Light blue at the bottom
+                    )
+                )
+            )
+    ) {
+        Column {
+
+            Spacer(modifier = Modifier.height(16.dp))
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(end = 16.dp),
+                horizontalArrangement = Arrangement.SpaceBetween,
+            ) {
+                Column {
+                    Text(
+                        text = "Welcome Back!",
+                        modifier = modifier.padding(start = 16.dp),
+                        fontWeight = FontWeight.Normal,
+                        style = MaterialTheme.typography.bodyLarge,
+                        color = MaterialTheme.colorScheme.onPrimary
+                    )
+                    Spacer(modifier = Modifier.height(16.dp))
+                    Text(
+                        text = "College",
+                        modifier = modifier.padding(start = 16.dp),
+                        fontWeight = FontWeight.Bold,
+                        style = MaterialTheme.typography.headlineLarge,
+                        color = MaterialTheme.colorScheme.onPrimary
+                    )
+                    Spacer(modifier = Modifier.height(0.dp))
+                    Text(
+                        text = "Companion",
+                        modifier = modifier.padding(start = 16.dp),
+                        fontWeight = FontWeight.Bold,
+                        style = MaterialTheme.typography.headlineLarge,
+                        color = MaterialTheme.colorScheme.onPrimary
+                    )
+                }
+
+                Image(
+                    painter = painterResource(R.drawable.ghibli_kd_stripped_shirt_profile),
+                    contentDescription = "College companion",
+                    modifier = Modifier
+                        .clip(CircleShape)
+                        .size(40.dp)
+                        .border(
+                            1.dp,
+                            color = MaterialTheme.colorScheme.onPrimary,
+                            shape = CircleShape
+                        ),
+                    contentScale = ContentScale.Crop
+                )
+            }
+
+            Spacer(modifier = Modifier.height(32.dp))
+
+            Card(
+                modifier = Modifier
+                    .padding(start = 16.dp, end = 16.dp)
+                    .fillMaxWidth()
+                    .height(120.dp)
+                    .clip(
+                        RoundedCornerShape(
+                            bottomStart = 32.dp,
+                            bottomEnd = 32.dp,
+                            topStart = 32.dp,
+                            topEnd = 32.dp
+                        )
+                    ),
+                colors = CardDefaults.cardColors(
+                    containerColor = MaterialTheme.colorScheme.onPrimary.copy(0.2f)
+                )
+            ) {
+                Row {
+
+                    Image(
+                        painter = painterResource(id = R.drawable.collegecompanionsplash),
+                        contentDescription = "College Companion",
+                        modifier = Modifier.size(100.dp)
+                    )
+
+                    MotivationalQuoteBanner()
+                }
+            }
+        }
+    }
+}
+
+@RequiresApi(Build.VERSION_CODES.O)
+@Preview(showSystemUi = true)
 @Composable
 private fun DashboardComposablePreview() {
     Internship1ProjectTheme {
-        DashboardPunchCard()
+        TopSection()
     }
 }
 
