@@ -208,11 +208,10 @@ fun DashboardOptionCard(
         Column(
             modifier = Modifier
                 .fillMaxSize()
-                .padding(start = 16.dp, end = 16.dp),
-            verticalArrangement = Arrangement.SpaceAround,
+                .padding(start = 16.dp, end = 16.dp, top = 16.dp),
+            verticalArrangement = Arrangement.SpaceBetween,
             horizontalAlignment = Alignment.Start
         ) {
-            Spacer(modifier = Modifier.height(16.dp))
             Icon(
                 imageVector = optionIcon,
                 contentDescription = null,
@@ -225,7 +224,7 @@ fun DashboardOptionCard(
                     .background(IconBackgroundColor, shape = RoundedCornerShape(16.dp))
                     .padding(14.dp)
             )
-            Spacer(modifier = Modifier.height(16.dp))
+//            Spacer(modifier = Modifier.height(16.dp))
 
             Text(
                 text = optionCardText,
@@ -233,7 +232,7 @@ fun DashboardOptionCard(
                 style = MaterialTheme.typography.bodyLarge,
                 fontWeight = FontWeight.SemiBold,
                 modifier = Modifier
-                    .padding(bottom = 2.dp, start = 4.dp, end = 4.dp),
+                    .padding(bottom = 8.dp, start = 2.dp, end = 0.dp),
                 maxLines = 2,
 //                color = MaterialTheme.colorScheme.primary
             )
