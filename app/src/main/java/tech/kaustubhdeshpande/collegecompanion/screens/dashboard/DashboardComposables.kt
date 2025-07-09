@@ -1,6 +1,8 @@
 package tech.kaustubhdeshpande.collegecompanion.screens.dashboard
 
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Build
 import androidx.annotation.RequiresApi
 import androidx.compose.foundation.Image
@@ -48,6 +50,7 @@ import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
@@ -385,7 +388,6 @@ fun TopSection(modifier: Modifier = Modifier) {
             )
     ) {
         Column {
-
             Spacer(modifier = Modifier.height(16.dp))
             Row(
                 modifier = Modifier
@@ -420,12 +422,18 @@ fun TopSection(modifier: Modifier = Modifier) {
                 }
 
                 Column(modifier = Modifier.padding(bottom = 24.dp, end = 32.dp)) {
+                    val context = LocalContext.current
                     Image(
                         painter = painterResource(R.drawable.ghibli_kd_stripped_shirt_profile),
                         contentDescription = "College companion",
                         modifier = Modifier
                             .clip(CircleShape)
                             .size(56.dp)
+                            .clickable {
+                                val mySiteLink = "https://kaustubhdeshpande.tech/"
+                                val intent = Intent(Intent.ACTION_VIEW, Uri.parse(mySiteLink))
+                                context.startActivity(intent)
+                            }
                             .border(
                                 2.dp,
                                 color = MaterialTheme.colorScheme.onPrimary.copy(0.5f),
