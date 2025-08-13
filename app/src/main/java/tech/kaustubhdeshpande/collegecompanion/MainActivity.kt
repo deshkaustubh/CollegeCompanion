@@ -22,7 +22,7 @@ class MainActivity : ComponentActivity() {
                 darkScrim = Color.TRANSPARENT
             ),
             navigationBarStyle = SystemBarStyle.auto(
-                lightScrim = Color.argb(0xE6, 0xFF, 0xFF, 0xFF),
+                lightScrim = Color.TRANSPARENT,
                 darkScrim = Color.TRANSPARENT
             )
         )

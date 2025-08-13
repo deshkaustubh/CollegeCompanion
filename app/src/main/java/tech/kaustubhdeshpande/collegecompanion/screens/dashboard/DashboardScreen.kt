@@ -12,9 +12,11 @@ import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.navigationBars
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.safeDrawing
 import androidx.compose.foundation.layout.statusBars
+import androidx.compose.foundation.layout.windowInsetsBottomHeight
 import androidx.compose.foundation.layout.windowInsetsTopHeight
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
@@ -23,6 +25,7 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.luminance
@@ -152,6 +155,14 @@ fun DashboardScreen(onCardClick: (String) -> Unit) {
                 Modifier
                     .background(primary)
                     .windowInsetsTopHeight(WindowInsets.statusBars)
+                    .fillMaxWidth()
+            )
+            // Bottom scrim: background behind the navigation bar
+            Box(
+                Modifier
+                    .align(Alignment.BottomStart)
+                    .background(color = MaterialTheme.colorScheme.primary.copy(0.8f))
+                    .windowInsetsBottomHeight(WindowInsets.navigationBars)
                     .fillMaxWidth()
             )
             DashboardContent(
