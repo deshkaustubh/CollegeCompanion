@@ -47,16 +47,16 @@ fun DashboardContent(
     ) {
         TopSection()
 
-        Spacer(modifier = Modifier.height(16.dp))
+        Spacer(modifier = Modifier.height(24.dp))
 
         LayerSection(
-            title = "Academic Essentials",
-            items = ScreenDataSource.academicEssentials,
+            title = "College Toolkit",
+            items = ScreenDataSource.collegeLayer,
             onClick = onCardClick,
             modifier = Modifier.padding(start = 8.dp, end = 8.dp)
         )
 
-        Spacer(modifier = Modifier.height(24.dp))
+        Spacer(modifier = Modifier.height(16.dp))
 
         LayerSection(
             title = "Letters & Communication",
@@ -68,8 +68,8 @@ fun DashboardContent(
         Spacer(modifier = Modifier.height(24.dp))
 
         LayerSection(
-            title = "College Toolkit",
-            items = ScreenDataSource.collegeLayer,
+            title = "Academic Essentials",
+            items = ScreenDataSource.academicEssentials,
             onClick = onCardClick,
             modifier = Modifier.padding(start = 8.dp, end = 8.dp)
         )
