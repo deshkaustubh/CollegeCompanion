@@ -1,8 +1,10 @@
 package tech.kaustubhdeshpande.collegecompanion
 
+import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
 import androidx.activity.ComponentActivity
+import androidx.activity.SystemBarStyle
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.annotation.RequiresApi
@@ -12,7 +14,19 @@ class MainActivity : ComponentActivity() {
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
+
+        // Play-compliant edge-to-edge: transparent bars, readable icons
+        enableEdgeToEdge(
+            statusBarStyle = SystemBarStyle.auto(
+                lightScrim = Color.TRANSPARENT,
+                darkScrim = Color.TRANSPARENT
+            ),
+            navigationBarStyle = SystemBarStyle.auto(
+                lightScrim = Color.argb(0xE6, 0xFF, 0xFF, 0xFF),
+                darkScrim = Color.TRANSPARENT
+            )
+        )
+
         setContent {
             Internship1ProjectTheme {
                 AllScreensGraph()
@@ -20,4 +34,3 @@ class MainActivity : ComponentActivity() {
         }
     }
 }
-

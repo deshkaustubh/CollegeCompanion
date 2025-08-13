@@ -97,4 +97,7 @@ dependencies {
 
     //exp4j for simple calculator
     implementation("net.objecthunter:exp4j:0.4.8")
+
+    // for correcting the system bar and their icon colors
+    implementation("com.google.accompanist:accompanist-systemuicontroller:0.30.1")
 }
