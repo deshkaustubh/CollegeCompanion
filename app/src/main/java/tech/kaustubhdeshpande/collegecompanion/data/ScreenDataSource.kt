@@ -26,17 +26,17 @@ data class ScreenItem(
 object ScreenDataSource {
 
     val academicEssentials = listOf(
-        ScreenItem("CGPA Calculator", Icons.Default.School, Color(0xFF4CAF50)), // Green
-        ScreenItem("SGPA Calculator", Icons.Default.School, Color(0xFF2196F3)), // Blue
+        ScreenItem("Simple Calculator", Icons.Default.Calculate, Color(0xFF9C27B0)), // Purple
         ScreenItem("GPA 1-0-1", Icons.Default.Info, Color(0xFFFF9800)),         // Orange
-        ScreenItem("Simple Calculator", Icons.Default.Calculate, Color(0xFF9C27B0)) // Purple
+        ScreenItem("CGPA Calculator", Icons.Default.School, Color(0xFF4CAF50)), // Green
+        ScreenItem("SGPA Calculator", Icons.Default.School, Color(0xFF2196F3)) // Blue
     )
 
     val documentsAndComms = listOf(
-        ScreenItem("Letter Lab", Icons.Default.Description, Color(0xFF3F51B5)), // Indigo
-        ScreenItem("Mail Generator", Icons.AutoMirrored.Filled.Send, Color(0xFFE91E63)), // Pink
         ScreenItem("Excuse Generator", Icons.AutoMirrored.Filled.Chat, Color(0xFF00BCD4)), // Cyan
-        ScreenItem("Holidays Tracker", Icons.Default.Event, Color(0xFFFF5722)) // Deep Orange
+        ScreenItem("Holidays Tracker", Icons.Default.Event, Color(0xFFFF5722)), // Deep Orange
+        ScreenItem("Letter Lab", Icons.Default.Description, Color(0xFF3F51B5)), // Indigo
+        ScreenItem("Mail Generator", Icons.AutoMirrored.Filled.Send, Color(0xFFE91E63)) // Pink
     )
 
     val collegeLayer = listOf(
@@ -49,7 +49,6 @@ object ScreenDataSource {
     val focusAndExtras = listOf(
         ScreenItem("Pomodoro Timer", Icons.Default.Timer, Color(0xFF673AB7)) // Deep Purple
     )
-
 
     // Optional: All in one list for search/autocomplete use
     val allScreens = academicEssentials + documentsAndComms + collegeLayer + focusAndExtras
