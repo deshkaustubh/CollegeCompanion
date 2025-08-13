@@ -40,10 +40,10 @@ object ScreenDataSource {
     )
 
     val collegeLayer = listOf(
-        ScreenItem("Academic Calendar", Icons.Default.CalendarMonth, Color(0xFF009688)), // Teal
         ScreenItem("Lab Evaluation", Icons.AutoMirrored.Filled.FactCheck, Color(0xFFCDDC39)), // Lime
-        ScreenItem("Past Papers", Icons.AutoMirrored.Filled.MenuBook, Color(0xFF795548)), // Brown
-        ScreenItem("75% Club", Icons.Outlined.Percent, Color(0xFF607D8B)) // Blue Grey
+        ScreenItem("75% Club", Icons.Outlined.Percent, Color(0xFF607D8B)), // Blue Grey
+        ScreenItem("Academic Calendar", Icons.Default.CalendarMonth, Color(0xFF009688)), // Teal
+        ScreenItem("Past Papers", Icons.AutoMirrored.Filled.MenuBook, Color(0xFF795548)) // Brown
     )
 
     val focusAndExtras = listOf(
