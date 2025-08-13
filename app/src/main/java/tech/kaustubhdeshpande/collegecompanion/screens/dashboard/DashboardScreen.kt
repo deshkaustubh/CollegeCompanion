@@ -119,7 +119,7 @@ fun DashboardContent(
 
 @RequiresApi(Build.VERSION_CODES.O)
 @Composable
-fun DashboardScreen(modifier: Modifier = Modifier, onCardClick: (String) -> Unit) {
+fun DashboardScreen(onCardClick: (String) -> Unit) {
 
     val systemUiController = rememberSystemUiController()
 
