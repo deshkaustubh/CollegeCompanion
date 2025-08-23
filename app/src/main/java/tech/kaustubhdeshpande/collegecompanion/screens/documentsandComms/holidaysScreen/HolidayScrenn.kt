@@ -2,6 +2,7 @@ package tech.kaustubhdeshpande.collegecompanion.screens.documentsandComms.holida
 
 
 import android.os.Build
+import android.os.SystemClock
 import androidx.annotation.RequiresApi
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
@@ -21,6 +22,8 @@ import androidx.compose.material3.TabRow
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.DisposableEffect
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.SideEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
@@ -28,11 +31,13 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
+import com.google.firebase.analytics.FirebaseAnalytics
 
 @RequiresApi(Build.VERSION_CODES.O)
 @OptIn(ExperimentalMaterial3Api::class)
@@ -48,6 +53,29 @@ fun HolidaysScreen(
         systemUiController.setStatusBarColor(color = statusBarColor)
         systemUiController.setNavigationBarColor(color = navigationBarColor)
     }
+
+    // --- Firebase Analytics Tracking ---
+    val context = LocalContext.current
+    val firebaseAnalytics = FirebaseAnalytics.getInstance(context)
+    val enterTime = SystemClock.elapsedRealtime()
+
+    LaunchedEffect(Unit) {
+        firebaseAnalytics.logEvent(FirebaseAnalytics.Event.SCREEN_VIEW, android.os.Bundle().apply {
+            putString(FirebaseAnalytics.Param.SCREEN_NAME, "Holidays Tracker")
+        })
+    }
+
+    DisposableEffect(Unit) {
+        onDispose {
+            val exitTime = SystemClock.elapsedRealtime()
+            val durationMs = exitTime - enterTime
+            firebaseAnalytics.logEvent("screen_time_spent", android.os.Bundle().apply {
+                putString("screen_name", "Holidays Tracker")
+                putLong("duration_ms", durationMs)
+            })
+        }
+    }
+// --- End Analytics Tracking ---
 
     Scaffold(
         topBar = {
