@@ -46,6 +46,7 @@ fun LabSheetScreen(
         systemUiController.setNavigationBarColor(color = navigationBarColor)
     }
 
+    // --- Firebase Analytics Tracking ---
     val context = LocalContext.current
     val firebaseAnalytics = FirebaseAnalytics.getInstance(context)
     val enterTime = SystemClock.elapsedRealtime()
@@ -68,6 +69,7 @@ fun LabSheetScreen(
             })
         }
     }
+    // --- End Analytics Tracking ---
 
     val scrollBehavior = TopAppBarDefaults.exitUntilCollapsedScrollBehavior()
 
