@@ -27,6 +27,11 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
+import android.os.Bundle
+import android.os.SystemClock
+import com.google.firebase.analytics.FirebaseAnalytics
+import androidx.compose.runtime.*
+import androidx.compose.ui.platform.LocalContext
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -41,6 +46,30 @@ fun SimpleCalculatorScreen(
         systemUiController.setStatusBarColor(color = statusBarColor)
         systemUiController.setNavigationBarColor(color = navigationBarColor)
     }
+
+    // --- Firebase Analytics Tracking ---
+    val context = LocalContext.current
+    val firebaseAnalytics = FirebaseAnalytics.getInstance(context)
+    val enterTime = SystemClock.elapsedRealtime()
+
+    LaunchedEffect(Unit) {
+        firebaseAnalytics.logEvent(FirebaseAnalytics.Event.SCREEN_VIEW, android.os.Bundle().apply {
+            putString(FirebaseAnalytics.Param.SCREEN_NAME, "Simple Calculator")
+        })
+    }
+
+    DisposableEffect(Unit) {
+        onDispose {
+            val exitTime = SystemClock.elapsedRealtime()
+            val durationMs = exitTime - enterTime
+            firebaseAnalytics.logEvent("screen_time_spent", android.os.Bundle().apply {
+                putString("screen_name", "Simple Calculator")
+                putLong("duration_ms", durationMs)
+            })
+        }
+    }
+// --- End Analytics Tracking ---
+
     Scaffold(
         topBar = {
             CenterAlignedTopAppBar(
