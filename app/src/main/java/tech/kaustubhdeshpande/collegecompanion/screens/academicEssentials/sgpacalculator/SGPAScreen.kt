@@ -1,6 +1,7 @@
 package tech.kaustubhdeshpande.collegecompanion.screens.academicEssentials.sgpacalculator
 
 
+import android.os.SystemClock
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
@@ -20,21 +21,19 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.DisposableEffect
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.SideEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.platform.LocalFocusManager
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
-import android.os.Bundle
-import android.os.SystemClock
 import com.google.firebase.analytics.FirebaseAnalytics
-import androidx.compose.runtime.*
-import androidx.compose.ui.platform.LocalContext
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -105,13 +104,11 @@ fun SGPAScreen(
     }
 }
 
-
 @Composable
-fun SGPAContent(modifier : Modifier = Modifier) {
+fun SGPAContent(modifier: Modifier = Modifier) {
     val viewModel: SGPAViewModel = viewModel()
 
     val scroll = rememberScrollState()
-    val focus = LocalFocusManager.current
 
     Column(
         modifier = modifier
