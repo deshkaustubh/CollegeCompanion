@@ -8,12 +8,20 @@ import androidx.activity.SystemBarStyle
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.annotation.RequiresApi
+import com.google.firebase.Firebase
+import com.google.firebase.analytics.FirebaseAnalytics
+import com.google.firebase.analytics.analytics
 import tech.kaustubhdeshpande.collegecompanion.ui.theme.Internship1ProjectTheme
 
 class MainActivity : ComponentActivity() {
+
+    private lateinit var analytics: FirebaseAnalytics
+
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        analytics = Firebase.analytics
 
         // Play-compliant edge-to-edge: transparent bars, readable icons
         enableEdgeToEdge(
