@@ -102,4 +102,7 @@ dependencies {
 
     // for correcting the system bar and their icon colors
     implementation("com.google.accompanist:accompanist-systemuicontroller:0.30.1")
+
+    // Microsoft Clarity for Android
+    implementation("com.microsoft.clarity:clarity-compose:3.+")
 }
