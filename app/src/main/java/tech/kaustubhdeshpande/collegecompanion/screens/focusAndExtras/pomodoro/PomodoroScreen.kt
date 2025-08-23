@@ -1,7 +1,6 @@
 package tech.kaustubhdeshpande.collegecompanion.screens.focusAndExtras.pomodoro
 
-import android.os.Vibrator
-import androidx.compose.foundation.border
+import android.os.SystemClock
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -28,6 +27,8 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.DisposableEffect
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.SideEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -40,6 +41,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
+import com.google.firebase.analytics.FirebaseAnalytics
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -54,6 +56,29 @@ fun PomodoroScreen(
         systemUiController.setStatusBarColor(color = statusBarColor)
         systemUiController.setNavigationBarColor(color = navigationBarColor)
     }
+
+    // --- Firebase Analytics Tracking ---
+    val context = LocalContext.current
+    val firebaseAnalytics = FirebaseAnalytics.getInstance(context)
+    val enterTime = SystemClock.elapsedRealtime()
+
+    LaunchedEffect(Unit) {
+        firebaseAnalytics.logEvent(FirebaseAnalytics.Event.SCREEN_VIEW, android.os.Bundle().apply {
+            putString(FirebaseAnalytics.Param.SCREEN_NAME, "Pomodoro Timer")
+        })
+    }
+
+    DisposableEffect(Unit) {
+        onDispose {
+            val exitTime = SystemClock.elapsedRealtime()
+            val durationMs = exitTime - enterTime
+            firebaseAnalytics.logEvent("screen_time_spent", android.os.Bundle().apply {
+                putString("screen_name", "Pomodoro Timer")
+                putLong("duration_ms", durationMs)
+            })
+        }
+    }
+// --- End Analytics Tracking ---
 
     Scaffold(
         topBar = {
@@ -94,8 +119,6 @@ fun PomodoroContent(modifier: Modifier = Modifier) {
     val state = viewModel.state.value
     val formattedTime = viewModel.getFormattedTime()
     val message = viewModel.getSidekickMessage()
-    val context = LocalContext.current
-    val vibrator = context.getSystemService(Vibrator::class.java)
 
     val totalDuration = when (state.phase) {
         TimerPhase.FOCUS -> state.focusDuration * 60
