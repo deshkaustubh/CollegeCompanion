@@ -59,9 +59,10 @@ fun PYQScreen(
         onDispose {
             val exitTime = SystemClock.elapsedRealtime()
             val durationMs = exitTime - enterTime
+            val durationSec = durationMs / 1000
             firebaseAnalytics.logEvent("screen_time_spent", android.os.Bundle().apply {
                 putString("screen_name", "Past Papers")
-                putLong("duration_ms", durationMs)
+                putLong("duration_sec", durationSec)
             })
         }
     }
