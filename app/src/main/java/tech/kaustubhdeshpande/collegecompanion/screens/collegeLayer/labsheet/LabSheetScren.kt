@@ -1,6 +1,7 @@
 package tech.kaustubhdeshpande.collegecompanion.screens.collegeLayer.labsheet
 
 import android.annotation.SuppressLint
+import android.os.SystemClock
 import android.webkit.WebView
 import android.webkit.WebViewClient
 import androidx.compose.foundation.layout.fillMaxSize
@@ -16,14 +17,18 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.DisposableEffect
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.SideEffect
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.viewinterop.AndroidView
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
+import com.google.firebase.analytics.FirebaseAnalytics
 import tech.kaustubhdeshpande.collegecompanion.ui.theme.Internship1ProjectTheme
 
 @SuppressLint("SetJavaScriptEnabled")
@@ -39,6 +44,29 @@ fun LabSheetScreen(
     SideEffect {
         systemUiController.setStatusBarColor(color = statusBarColor)
         systemUiController.setNavigationBarColor(color = navigationBarColor)
+    }
+
+    val context = LocalContext.current
+    val firebaseAnalytics = FirebaseAnalytics.getInstance(context)
+    val enterTime = SystemClock.elapsedRealtime()
+
+    // Log screen view event
+    LaunchedEffect(Unit) {
+        firebaseAnalytics.logEvent(FirebaseAnalytics.Event.SCREEN_VIEW, android.os.Bundle().apply {
+            putString(FirebaseAnalytics.Param.SCREEN_NAME, "Lab Evaluation Sheet")
+        })
+    }
+
+    // Log time spent when leaving
+    DisposableEffect(Unit) {
+        onDispose {
+            val exitTime = SystemClock.elapsedRealtime()
+            val durationMs = exitTime - enterTime
+            firebaseAnalytics.logEvent("screen_time_spent", android.os.Bundle().apply {
+                putString("screen_name", "Lab Evaluation Sheet")
+                putLong("duration_ms", durationMs)
+            })
+        }
     }
 
     val scrollBehavior = TopAppBarDefaults.exitUntilCollapsedScrollBehavior()
