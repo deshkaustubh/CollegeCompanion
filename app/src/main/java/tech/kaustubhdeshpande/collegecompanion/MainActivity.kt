@@ -28,7 +28,7 @@ class MainActivity : ComponentActivity() {
 
         // microsoft clarity
         val config = ClarityConfig(
-            projectId = "szgslc6nt3",
+            projectId = "szilhpfyz3",
             logLevel = LogLevel.None // Note: Use "LogLevel.Verbose" value while testing to debug initialization issues.
         )
         Clarity.initialize(applicationContext, config)

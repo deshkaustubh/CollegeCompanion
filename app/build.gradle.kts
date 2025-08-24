@@ -104,5 +104,5 @@ dependencies {
     implementation("com.google.accompanist:accompanist-systemuicontroller:0.30.1")
 
     // Microsoft Clarity for Android
-    implementation("com.microsoft.clarity:clarity-compose:3.+")
+    implementation("com.microsoft.clarity:clarity-compose:3.4.5")
 }
