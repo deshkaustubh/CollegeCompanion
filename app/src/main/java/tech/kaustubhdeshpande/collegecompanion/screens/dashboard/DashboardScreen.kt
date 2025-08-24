@@ -29,6 +29,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.luminance
+import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalUriHandler
 import androidx.compose.ui.text.SpanStyle
@@ -134,37 +135,56 @@ fun DashboardScreen(onCardClick: (String) -> Unit) {
     val context = LocalContext.current
     val window = (context as? Activity)?.window
     val primary = MaterialTheme.colorScheme.primary
+    val navigationBarColor = Color(0xFFe5f2fb)
     val lightStatusBarIcons = primary.luminance() > 0.5
-
+    val lightNavigationBarIcons = navigationBarColor.luminance() > 0.5
+    val isAndroid14OrAbove = Build.VERSION.SDK_INT >= 34
     // Set icon contrast to match your primary scrim
-    LaunchedEffect(lightStatusBarIcons) {
+    LaunchedEffect(lightStatusBarIcons, lightNavigationBarIcons, isAndroid14OrAbove) {
         window?.let {
-            WindowCompat.getInsetsController(it, it.decorView).apply {
-                isAppearanceLightStatusBars = lightStatusBarIcons
+            if (!isAndroid14OrAbove) {
+                // For Android 13 and below, set system bar colors via window
+                @Suppress("DEPRECATION")
+                it.statusBarColor = primary.toArgb()
+                @Suppress("DEPRECATION")
+                it.navigationBarColor = navigationBarColor.toArgb()
+                WindowCompat.getInsetsController(it, it.decorView).apply {
+                    isAppearanceLightStatusBars = lightStatusBarIcons
+                    isAppearanceLightNavigationBars = lightNavigationBarIcons
+                }
+            } else {
+                // For Android 14+, set system bars to transparent for Compose to draw behind
+                it.statusBarColor = android.graphics.Color.TRANSPARENT
+                it.navigationBarColor = android.graphics.Color.TRANSPARENT
+                WindowCompat.getInsetsController(it, it.decorView).apply {
+                    isAppearanceLightStatusBars = lightStatusBarIcons
+                    isAppearanceLightNavigationBars = lightNavigationBarIcons
+                }
             }
         }
     }
 
     Scaffold(
-        // Let content draw behind bars; you control insets
         contentWindowInsets = WindowInsets.safeDrawing
     ) { innerPadding ->
         Box(Modifier.fillMaxSize()) {
-            // Paint primary behind the status bar (edge‑to‑edge)
-            Box(
-                Modifier
-                    .background(primary)
-                    .windowInsetsTopHeight(WindowInsets.statusBars)
-                    .fillMaxWidth()
-            )
-            // Bottom scrim: background behind the navigation bar
-            Box(
-                Modifier
-                    .align(Alignment.BottomStart)
-                    .background(color = MaterialTheme.colorScheme.primary.copy(0.8f))
-                    .windowInsetsBottomHeight(WindowInsets.navigationBars)
-                    .fillMaxWidth()
-            )
+            if (isAndroid14OrAbove) {
+                // Paint primary behind the status bar (edge‑to‑edge)
+                Box(
+                    Modifier
+                        .background(primary)
+                        .windowInsetsTopHeight(WindowInsets.statusBars)
+                        .fillMaxWidth()
+                )
+                // Paint navigationBarColor behind the navigation bar (edge‑to‑edge)
+                Box(
+                    Modifier
+                        .background(navigationBarColor)
+                        .windowInsetsBottomHeight(WindowInsets.navigationBars)
+                        .fillMaxWidth()
+                        .align(Alignment.BottomCenter)
+                )
+            }
             DashboardContent(
                 onCardClick = onCardClick,
                 modifier = Modifier.padding(innerPadding)
@@ -173,8 +193,9 @@ fun DashboardScreen(onCardClick: (String) -> Unit) {
     }
 }
 
-@RequiresApi(Build.VERSION_CODES.O)
+
 @Preview
+@RequiresApi(Build.VERSION_CODES.O)
 @Composable
 private fun DashboardScreenPreview() {
     Internship1ProjectTheme {
