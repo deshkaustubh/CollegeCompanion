@@ -190,11 +190,11 @@ fun AcademicCalendarScreen(
 
 
 @Composable
-private fun MultiPagePdfViewer(
+fun MultiPagePdfViewer(
     pdfFile: File,
     modifier: Modifier = Modifier
 ) {
-    val pageCount by remember(pdfFile) { mutableIntStateOf(getPdfPageCount(pdfFile)) }
+    val pageCount = remember(pdfFile) { getPdfPageCount(pdfFile) }
     val pagerState = rememberPagerState(pageCount = { pageCount })
 
     HorizontalPager(
@@ -219,12 +219,11 @@ private fun MultiPagePdfViewer(
             } ?: if (loading) {
                 CircularProgressIndicator()
             } else {
-                LinearProgressIndicator()
+
             }
         }
     }
 }
-
 @Composable
 private fun ZoomableImage(bitmap: Bitmap) {
     var scale by remember { mutableStateOf(1f) }
@@ -256,7 +255,7 @@ private fun ZoomableImage(bitmap: Bitmap) {
         )
     }
 }
-private fun getPdfPageCount(file: File): Int {
+fun getPdfPageCount(file: File): Int {
     return try {
         val fileDescriptor = ParcelFileDescriptor.open(file, ParcelFileDescriptor.MODE_READ_ONLY)
         val renderer = PdfRenderer(fileDescriptor)
@@ -269,7 +268,7 @@ private fun getPdfPageCount(file: File): Int {
     }
 }
 
-private fun renderPdfPage(file: File, pageIndex: Int): Bitmap? {
+fun renderPdfPage(file: File, pageIndex: Int): Bitmap? {
     return try {
         val fileDescriptor = ParcelFileDescriptor.open(file, ParcelFileDescriptor.MODE_READ_ONLY)
         val renderer = PdfRenderer(fileDescriptor)
@@ -287,7 +286,7 @@ private fun renderPdfPage(file: File, pageIndex: Int): Bitmap? {
     }
 }
 
-private fun downloadPdfToCache(context: Context, url: String, onComplete: (File?) -> Unit) {
+fun downloadPdfToCache(context: Context, url: String, onComplete: (File?) -> Unit) {
     val file = File(context.cacheDir, "academic_calendar.pdf")
 
     if (file.exists() && file.length() > 0) {
