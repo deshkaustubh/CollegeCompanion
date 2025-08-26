@@ -105,4 +105,10 @@ dependencies {
 
     // Microsoft Clarity for Android
     implementation("com.microsoft.clarity:clarity-compose:3.4.5")
+
+    //oK HTTP for downloading file
+    implementation("com.squareup.okhttp3:okhttp:4.12.0")
+
+    //oK HTTP for caching file
+    implementation("com.squareup.okio:okio:3.7.0")
 }
