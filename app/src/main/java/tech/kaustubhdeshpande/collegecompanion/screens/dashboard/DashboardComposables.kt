@@ -285,38 +285,48 @@ fun LayerSection(
 
 
 val dailyQuotes = listOf(
-    "Built it solo. Zero sleep. Still overclocked",
-    "Don’t aim to survive. Architect your dominance.",
-    "Deadlines ≠ doom. They’re launchpads.",
-    "Chill is a feature. So is dominance.",
-    "If you don’t scare yourself, you’re doing it wrong.",
-    "Most quit before it gets interesting. You’re not most.",
-    "Heroes write letters. Legends excuse absences.",
-    "The system isn’t broken. It’s just never feared you.",
-    "Overthinking ends in meltdown.",
-    "Stealth mode ≠ stagnation.",
-    "Dropout or legend? Depends on focus.",
-    "Delay it. Then dominate it.",
-    "Character isn’t built. It’s proven — choice by choice.",
-    "Low attendance. High ambition.",
-    "Blueprints are just rebel plans.",
-    "Courage is quiet. But it shows up first.",
-    "Fear = feature. Keep going.",
-    "What you start today rewrites their tomorrow.",
-    "Nothing disrupts legacy like momentum in silence.",
-    "If they don’t misunderstand you, you’re doing it wrong.",
-    "They’ll remember your silence longer than their noise.",
-    "What you start today rewrites their tomorrow.",
-    "While they drafted whitepapers, I launched payloads.",
-    "Fail smart. Label it ‘beta.’",
-    "I don’t meet standards. I write them.",
-    "Drama? Keep it in drafts.",
-    "Plan like a villain. Execute like a monk.",
-    "I saw 14 million endings. I built the one I needed.",
-    "You’re prototyping greatness.",
-    "Fix yourself like the world depends on it — because it does.",
-    "Build like the world’s watching. Because one day it will.",
-    "Logs aren’t for history. They’re for survival."
+    // Day 1-5: The Fresh Start & High Energy
+    "Sooraj se pehle uth, kismat se aage nikal.",
+    "Aaj ka din tera hai, bas jeet ke aana.",
+    "Aag andar hai, bas jalne de.",
+    "Khel abhi shuru hua hai, picture abhi baaki hai.",
+    "Ruk mat, abhi toh bas shuruaat hai.",
+
+    // Day 6-10: The Grind & Building Momentum
+    "Thakna mana hai, rukna gunah hai.",
+    "Har saans ek mauka hai, waste mat kar.",
+    "Shor kam, kaam zyada. Success automatic.",
+    "Kal ka intezaar mat kar, aaj hi hisaab kar.",
+    "Bahane mat bana, naya record bana.",
+
+    // Day 11-15: Pushing Through the Middle & Self-Belief
+    "Mushkil nahi, bas mazedaar hai.",
+    "Jo toofan mein palte hain, wahi duniya badalte hain.",
+    "Limit bas ek word hai, tu usse bada hai.",
+    "Ziddi ban, kismat apne aap badlegi.",
+    "Tera competition tu khud hai, baaki sab sidekicks hain.",
+
+    // Day 16-20: Finding Rhythm & Deep Focus
+    "Bas chalte reh, manzil khud aayegi.",
+    "Focus itna rakh ki kismat bhi sharma jaaye.",
+    "Sapne dekh mat, unhe poora kar.",
+    "Bheed se alag nahi, bheed se aage chal.",
+    "Duniya ke saamne bana, unke saamne jeet.",
+
+    // Day 21-25: Accelerating & Seeing the Goal
+    "Aasmaan chhota padega, ek baar udke toh dekh.",
+    "Apna time aayega nahi, main laaunga.",
+    "Duniya jhukti hai, bas jhukane wala chahiye.",
+    "History mat padh, history bana.",
+    "Tu woh toofan hai jo sab uda dega.",
+
+    // Day 26-31: The Final Push & Victory
+    "Jab tak todunga nahi, tab tak chhodunga nahi.",
+    "Haarne ka darr? Mujhe jeetne ka nasha hai.",
+    "Mehnat itni kar ki success bhi bole 'tera hi tha'.",
+    "Teri kahani tu likhega, duniya bas padhegi.",
+    "Naam yaad rakhna — Kaustubh Deshpande. Vision clear, game fierce, aur har move mein masterstroke.",
+    "Jeetne ka maza tab hai, jab sab haarne ka wait karein."
 )
 
 
