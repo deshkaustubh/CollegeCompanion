@@ -1,6 +1,5 @@
 package tech.kaustubhdeshpande.collegecompanion.screens.documentsandComms.excuseGenerator
 
-
 enum class ExcuseTopic {
     Assignment, Late, Leave, Burnout, GroupWork, Tech, Lab, Forget, Extension
 }
@@ -15,353 +14,361 @@ data class Excuse(
     val text: String
 )
 
+// Updated list with more elaborate, story-like excuses for a Mumbai classroom.
 val allExcuses: List<Excuse> = listOf(
 
     // 📝 Assignment
     Excuse(
         ExcuseTopic.Assignment,
         ExcuseTone.Honest,
-        "This week was heavy and I couldn’t manage to finish the assignment."
+        "Sir, actually kal mummy ki tabiyat theek nahi thi, toh unke saath doctor ke paas jaana pada. Vapis aate aate kaafi late ho gaya, aur jab assignment karne baitha toh laptop hi crash ho gaya. Subah se theek karwane diya hai."
     ),
     Excuse(
         ExcuseTopic.Assignment,
         ExcuseTone.Honest,
-        "I tried but couldn’t focus enough to wrap it well."
+        "Concept theek se samajh nahi aaya, thoda time lagega isme."
     ),
     Excuse(
         ExcuseTopic.Assignment,
         ExcuseTone.Honest,
-        "Mentally off track — I’ll catch up now with more clarity."
+        "Doosre subjects ka itna load tha ki ispe aane ka time hi nahi mila."
     ),
     Excuse(
         ExcuseTopic.Assignment,
         ExcuseTone.Respectful,
-        "Apologies for the delay — I’m completing the assignment today."
+        "I apologize, ma'am. Ghar pe puja thi, isliye poora din usi mein nikal gaya. I couldn't manage the assignment on time."
     ),
     Excuse(
         ExcuseTopic.Assignment,
         ExcuseTone.Respectful,
-        "I underestimated the time needed. I’ll submit it shortly."
+        "I've been facing some network issues at home, which delayed my research. I will submit it by tomorrow."
     ),
     Excuse(
         ExcuseTopic.Assignment,
         ExcuseTone.Respectful,
-        "I’ve been managing a lot this week — requesting a little more time."
+        "My apologies for the delay. I will ensure the completed assignment is submitted by evening."
     ),
-    Excuse(ExcuseTopic.Assignment, ExcuseTone.Light, "The tab was open. My brain… not so much."),
+    Excuse(ExcuseTopic.Assignment, ExcuseTone.Light, "Assignment ready hai, bas thoda finishing touch... kal tak de doon?"),
     Excuse(
         ExcuseTopic.Assignment,
         ExcuseTone.Light,
-        "Work in progress turned into nap in progress."
+        "Sir, inspiration hi nahi aayi. Ab aayi hai, bas thoda time chahiye."
     ),
-    Excuse(ExcuseTopic.Assignment, ExcuseTone.Light, "I blinked… and the deadline blinked back."),
+    Excuse(ExcuseTopic.Assignment, ExcuseTone.Light, "Brain ne bola 'aaj nahi ho paayega'. Kal pakka."),
 
-    // 🕐 Late
+    // 🕐 Late to Class
     Excuse(
         ExcuseTopic.Late,
         ExcuseTone.Honest,
-        "I wasn’t in the right state of mind to attend today."
+        "Sorry sir, Churchgate se fast local pakdi thi, par Vile Parle ke paas aake signal issue ke kaaran ruk gayi. 15 minute vahi pe khadi thi, phir itni gardi ho gayi ki utarne mein hi time lag gaya."
     ),
-    Excuse(ExcuseTopic.Late, ExcuseTone.Honest, "I overslept unintentionally — I’ll stay in sync."),
+    Excuse(ExcuseTopic.Late, ExcuseTone.Honest, "Alarm hi nahi baja, pata nahi kaise. Sorry ma'am."),
     Excuse(
         ExcuseTopic.Late,
         ExcuseTone.Honest,
-        "Needed a breather today — I’ll catch up on missed work."
+        "Dadar station pe bohot gardi thi, nikalne mein time lag gaya."
     ),
     Excuse(
         ExcuseTopic.Late,
         ExcuseTone.Respectful,
-        "Apologies for missing class — I had a difficult morning."
+        "Apologies for being late, ma'am. The train was running 20 minutes late today due to a signal issue."
     ),
     Excuse(
         ExcuseTopic.Late,
         ExcuseTone.Respectful,
-        "I’ll catch up on notes and be more regular going forward."
+        "I'm very sorry for the delay. Subah-subah cylinder wala aa gaya tha, aur ghar pe koi nahi tha, isliye rukna pada."
     ),
     Excuse(
         ExcuseTopic.Late,
         ExcuseTone.Respectful,
-        "Sorry for the absence — I had an unavoidable delay."
+        "My sincerest apologies for my tardiness. It won't be repeated."
     ),
-    Excuse(ExcuseTopic.Late, ExcuseTone.Light, "My alarm betrayed me. Deeply."),
-    Excuse(ExcuseTopic.Late, ExcuseTone.Light, "Mentally on time. Physically… still loading."),
+    Excuse(ExcuseTopic.Late, ExcuseTone.Light, "Time pe nikla tha, par Virar fast ne 'you shall not pass' bol diya."),
+    Excuse(ExcuseTopic.Late, ExcuseTone.Light, "Sir, meri neend aur main, humara breakup ho gaya... thoda late se."),
     Excuse(
         ExcuseTopic.Late,
         ExcuseTone.Light,
-        "Woke up to 47 missed notifications — timing wasn’t one of them."
+        "Main physically late hoon, but mentally main time pe tha."
     ),
 
-    // 📆 Leave
+    // 📆 Leave / Absence
     Excuse(
         ExcuseTopic.Leave,
         ExcuseTone.Honest,
-        "I needed the day off to handle a few personal things."
+        "Ma'am, ghar pe achanak mehmaan aa gaye the door ke."
     ),
-    Excuse(ExcuseTopic.Leave, ExcuseTone.Honest, "I wasn’t in the headspace to attend today."),
-    Excuse(ExcuseTopic.Leave, ExcuseTone.Honest, "Mental reset day. Will return focused."),
+    Excuse(ExcuseTopic.Leave, ExcuseTone.Honest, "Thodi tabiyat theek nahi lag rahi thi, isliye rest le liya."),
+    Excuse(
+        ExcuseTopic.Leave,
+        ExcuseTone.Honest,
+        "Sir, subah achanak Aaji ki tabiyat kharab ho gayi, unko doctor ke paas leke jaana pada. Abhi reports ka wait kar rahe hain, isliye aana possible nahi hai."
+    ),
     Excuse(
         ExcuseTopic.Leave,
         ExcuseTone.Respectful,
-        "Requesting leave for personal reasons — thank you for understanding."
+        "I will be unable to attend today's lecture as we have a small religious ceremony at home."
     ),
     Excuse(
         ExcuseTopic.Leave,
         ExcuseTone.Respectful,
-        "I won’t be able to attend due to a personal emergency."
+        "Unfortunately, I will be absent as I have to take my grandmother for a doctor's check-up."
     ),
-    Excuse(ExcuseTopic.Leave, ExcuseTone.Respectful, "Apologies — family duty called today."),
-    Excuse(ExcuseTopic.Leave, ExcuseTone.Light, "Not skipping — just taking a tactical time-out."),
+    Excuse(ExcuseTopic.Leave, ExcuseTone.Respectful, "I have a medical appointment that I could not reschedule."),
+    Excuse(ExcuseTopic.Leave, ExcuseTone.Light, "Sir, ek din ka 'strategic timeout' liya hai. Kal se back in form."),
     Excuse(
         ExcuseTopic.Leave,
         ExcuseTone.Light,
-        "Today’s vibes: blank page. Needed to log out of reality."
+        "Thoda 'out of station' tha... mentally."
     ),
     Excuse(
         ExcuseTopic.Leave,
         ExcuseTone.Light,
-        "Taking a short escape from the semester spiral — will return."
+        "Aaj attendance ka 'work from home' kar raha hoon."
     ),
 
     // 💭 Burnout
     Excuse(
         ExcuseTopic.Burnout,
         ExcuseTone.Honest,
-        "I’ve been overwhelmed lately — just trying to recalibrate."
+        "Sir, sab kuch upar se jaa raha hai. Ek din ka break chahiye."
     ),
     Excuse(
         ExcuseTopic.Burnout,
         ExcuseTone.Honest,
-        "Couldn’t function well this week — bouncing back now."
+        "Itna submissions ka pressure hai ki poora drain ho gaya hoon."
     ),
     Excuse(
         ExcuseTopic.Burnout,
         ExcuseTone.Honest,
-        "Completely drained recently. I’m working on it."
+        "Focus hi nahi kar paa raha, sir. Thoda space chahiye."
     ),
     Excuse(
         ExcuseTopic.Burnout,
         ExcuseTone.Respectful,
-        "Mentally I needed a short break to stay afloat."
+        "Ma'am, the academic workload has been quite overwhelming lately. I need some time to recalibrate."
     ),
     Excuse(
         ExcuseTopic.Burnout,
         ExcuseTone.Respectful,
-        "I’ve been trying to keep up but fell behind — sorry for the delay."
+        "I've been finding it difficult to manage everything. I'm taking a day to organize and get back on track."
     ),
     Excuse(
         ExcuseTopic.Burnout,
         ExcuseTone.Respectful,
-        "Hope it’s okay I took a breather before burning out."
+        "I need to prioritize my well-being at the moment to avoid a complete burnout."
     ),
     Excuse(
         ExcuseTopic.Burnout,
         ExcuseTone.Light,
-        "Brain went into airplane mode. Trying to reconnect."
+        "Brain ka server down hai, reboot ke liye time chahiye."
     ),
     Excuse(
         ExcuseTopic.Burnout,
         ExcuseTone.Light,
-        "Ran out of capacity. Recharging on silent mode."
+        "Motivation chutti pe gaya hai, kal tak aa jaayega."
     ),
     Excuse(
         ExcuseTopic.Burnout,
         ExcuseTone.Light,
-        "Sleep logged out. Motivation ghosted. Recovering now."
+        "Meri social battery khatam ho gayi hai. Charging pe lagayi hai."
     ),
 
     // 🤝 Group Work
     Excuse(
         ExcuseTopic.GroupWork,
         ExcuseTone.Honest,
-        "I couldn’t manage my part — I’ll finish it today."
+        "Sorry yaar, mera part reh gaya. Abhi 2 ghante mein karke bhejta hoon."
     ),
     Excuse(
         ExcuseTopic.GroupWork,
         ExcuseTone.Honest,
-        "Completely fumbled my task. I’m fixing it now."
+        "Guys, main doosre kaam mein fass gaya tha. My apologies. Aaj raat tak pakka."
     ),
     Excuse(
         ExcuseTopic.GroupWork,
         ExcuseTone.Honest,
-        "I wasn’t able to deliver this time. Next round’s on me."
+        "Topic hi samajh nahi aaya theek se. Koi explain kar do, main fatafat kar doonga."
     ),
     Excuse(
         ExcuseTopic.GroupWork,
         ExcuseTone.Respectful,
-        "Apologies for the delay — I’ll ensure my part’s done ASAP."
+        "Apologies to the team. I was unable to complete my part on time due to some other commitments. I will finish it tonight."
     ),
     Excuse(
         ExcuseTopic.GroupWork,
         ExcuseTone.Respectful,
-        "I’ll take full responsibility for lagging behind."
+        "I take responsibility for the delay on my end. I will ensure it doesn't affect our final submission."
     ),
     Excuse(
         ExcuseTopic.GroupWork,
         ExcuseTone.Respectful,
-        "I wasn’t well and didn’t want to block the group — catching up now."
+        "I have not been able to complete my portion due to some personal issues. I apologize for the inconvenience."
     ),
-    Excuse(ExcuseTopic.GroupWork, ExcuseTone.Light, "Delay’s on me. Panic mode is now active."),
+    Excuse(ExcuseTopic.GroupWork, ExcuseTone.Light, "Mera contribution 'coming soon' mode pe tha. Ab release kar raha hoon."),
     Excuse(
         ExcuseTopic.GroupWork,
         ExcuseTone.Light,
-        "Not proud, but I ghosted the task. Making up for it."
+        "Main perfection ka wait kar raha tha. Ab 'good enough' pe settle kar raha hoon."
     ),
     Excuse(
         ExcuseTopic.GroupWork,
         ExcuseTone.Light,
-        "Wasn’t lagging — just buffering. Finishing now."
+        "Procrastination se lad raha tha. Main jeet gaya. Ab kaam bhejta hoon."
     ),
 
-    // 🔧 Tech
+    // 🔧 Tech Issues
     Excuse(
         ExcuseTopic.Tech,
         ExcuseTone.Honest,
-        "Device crashed mid-task. I’ve got a fix incoming."
+        "Sir, Wi-Fi hi nahi chal raha subah se."
     ),
     Excuse(
         ExcuseTopic.Tech,
         ExcuseTone.Honest,
-        "WiFi issues broke the streak. I’m getting it done again."
+        "Laptop achanak band ho gaya. Abhi theek karwa raha hoon."
     ),
-    Excuse(ExcuseTopic.Tech, ExcuseTone.Honest, "Couldn’t upload on time due to a system failure."),
+    Excuse(ExcuseTopic.Tech, ExcuseTone.Honest, "File save ki thi, but corrupt ho gayi. Phir se banana padega."),
     Excuse(
         ExcuseTopic.Tech,
         ExcuseTone.Respectful,
-        "I’m facing tech issues but working around them."
-    ),
-    Excuse(
-        ExcuseTopic.Tech,
-        ExcuseTone.Respectful,
-        "Device failure delayed my submission. Sorry for the inconvenience."
+        "I am currently experiencing technical difficulties with my device. I am trying to resolve the issue."
     ),
     Excuse(
         ExcuseTopic.Tech,
         ExcuseTone.Respectful,
-        "Running into network trouble — will submit as soon as I can."
+        "I apologize, but a power outage at my place has prevented me from completing the work."
     ),
-    Excuse(ExcuseTopic.Tech, ExcuseTone.Light, "My laptop and I had a disagreement. I lost."),
-    Excuse(ExcuseTopic.Tech, ExcuseTone.Light, "Typed it all out. Battery decided otherwise."),
+    Excuse(
+        ExcuseTopic.Tech,
+        ExcuseTone.Respectful,
+        "I am having trouble with the college portal and it's not accepting my submission. I have already emailed the IT support."
+    ),
+    Excuse(ExcuseTopic.Tech, ExcuseTone.Light, "Laptop ne dhoka de diya, sir. Last moment pe."),
+    Excuse(ExcuseTopic.Tech, ExcuseTone.Light, "Mera laptop Windows update pe atka hai, jaise meri life."),
     Excuse(
         ExcuseTopic.Tech,
         ExcuseTone.Light,
-        "Tech glitch: The assignment is real. The upload... vanished."
+        "File corrupt ho gayi, jaise mera luck."
     ),
 
     // 🧪 Lab
-    Excuse(ExcuseTopic.Lab, ExcuseTone.Honest, "I couldn’t show up today due to personal reasons."),
     Excuse(
         ExcuseTopic.Lab,
         ExcuseTone.Honest,
-        "Completely blanked out on the timing. I regret it."
-    ),
-    Excuse(ExcuseTopic.Lab, ExcuseTone.Honest, "Had a bit of a mental block — missed the lab."),
-    Excuse(
-        ExcuseTopic.Lab,
-        ExcuseTone.Respectful,
-        "Apologies for missing the practical — was dealing with something urgent."
+        "Sorry ma'am, gas cylinder deliver hone wala tha, par unka pipe leak ho raha tha. Usko theek karwane mein itna time chala gaya ki aana hi cancel karna pada."
     ),
     Excuse(
         ExcuseTopic.Lab,
-        ExcuseTone.Respectful,
-        "Family obligation made me miss lab. I’ll make up for it."
-    ),
-    Excuse(
-        ExcuseTopic.Lab,
-        ExcuseTone.Respectful,
-        "Couldn’t attend lab today — request permission to reschedule."
-    ),
-    Excuse(
-        ExcuseTopic.Lab,
-        ExcuseTone.Light,
-        "My brain was in lab mode. My body was still in bed."
-    ),
-    Excuse(ExcuseTopic.Lab, ExcuseTone.Light, "Lab was calling. My commute said 'not today.'"),
-    Excuse(
-        ExcuseTopic.Lab,
-        ExcuseTone.Light,
-        "Fully dressed for lab. Then my rickshaw ghosted me."
-    ),
-    Excuse(ExcuseTopic.Lab, ExcuseTone.Light, "Lab day got lab-broken. Will make up next time."),
-
-    // Forgot to submit
-    Excuse(ExcuseTopic.Forget, ExcuseTone.Honest, "It was ready — I just forgot to hit submit."),
-    Excuse(ExcuseTopic.Forget, ExcuseTone.Honest, "I lost track of the final step in the rush."),
-    Excuse(
-        ExcuseTopic.Forget,
         ExcuseTone.Honest,
-        "Task completed, submission missed. Making up for it now."
+        "Tabiyat theek nahi lag rahi thi, isliye risk nahi liya."
     ),
+    Excuse(ExcuseTopic.Lab, ExcuseTone.Honest, "Main date galat samajh baitha. My mistake."),
     Excuse(
-        ExcuseTopic.Forget,
+        ExcuseTopic.Lab,
         ExcuseTone.Respectful,
-        "Apologies — I prepped it all but missed the upload."
+        "I was unfortunately unable to attend the lab session today due to being unwell."
     ),
     Excuse(
-        ExcuseTopic.Forget,
+        ExcuseTopic.Lab,
         ExcuseTone.Respectful,
-        "I intended to submit but missed the window. I'm resolving it."
+        "My apologies for missing the lab. I had to go with my father to the municipality office."
     ),
     Excuse(
-        ExcuseTopic.Forget,
+        ExcuseTopic.Lab,
         ExcuseTone.Respectful,
-        "Forgot to turn it in. Fixing that right away."
+        "I regret my absence from the lab practical. I will get the details from my lab partner."
     ),
     Excuse(
-        ExcuseTopic.Forget,
+        ExcuseTopic.Lab,
         ExcuseTone.Light,
-        "Prepared it. Forgot it. Now submitting it like a redemption arc."
+        "Lab coat dhulne gaya tha, sir. Sookha hi nahi."
     ),
-    Excuse(ExcuseTopic.Forget, ExcuseTone.Light, "Hit Ctrl+S but forgot Send. Classic."),
+    Excuse(ExcuseTopic.Lab, ExcuseTone.Light, "Aaj ka din experiments ke liye aacha nahi tha, according to my horoscope."),
     Excuse(
-        ExcuseTopic.Forget,
+        ExcuseTopic.Lab,
         ExcuseTone.Light,
-        "Assignment: Done. Brain: Offline. Submission: Missed."
+        "Sir, main aane hi wala tha, par rickshaw wale ne doosre college drop kar diya."
     ),
 
-    // deadline extension
+    // 🤦 Forgot to submit
+    Excuse(ExcuseTopic.Forget, ExcuseTone.Honest, "Sir, bana liya tha, bas submit karna bhool gaya. Abhi kar doon?"),
+    Excuse(ExcuseTopic.Forget, ExcuseTone.Honest, "It was completed and saved in my drafts. Dimaag se nikal gaya."),
+    Excuse(
+        ExcuseTopic.Forget,
+        ExcuseTone.Honest,
+        "Mujhe laga deadline kal ki hai. My bad. Abhi submit kar raha hoon."
+    ),
+    Excuse(
+        ExcuseTopic.Forget,
+        ExcuseTone.Respectful,
+        "I sincerely apologize for the oversight. The assignment was ready, but I neglected to submit it before the deadline."
+    ),
+    Excuse(
+        ExcuseTopic.Forget,
+        ExcuseTone.Respectful,
+        "Please forgive my error, I mistakenly thought I had already submitted the file. I am submitting it right now."
+    ),
+    Excuse(
+        ExcuseTopic.Forget,
+        ExcuseTone.Respectful,
+        "I am writing to apologize for failing to submit my assignment. It was a complete oversight on my part."
+    ),
+    Excuse(
+        ExcuseTopic.Forget,
+        ExcuseTone.Light,
+        "Assignment ready tha, par mere dimaag ka 'send' button jam ho gaya tha."
+    ),
+    Excuse(ExcuseTopic.Forget, ExcuseTone.Light, "Maine 'save' kiya, 'submit' nahi. Classic blunder."),
+    Excuse(
+        ExcuseTopic.Forget,
+        ExcuseTone.Light,
+        "Task completed. Submission... buffering. Ab ho gaya."
+    ),
+
+    // ⏳ Extension Request
     Excuse(
         ExcuseTopic.Extension,
         ExcuseTone.Honest,
-        "I’m behind but still trying. Requesting one more day."
+        "Sir, thoda aur time milega kya? Bahut load hai."
     ),
     Excuse(
         ExcuseTopic.Extension,
         ExcuseTone.Honest,
-        "Can’t do justice to it right now — need a short extension."
+        "Ma'am, I'm not well. Can I please get a one-day extension?"
     ),
     Excuse(
         ExcuseTopic.Extension,
         ExcuseTone.Honest,
-        "Things stacked up unexpectedly. Hoping for a little room."
+        "Is topic mein thoda struggle kar raha hoon. Thoda extra time aacha rahega."
     ),
     Excuse(
         ExcuseTopic.Extension,
         ExcuseTone.Respectful,
-        "I humbly request one more day to finish it properly."
+        "I would be very grateful if you could grant a small extension for this submission."
     ),
     Excuse(
         ExcuseTopic.Extension,
         ExcuseTone.Respectful,
-        "Requesting a short deadline extension due to overlapping work."
+        "Due to overlapping deadlines, I would appreciate a 24-hour extension to submit quality work."
     ),
     Excuse(
         ExcuseTopic.Extension,
         ExcuseTone.Respectful,
-        "Would appreciate the chance to submit with a bit more time."
+        "Would it be possible to get a small extension? I want to ensure I can submit my best work."
     ),
     Excuse(
         ExcuseTopic.Extension,
         ExcuseTone.Light,
-        "Just one extra reset and one extra cup of chai — please?"
+        "Sir, deadline ko thoda aage khiska sakte hain kya? Please?"
     ),
     Excuse(
         ExcuseTopic.Extension,
         ExcuseTone.Light,
-        "Need to ask for an extension… and forgiveness."
+        "Bas ek din aur... aur ek cup chai. Phir assignment aapke paas."
     ),
     Excuse(
         ExcuseTopic.Extension,
         ExcuseTone.Light,
-        "Almost there — just need one more tomorrow to make it good."
+        "Thoda sa time de do, sir. Promise, is baar disappoint nahi karunga."
     )
 )
