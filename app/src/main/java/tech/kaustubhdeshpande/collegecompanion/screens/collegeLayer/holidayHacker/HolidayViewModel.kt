@@ -1,4 +1,4 @@
-package tech.kaustubhdeshpande.collegecompanion.screens.academicEssentials.holidayHacker
+package tech.kaustubhdeshpande.collegecompanion.screens.collegeLayer.holidayHacker
 
 import android.os.Build
 import androidx.annotation.RequiresApi

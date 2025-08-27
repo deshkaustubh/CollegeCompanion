@@ -9,11 +9,12 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import tech.kaustubhdeshpande.collegecompanion.screens.academicEssentials.cgpaCalculator.CGPAScreen
 import tech.kaustubhdeshpande.collegecompanion.screens.academicEssentials.gpa101.GPA101Screen
-import tech.kaustubhdeshpande.collegecompanion.screens.academicEssentials.holidayHacker.HolidayHackerScreen
 import tech.kaustubhdeshpande.collegecompanion.screens.academicEssentials.sgpacalculator.SGPAScreen
 import tech.kaustubhdeshpande.collegecompanion.screens.academicEssentials.simpleCalculator.SimpleCalculatorScreen
 import tech.kaustubhdeshpande.collegecompanion.screens.collegeLayer.academicCalendar.AcademicCalendarScreen
 import tech.kaustubhdeshpande.collegecompanion.screens.collegeLayer.attendanceCalculator.AttendanceScreen
+import tech.kaustubhdeshpande.collegecompanion.screens.collegeLayer.detaieldacademiccalendar.SemesterPlan
+import tech.kaustubhdeshpande.collegecompanion.screens.collegeLayer.holidayHacker.LongLeavePlanner
 import tech.kaustubhdeshpande.collegecompanion.screens.collegeLayer.labsheet.LabSheetScreen
 import tech.kaustubhdeshpande.collegecompanion.screens.collegeLayer.pyq.PYQScreen
 import tech.kaustubhdeshpande.collegecompanion.screens.dashboard.DashboardScreen
@@ -42,7 +43,9 @@ enum class CollegeLayerScreens {
     AcademicCalendar,
     LabSheet,
     Pyq,
-    Club75
+    Club75,
+    SemesterPlan,
+    LongLeavePlanner
 }
 
 enum class FocusAndExtrasScreens {
@@ -78,6 +81,8 @@ fun AllScreensGraph(
                             "Lab Evaluation" -> CollegeLayerScreens.LabSheet.name
                             "Past Papers" -> CollegeLayerScreens.Pyq.name
                             "75% Club" -> CollegeLayerScreens.Club75.name
+                            "Semester Plan" -> CollegeLayerScreens.SemesterPlan.name
+                            "Long Leave Planner" -> CollegeLayerScreens.LongLeavePlanner.name
                             //Focus And Extras cards
                             "Pomodoro Timer" -> FocusAndExtrasScreens.Pomodoro.name
                             else -> AcademicEssentialsScreens.AcademicEssentialsDashboard.name
@@ -156,13 +161,25 @@ fun AllScreensGraph(
         }
 
         composable(CollegeLayerScreens.AcademicCalendar.name) {
-            HolidayHackerScreen (
+            AcademicCalendarScreen(
                 navigateBack = { navController.popBackStack() }
             )
         }
 
         composable(CollegeLayerScreens.Club75.name) {
             AttendanceScreen(
+                navigateBack = { navController.popBackStack() }
+            )
+        }
+
+        composable(CollegeLayerScreens.SemesterPlan.name) {
+            SemesterPlan(
+                navigateBack = { navController.popBackStack() }
+            )
+        }
+
+        composable(CollegeLayerScreens.LongLeavePlanner.name) {
+            LongLeavePlanner(
                 navigateBack = { navController.popBackStack() }
             )
         }

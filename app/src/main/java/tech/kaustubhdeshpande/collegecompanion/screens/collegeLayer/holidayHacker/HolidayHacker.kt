@@ -1,4 +1,4 @@
-package tech.kaustubhdeshpande.collegecompanion.screens.academicEssentials.holidayHacker
+package tech.kaustubhdeshpande.collegecompanion.screens.collegeLayer.holidayHacker
 
 import android.content.Intent
 import android.os.Build
@@ -6,7 +6,17 @@ import androidx.annotation.RequiresApi
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.horizontalScroll
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.rememberScrollState
@@ -14,8 +24,28 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
-import androidx.compose.material3.*
-import androidx.compose.runtime.*
+import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.CenterAlignedTopAppBar
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Scaffold
+import androidx.compose.material3.SnackbarHost
+import androidx.compose.material3.SnackbarHostState
+import androidx.compose.material3.Text
+import androidx.compose.material3.TopAppBarDefaults
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.derivedStateOf
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableIntStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -26,19 +56,21 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import kotlinx.coroutines.launch
 import java.time.DayOfWeek
 import java.time.LocalDate
 import java.time.Month
 import java.time.format.TextStyle
-import java.util.*
+import java.util.Locale
+
 
 @RequiresApi(Build.VERSION_CODES.O)
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun HolidayHackerScreen(
+fun LongLeavePlanner(
     navigateBack: () -> Unit,
-    viewModel: HolidayViewModel = androidx.lifecycle.viewmodel.compose.viewModel()
+    viewModel: HolidayViewModel = viewModel()
 ) {
     val breakSuggestions by viewModel.breakSuggestions.collectAsState()
     val context = LocalContext.current
@@ -118,7 +150,8 @@ fun HolidayHackerScreen(
                                 .padding(horizontal = 18.dp, vertical = 8.dp)
                         ) {
                             Text(
-                                text = month.getDisplayName(TextStyle.SHORT, Locale.getDefault()).replaceFirstChar { it.uppercase() },
+                                text = month.getDisplayName(TextStyle.SHORT, Locale.getDefault())
+                                    .replaceFirstChar { it.uppercase() },
                                 color = if (isSelected) MaterialTheme.colorScheme.onPrimary else MaterialTheme.colorScheme.primary,
                                 fontWeight = if (isSelected) FontWeight.Bold else FontWeight.Normal,
                                 fontSize = 16.sp
@@ -131,7 +164,8 @@ fun HolidayHackerScreen(
                 val breaks = breakSuggestions[selectedMonth].orEmpty()
 
                 Text(
-                    text = selectedMonth.getDisplayName(TextStyle.FULL, Locale.getDefault()).uppercase(),
+                    text = selectedMonth.getDisplayName(TextStyle.FULL, Locale.getDefault())
+                        .uppercase(),
                     style = MaterialTheme.typography.titleMedium.copy(
                         fontWeight = FontWeight.ExtraBold,
                         fontSize = 20.sp
@@ -162,7 +196,13 @@ fun HolidayHackerScreen(
                                     context.startActivity(shareIntent)
                                 },
                                 onCopy = {
-                                    clipboardManager.setText(AnnotatedString(buildShareText(breakInfo)))
+                                    clipboardManager.setText(
+                                        AnnotatedString(
+                                            buildShareText(
+                                                breakInfo
+                                            )
+                                        )
+                                    )
                                     coroutineScope.launch {
                                         snackbarHostState.showSnackbar("Break details copied!")
                                     }
@@ -172,7 +212,12 @@ fun HolidayHackerScreen(
                     }
                 } else {
                     Text(
-                        text = "No long breaks found for ${selectedMonth.getDisplayName(TextStyle.FULL, Locale.getDefault())}. Try another month!",
+                        text = "No long breaks found for ${
+                            selectedMonth.getDisplayName(
+                                TextStyle.FULL,
+                                Locale.getDefault()
+                            )
+                        }. Try another month!",
                         style = MaterialTheme.typography.bodyLarge,
                         color = MaterialTheme.colorScheme.error,
                         textAlign = TextAlign.Center,
@@ -220,7 +265,8 @@ fun DaysRow(
                     contentAlignment = Alignment.Center
                 ) {
                     Text(
-                        text = day.dayOfWeek.getDisplayName(TextStyle.SHORT, Locale.getDefault()).take(3),
+                        text = day.dayOfWeek.getDisplayName(TextStyle.SHORT, Locale.getDefault())
+                            .take(3),
                         style = MaterialTheme.typography.bodySmall,
                         fontWeight = FontWeight.Bold
                     )
@@ -267,7 +313,12 @@ fun BreakCard(
             )
             Spacer(Modifier.height(8.dp))
             if (breakInfo.leaves.isNotEmpty()) {
-                val leaveDays = breakInfo.leaves.joinToString { it.dayOfWeek.getDisplayName(TextStyle.SHORT, Locale.getDefault()) }
+                val leaveDays = breakInfo.leaves.joinToString {
+                    it.dayOfWeek.getDisplayName(
+                        TextStyle.SHORT,
+                        Locale.getDefault()
+                    )
+                }
                 Text(
                     text = "Take leave on $leaveDays",
                     color = MaterialTheme.colorScheme.tertiary,
@@ -334,9 +385,12 @@ fun findAllPossibleBreaksByMonth(
         for (i in daysInMonth.indices) {
             for (len in minBreakLength..daysInMonth.size - i) {
                 val window = daysInMonth.subList(i, i + len)
-                val holidaysInWindow = window.filter { it in holidayDates }.mapNotNull { d -> holidays.find { it.date == d } }
-                val weekendsInWindow = window.filter { it.dayOfWeek == DayOfWeek.SATURDAY || it.dayOfWeek == DayOfWeek.SUNDAY }
-                val leaveDays = window.filter { it !in holidayDates && it.dayOfWeek != DayOfWeek.SATURDAY && it.dayOfWeek != DayOfWeek.SUNDAY }
+                val holidaysInWindow = window.filter { it in holidayDates }
+                    .mapNotNull { d -> holidays.find { it.date == d } }
+                val weekendsInWindow =
+                    window.filter { it.dayOfWeek == DayOfWeek.SATURDAY || it.dayOfWeek == DayOfWeek.SUNDAY }
+                val leaveDays =
+                    window.filter { it !in holidayDates && it.dayOfWeek != DayOfWeek.SATURDAY && it.dayOfWeek != DayOfWeek.SUNDAY }
                 if (leaveDays.size in 0..maxLeave && holidaysInWindow.isNotEmpty()) {
                     monthMap[month]?.add(
                         BreakSuggestion(
@@ -374,7 +428,12 @@ fun buildShareText(breakInfo: BreakSuggestion): String {
     val holidaysList = breakInfo.holidays.joinToString { it.name }
     val leaveDays =
         if (breakInfo.leaves.isNotEmpty())
-            "Take leave on " + breakInfo.leaves.joinToString { it.dayOfWeek.getDisplayName(TextStyle.FULL, Locale.getDefault()) }
+            "Take leave on " + breakInfo.leaves.joinToString {
+                it.dayOfWeek.getDisplayName(
+                    TextStyle.FULL,
+                    Locale.getDefault()
+                )
+            }
         else ""
     return "🎉 ${breakInfo.length}-Day Break!\n" +
             (if (leaveDays.isNotBlank()) "$leaveDays\n" else "") +

@@ -7,8 +7,10 @@ import androidx.compose.material.icons.automirrored.filled.MenuBook
 import androidx.compose.material.icons.automirrored.filled.Send
 import androidx.compose.material.icons.filled.Calculate
 import androidx.compose.material.icons.filled.CalendarMonth
+import androidx.compose.material.icons.filled.DateRange
 import androidx.compose.material.icons.filled.Description
 import androidx.compose.material.icons.filled.Event
+import androidx.compose.material.icons.filled.EventBusy
 import androidx.compose.material.icons.filled.Info
 import androidx.compose.material.icons.filled.School
 import androidx.compose.material.icons.filled.Timer
@@ -43,7 +45,9 @@ object ScreenDataSource {
         ScreenItem("Lab Evaluation", Icons.AutoMirrored.Filled.FactCheck, Color(0xFFCDDC39)), // Lime
         ScreenItem("75% Club", Icons.Outlined.Percent, Color(0xFF607D8B)), // Blue Grey
         ScreenItem("Academic Calendar", Icons.Default.CalendarMonth, Color(0xFF009688)), // Teal
-        ScreenItem("Past Papers", Icons.AutoMirrored.Filled.MenuBook, Color(0xFF795548)) // Brown
+        ScreenItem("Past Papers", Icons.AutoMirrored.Filled.MenuBook, Color(0xFF795548)), // Brown
+        ScreenItem("Semester Plan", Icons.Default.DateRange, Color(0xFF3F51B5)), // Indigo (distinct from above, Letter Lab, so see note)
+        ScreenItem("Long Leave Planner", Icons.Default.EventBusy, Color(0xFFFFC107)), // Amber (unique)
     )
 
     val focusAndExtras = listOf(

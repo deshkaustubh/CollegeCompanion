@@ -36,7 +36,7 @@ import androidx.compose.ui.graphics.graphicsLayer
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun DetailedAcademicCalendarScreen(
+fun SemesterPlan(
     navigateBack: () -> Unit
 ) {
     val systemUiController = rememberSystemUiController()
@@ -55,7 +55,7 @@ fun DetailedAcademicCalendarScreen(
 
     LaunchedEffect(Unit) {
         firebaseAnalytics.logEvent(FirebaseAnalytics.Event.SCREEN_VIEW, android.os.Bundle().apply {
-            putString(FirebaseAnalytics.Param.SCREEN_NAME, "Detailed Academic Calendar")
+            putString(FirebaseAnalytics.Param.SCREEN_NAME, "Semester Plan")
         })
     }
 
@@ -65,7 +65,7 @@ fun DetailedAcademicCalendarScreen(
             val durationMs = exitTime - enterTime
             val durationSec = durationMs / 1000
             firebaseAnalytics.logEvent("screen_time_spent", android.os.Bundle().apply {
-                putString("screen_name", "Detailed Academic Calendar")
+                putString("screen_name", "Semester Plan")
                 putLong("duration_sec", durationSec)
             })
         }
