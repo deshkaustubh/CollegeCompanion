@@ -9,6 +9,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import tech.kaustubhdeshpande.collegecompanion.screens.academicEssentials.cgpaCalculator.CGPAScreen
 import tech.kaustubhdeshpande.collegecompanion.screens.academicEssentials.gpa101.GPA101Screen
+import tech.kaustubhdeshpande.collegecompanion.screens.academicEssentials.holidayHacker.HolidayHackerScreen
 import tech.kaustubhdeshpande.collegecompanion.screens.academicEssentials.sgpacalculator.SGPAScreen
 import tech.kaustubhdeshpande.collegecompanion.screens.academicEssentials.simpleCalculator.SimpleCalculatorScreen
 import tech.kaustubhdeshpande.collegecompanion.screens.collegeLayer.academicCalendar.AcademicCalendarScreen
@@ -155,7 +156,7 @@ fun AllScreensGraph(
         }
 
         composable(CollegeLayerScreens.AcademicCalendar.name) {
-            AcademicCalendarScreen(
+            HolidayHackerScreen (
                 navigateBack = { navController.popBackStack() }
             )
         }
