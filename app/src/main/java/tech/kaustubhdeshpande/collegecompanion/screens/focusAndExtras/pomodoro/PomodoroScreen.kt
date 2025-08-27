@@ -1,6 +1,7 @@
 package tech.kaustubhdeshpande.collegecompanion.screens.focusAndExtras.pomodoro
 
 import android.os.SystemClock
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -10,6 +11,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
@@ -83,6 +85,7 @@ fun PomodoroScreen(
     Scaffold(
         topBar = {
             CenterAlignedTopAppBar(
+                modifier = Modifier.background(MaterialTheme.colorScheme.primary).statusBarsPadding(),
                 title = {
                     Text(
                         text = "Pomodoro",
@@ -102,7 +105,7 @@ fun PomodoroScreen(
                         Icon(
                             imageVector = Icons.AutoMirrored.Filled.ArrowBack,
                             contentDescription = "Menu",
-                            tint = Color.Black,
+                            tint = MaterialTheme.colorScheme.primary,
                         )
                     }
                 }
