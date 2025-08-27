@@ -325,7 +325,7 @@ val dailyQuotes = listOf(
     "Haarne ka darr? Mujhe jeetne ka nasha hai.",
     "Mehnat itni kar ki success bhi bole 'tera hi tha'.",
     "Teri kahani tu likhega, duniya bas padhegi.",
-    "Naam yaad rakhna — Kaustubh Deshpande. Vision clear, game fierce, aur har move mein masterstroke.",
+    "Naam yaad rakhna — KD. Vision clear, game fierce, aur har move mein masterstroke.",
     "Jeetne ka maza tab hai, jab sab haarne ka wait karein."
 )
 
