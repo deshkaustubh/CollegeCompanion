@@ -5,7 +5,10 @@ import androidx.annotation.RequiresApi
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.flow.*
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import java.time.Month
 
@@ -15,7 +18,8 @@ class HolidayViewModel : ViewModel() {
     val holidays: StateFlow<List<Holiday>> = _holidays.asStateFlow()
 
     private val _breakSuggestions = MutableStateFlow<Map<Month, List<BreakSuggestion>>>(emptyMap())
-    val breakSuggestions: StateFlow<Map<Month, List<BreakSuggestion>>> = _breakSuggestions.asStateFlow()
+    val breakSuggestions: StateFlow<Map<Month, List<BreakSuggestion>>> =
+        _breakSuggestions.asStateFlow()
 
     init {
         viewModelScope.launch(Dispatchers.Default) {

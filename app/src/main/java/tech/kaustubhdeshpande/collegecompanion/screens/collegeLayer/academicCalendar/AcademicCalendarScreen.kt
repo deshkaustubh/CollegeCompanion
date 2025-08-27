@@ -99,7 +99,9 @@ fun AcademicCalendarScreen(
     Scaffold(
         topBar = {
             CenterAlignedTopAppBar(
-                modifier = Modifier.background(MaterialTheme.colorScheme.primary).statusBarsPadding(),
+                modifier = Modifier
+                    .background(MaterialTheme.colorScheme.primary)
+                    .statusBarsPadding(),
                 title = {
                     Text(
                         text = "Academic Calendar",
