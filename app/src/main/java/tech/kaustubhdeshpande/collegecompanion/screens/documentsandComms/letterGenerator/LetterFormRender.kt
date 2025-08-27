@@ -11,39 +11,33 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.DateRange
 import androidx.compose.material3.Button
-import androidx.compose.material3.CenterAlignedTopAppBar
+import androidx.compose.material3.DatePicker
+import androidx.compose.material3.DatePickerDialog
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
-import androidx.compose.material.icons.filled.DateRange
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.automirrored.filled.ArrowBack
-import androidx.compose.material.icons.automirrored.filled.ArrowBackIos
-import androidx.compose.material.icons.automirrored.filled.KeyboardArrowLeft
+import androidx.compose.material3.rememberDatePickerState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateMapOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
-import androidx.compose.material3.DatePickerDialog
-import androidx.compose.material3.DatePicker
-import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.Icon
-import androidx.compose.material3.IconButton
-import androidx.compose.material3.TopAppBarDefaults
-import androidx.compose.material3.rememberDatePickerState
-import androidx.compose.runtime.mutableStateMapOf
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
-import java.time.LocalDate
-import java.time.format.DateTimeFormatter
-import java.time.ZoneId
-import java.time.Instant
+import tech.kaustubhdeshpande.collegecompanion.screens.documentsandComms.mailGenerator.copyToClipboard
+import java.text.SimpleDateFormat
+import java.util.Calendar
+import java.util.Locale
 
 @RequiresApi(Build.VERSION_CODES.O)
 @OptIn(ExperimentalMaterial3Api::class)
@@ -54,51 +48,46 @@ fun LetterFormRenderer(
     onBack: () -> Unit
 ) {
     val context = LocalContext.current
-    val dateFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy")
     val fieldValues = remember { mutableStateMapOf<String, String>() }
-    // ✅ Wrap form in scrollable Column
+    val dateFormatter = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
     Column(
         modifier = Modifier
+            .fillMaxWidth()
+            .padding(12.dp)
             .verticalScroll(rememberScrollState())
     ) {
-        CenterAlignedTopAppBar(
-            title = {
-                Text(
-                    text = "Fill Details",
-                    style = MaterialTheme.typography.headlineSmall,
-                    fontWeight = FontWeight.Bold
-                )
-            },
-            navigationIcon = {
-                IconButton(onClick = onBack) {
-                    Icon(
-                        imageVector = Icons.AutoMirrored.Filled.ArrowBackIos,
-                        contentDescription = "Back",
-                        tint = MaterialTheme.colorScheme.primary
-                    )
-                }
-            },
-            colors = TopAppBarDefaults.topAppBarColors(
-                containerColor = Color(0xFFe5f2fb),
-                titleContentColor = MaterialTheme.colorScheme.primary
-            )
+        TextButton(onClick = onBack) {
+            Text("❮❮ Back to templates")
+        }
+        Spacer(Modifier.height(8.dp))
+        Text(
+            text = "Fill Details",
+            style = MaterialTheme.typography.headlineSmall,
+            fontWeight = FontWeight.Bold
         )
+        Spacer(Modifier.height(12.dp))
         template.requiredFields.forEach { field ->
-            val isDateField = field.equals("fromDate", true) || field.equals("toDate", true) || field.equals("preferredDate", ignoreCase = true)
+            val isDateField = field.equals("fromDate", true) || field.equals(
+                "toDate",
+                true
+            ) || field.equals("preferredDate", true) || field.equals(
+                "lastDate",
+                true
+            ) || field.equals("returnDate", true)
             if (isDateField) {
                 var showDatePicker by remember(field) { mutableStateOf(false) }
                 val dateValue = fieldValues[field] ?: ""
-                val datePickerState = rememberDatePickerState(
-                    initialSelectedDateMillis = dateValue
-                        .takeIf { it.isNotBlank() }
-                        ?.let {
-                            try {
-                                LocalDate.parse(it, dateFormatter).atStartOfDay(ZoneId.systemDefault()).toInstant().toEpochMilli()
-                            } catch (_: Exception) {
-                                null
-                            }
-                        }
-                )
+                val initialMillis = dateValue.takeIf { it.isNotBlank() }?.let {
+                    try {
+                        val cal = Calendar.getInstance()
+                        cal.time = dateFormatter.parse(it) ?: cal.time
+                        cal.timeInMillis
+                    } catch (_: Exception) {
+                        null
+                    }
+                }
+                val datePickerState =
+                    rememberDatePickerState(initialSelectedDateMillis = initialMillis)
                 OutlinedTextField(
                     value = dateValue,
                     onValueChange = {},
@@ -121,10 +110,9 @@ fun LetterFormRenderer(
                             TextButton(onClick = {
                                 val millis = datePickerState.selectedDateMillis
                                 if (millis != null) {
-                                    val selectedDate = Instant.ofEpochMilli(millis)
-                                        .atZone(ZoneId.systemDefault())
-                                        .toLocalDate()
-                                    fieldValues[field] = selectedDate.format(dateFormatter)
+                                    val cal = Calendar.getInstance()
+                                    cal.timeInMillis = millis
+                                    fieldValues[field] = dateFormatter.format(cal.time)
                                 }
                                 showDatePicker = false
                             }) { Text("OK") }
@@ -149,9 +137,7 @@ fun LetterFormRenderer(
                 )
             }
         }
-
         Spacer(Modifier.height(16.dp))
-
         Text(
             "📄 Generated Letter:",
             style = MaterialTheme.typography.titleMedium,
@@ -159,18 +145,15 @@ fun LetterFormRenderer(
         )
         Spacer(Modifier.height(4.dp))
         LetterPreviewBox(template.generateLetter(fieldValues))
-
         Spacer(Modifier.height(16.dp))
-    }
-
-    // 🧷 Pinned to bottom
-    Button(
-        onClick = {
-            copyToClipboard(context, template.generateLetter(fieldValues))
-            onCopy()
-        },
-        modifier = Modifier.fillMaxWidth()
-    ) {
-        Text("Copy Letter")
+        Button(
+            onClick = {
+                copyToClipboard(context, template.generateLetter(fieldValues))
+                onCopy()
+            },
+            modifier = Modifier.fillMaxWidth()
+        ) {
+            Text("Copy Letter")
+        }
     }
 }
