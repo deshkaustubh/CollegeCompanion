@@ -554,12 +554,11 @@ function toggleAccordion(contentId) {
    =============================================== */
 
 function loadTheme() {
-  // Default to light theme (matching the app's theme)
-  const savedTheme = localStorage.getItem('theme') || 'light';
-  
-  console.log('Loading theme:', savedTheme); // Debug
-  document.documentElement.setAttribute('data-theme', savedTheme);
-  console.log('Theme set to:', document.documentElement.getAttribute('data-theme')); // Debug
+  // Default to dark theme unless user explicitly chose light
+  const savedTheme = localStorage.getItem('theme');
+  const theme = savedTheme === 'light' ? 'light' : 'dark';
+  document.documentElement.setAttribute('data-theme', theme);
+  // Optionally update toggle UI here if needed
 }
 
 function toggleDarkMode() {
