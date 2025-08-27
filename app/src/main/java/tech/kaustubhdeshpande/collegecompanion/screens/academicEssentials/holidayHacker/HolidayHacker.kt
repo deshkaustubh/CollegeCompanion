@@ -40,7 +40,6 @@ fun HolidayHackerScreen(
     navigateBack: () -> Unit,
     viewModel: HolidayViewModel = androidx.lifecycle.viewmodel.compose.viewModel()
 ) {
-    val holidays by viewModel.holidays.collectAsState()
     val breakSuggestions by viewModel.breakSuggestions.collectAsState()
     val context = LocalContext.current
     val clipboardManager = LocalClipboardManager.current
@@ -49,21 +48,21 @@ fun HolidayHackerScreen(
     val coroutineScope = rememberCoroutineScope()
 
     val now = LocalDate.now()
-    val monthsRaw = remember { Month.values().toList() }
+    val monthsRaw = remember { Month.entries }
     val allMonths by remember(now) {
         derivedStateOf {
             val idx = monthsRaw.indexOf(now.month)
             monthsRaw.drop(idx) + monthsRaw.take(idx)
         }
     }
-    var selectedMonthIdx by remember { mutableStateOf(0) }
+    var selectedMonthIdx by remember { mutableIntStateOf(0) }
 
     Scaffold(
         topBar = {
             CenterAlignedTopAppBar(
                 title = {
                     Text(
-                        text = "Long Weekend Planner",
+                        text = "Long Leave Planner",
                         style = MaterialTheme.typography.headlineLarge,
                         fontSize = 16.sp,
                         fontWeight = FontWeight.Bold
@@ -325,12 +324,12 @@ fun findAllPossibleBreaksByMonth(
     if (holidays.isEmpty()) return emptyMap()
     val year = holidays.first().date.year
     val holidayDates = holidays.map { it.date }.toSet()
-    val monthMap = Month.values().associateWith { mutableListOf<BreakSuggestion>() }
+    val monthMap = Month.entries.associateWith { mutableListOf<BreakSuggestion>() }
     val allDays = generateSequence(LocalDate.of(year, 1, 1)) { it.plusDays(1) }
         .takeWhile { it.year == year }
         .toList()
 
-    for (month in Month.values()) {
+    for (month in Month.entries) {
         val daysInMonth = allDays.filter { it.month == month }
         for (i in daysInMonth.indices) {
             for (len in minBreakLength..daysInMonth.size - i) {
