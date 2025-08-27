@@ -1,8 +1,10 @@
 package tech.kaustubhdeshpande.collegecompanion.screens.documentsandComms.letterGenerator
 
 
+import android.os.Build
 import android.os.SystemClock
 import android.widget.Toast
+import androidx.annotation.RequiresApi
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
@@ -51,6 +53,7 @@ import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import com.google.firebase.analytics.FirebaseAnalytics
 import tech.kaustubhdeshpande.collegecompanion.ui.theme.Internship1ProjectTheme
 
+@RequiresApi(Build.VERSION_CODES.O)
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun LetterLabHomeScreen(
@@ -123,6 +126,7 @@ fun LetterLabHomeScreen(
     }
 }
 
+@RequiresApi(Build.VERSION_CODES.O)
 @Composable
 fun LetterLabContent(modifier: Modifier = Modifier) {
     val context = LocalContext.current
@@ -198,6 +202,7 @@ fun LetterLabContent(modifier: Modifier = Modifier) {
     }
 }
 
+@RequiresApi(Build.VERSION_CODES.O)
 @Preview
 @Composable
 private fun LetterLabHomeScreenPreview() {
