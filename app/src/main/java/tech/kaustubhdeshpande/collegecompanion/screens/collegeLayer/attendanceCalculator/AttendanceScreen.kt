@@ -1,6 +1,7 @@
 package tech.kaustubhdeshpande.collegecompanion.screens.collegeLayer.attendanceCalculator
 
 import android.os.SystemClock
+import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -10,6 +11,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
@@ -84,6 +86,7 @@ fun AttendanceScreen(
     Scaffold(
         topBar = {
             CenterAlignedTopAppBar(
+                modifier = Modifier.background(MaterialTheme.colorScheme.primary).statusBarsPadding(),
                 title = {
                     Text(
                         text = "75% Club",
@@ -103,7 +106,7 @@ fun AttendanceScreen(
                         Icon(
                             imageVector = Icons.AutoMirrored.Filled.ArrowBack,
                             contentDescription = "Menu",
-                            tint = Color.Black,
+                            tint = MaterialTheme.colorScheme.primary
                         )
                     }
                 }

@@ -29,6 +29,7 @@ import android.graphics.Bitmap
 import android.graphics.pdf.PdfRenderer
 import android.os.ParcelFileDescriptor
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.gestures.detectTransformGestures
 import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.graphics.asImageBitmap
@@ -79,6 +80,7 @@ fun SemesterPlan(
     Scaffold(
         topBar = {
             CenterAlignedTopAppBar(
+                modifier = Modifier.background(MaterialTheme.colorScheme.primary).statusBarsPadding(),
                 title = {
                     Text(
                         text = "Detailed Academic Calendar",
@@ -98,7 +100,7 @@ fun SemesterPlan(
                         Icon(
                             imageVector = Icons.AutoMirrored.Filled.ArrowBack,
                             contentDescription = "Back",
-                            tint = Color.Black,
+                            tint = MaterialTheme.colorScheme.primary
                         )
                     }
                 }
