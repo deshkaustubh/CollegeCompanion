@@ -35,9 +35,11 @@ fun LetterFormRenderer(
     }
     val context = LocalContext.current
 
-    Column(modifier = Modifier
-        .fillMaxSize()
-        .padding(12.dp)) {
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(12.dp)
+    ) {
         TextButton(onClick = onBack) {
             Text("❮❮ Back", fontWeight = FontWeight.Medium)
         }

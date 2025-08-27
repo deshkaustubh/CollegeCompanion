@@ -103,9 +103,23 @@ fun ToneSelector(selected: ExcuseTone, onSelect: (ExcuseTone) -> Unit) {
                 },
                 leadingIcon = {
                     when (tone) {
-                        ExcuseTone.Honest -> Icon(Icons.Default.Face, contentDescription = null, tint = toneColor)
-                        ExcuseTone.Respectful -> Icon(Icons.Default.ThumbUp, contentDescription = null, tint = toneColor)
-                        ExcuseTone.Light -> Icon(Icons.Default.Mood, contentDescription = null, tint = toneColor)
+                        ExcuseTone.Honest -> Icon(
+                            Icons.Default.Face,
+                            contentDescription = null,
+                            tint = toneColor
+                        )
+
+                        ExcuseTone.Respectful -> Icon(
+                            Icons.Default.ThumbUp,
+                            contentDescription = null,
+                            tint = toneColor
+                        )
+
+                        ExcuseTone.Light -> Icon(
+                            Icons.Default.Mood,
+                            contentDescription = null,
+                            tint = toneColor
+                        )
                     }
                 },
                 colors = FilterChipDefaults.filterChipColors(
