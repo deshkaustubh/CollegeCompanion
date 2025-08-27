@@ -38,7 +38,6 @@ import androidx.compose.ui.unit.dp
 import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Locale
-import tech.kaustubhdeshpande.collegecompanion.screens.documentsandComms.mailGenerator.copyToClipboard
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -78,7 +77,13 @@ fun MailFormRenderer(
                 .verticalScroll(rememberScrollState())
         ) {
             template.requiredFields.forEach { field ->
-                val isDateField = field.equals("fromDate", true) || field.equals("toDate", true) || field.equals("preferredDate", true) || field.equals("lastDate", true) || field.equals("returnDate", true)
+                val isDateField = field.equals("fromDate", true) || field.equals(
+                    "toDate",
+                    true
+                ) || field.equals("preferredDate", true) || field.equals(
+                    "lastDate",
+                    true
+                ) || field.equals("returnDate", true)
                 if (isDateField) {
                     var showDatePicker by remember(field) { mutableStateOf(false) }
                     val dateValue = fieldValues[field] ?: ""
@@ -91,7 +96,8 @@ fun MailFormRenderer(
                             null
                         }
                     }
-                    val datePickerState = rememberDatePickerState(initialSelectedDateMillis = initialMillis)
+                    val datePickerState =
+                        rememberDatePickerState(initialSelectedDateMillis = initialMillis)
                     OutlinedTextField(
                         value = dateValue,
                         onValueChange = {},
