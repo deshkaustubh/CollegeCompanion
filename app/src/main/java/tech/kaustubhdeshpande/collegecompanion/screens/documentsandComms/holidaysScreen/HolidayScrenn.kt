@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material3.CenterAlignedTopAppBar
@@ -80,6 +81,7 @@ fun HolidaysScreen(
     Scaffold(
         topBar = {
             CenterAlignedTopAppBar(
+                modifier = Modifier.background(MaterialTheme.colorScheme.primary).statusBarsPadding(),
                 title = {
                     Text(
                         text = "Holidays Tracker",
@@ -99,7 +101,7 @@ fun HolidaysScreen(
                         Icon(
                             imageVector = Icons.AutoMirrored.Filled.ArrowBack,
                             contentDescription = "Menu",
-                            tint = Color.Black,
+                            tint = MaterialTheme.colorScheme.primary
                         )
                     }
                 }
