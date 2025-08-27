@@ -46,6 +46,70 @@ import tech.kaustubhdeshpande.collegecompanion.ui.theme.Internship1ProjectTheme
 
 @RequiresApi(Build.VERSION_CODES.O)
 @Composable
+fun DashboardScreen(onCardClick: (String) -> Unit) {
+    val context = LocalContext.current
+    val window = (context as? Activity)?.window
+    val primary = MaterialTheme.colorScheme.primary
+    val navigationBarColor = Color(0xFFe5f2fb)
+    val lightStatusBarIcons = primary.luminance() > 0.5
+    val lightNavigationBarIcons = navigationBarColor.luminance() > 0.5
+    val isAndroid14OrAbove = Build.VERSION.SDK_INT >= 34
+    // Set icon contrast to match your primary scrim
+    LaunchedEffect(lightStatusBarIcons, lightNavigationBarIcons, isAndroid14OrAbove) {
+        window?.let {
+            if (!isAndroid14OrAbove) {
+                // For Android 13 and below, set system bar colors via window
+                @Suppress("DEPRECATION")
+                it.statusBarColor = primary.toArgb()
+                @Suppress("DEPRECATION")
+                it.navigationBarColor = navigationBarColor.toArgb()
+                WindowCompat.getInsetsController(it, it.decorView).apply {
+                    isAppearanceLightStatusBars = lightStatusBarIcons
+                    isAppearanceLightNavigationBars = lightNavigationBarIcons
+                }
+            } else {
+                // For Android 14+, set system bars to transparent for Compose to draw behind
+                it.statusBarColor = android.graphics.Color.TRANSPARENT
+                it.navigationBarColor = android.graphics.Color.TRANSPARENT
+                WindowCompat.getInsetsController(it, it.decorView).apply {
+                    isAppearanceLightStatusBars = lightStatusBarIcons
+                    isAppearanceLightNavigationBars = lightNavigationBarIcons
+                }
+            }
+        }
+    }
+
+    Scaffold(
+        contentWindowInsets = WindowInsets.safeDrawing
+    ) { innerPadding ->
+        Box(Modifier.fillMaxSize()) {
+            if (isAndroid14OrAbove) {
+                // Paint primary behind the status bar (edge‑to‑edge)
+                Box(
+                    Modifier
+                        .background(primary)
+                        .windowInsetsTopHeight(WindowInsets.statusBars)
+                        .fillMaxWidth()
+                )
+                // Paint navigationBarColor behind the navigation bar (edge‑to‑edge)
+                Box(
+                    Modifier
+                        .background(navigationBarColor)
+                        .windowInsetsBottomHeight(WindowInsets.navigationBars)
+                        .fillMaxWidth()
+                        .align(Alignment.BottomCenter)
+                )
+            }
+            DashboardContent(
+                onCardClick = onCardClick,
+                modifier = Modifier.padding(innerPadding)
+            )
+        }
+    }
+}
+
+@RequiresApi(Build.VERSION_CODES.O)
+@Composable
 fun DashboardContent(
     onCardClick: (String) -> Unit,
     modifier: Modifier = Modifier
@@ -126,70 +190,6 @@ fun DashboardContent(
                 }
         )
 
-    }
-}
-
-@RequiresApi(Build.VERSION_CODES.O)
-@Composable
-fun DashboardScreen(onCardClick: (String) -> Unit) {
-    val context = LocalContext.current
-    val window = (context as? Activity)?.window
-    val primary = MaterialTheme.colorScheme.primary
-    val navigationBarColor = Color(0xFFe5f2fb)
-    val lightStatusBarIcons = primary.luminance() > 0.5
-    val lightNavigationBarIcons = navigationBarColor.luminance() > 0.5
-    val isAndroid14OrAbove = Build.VERSION.SDK_INT >= 34
-    // Set icon contrast to match your primary scrim
-    LaunchedEffect(lightStatusBarIcons, lightNavigationBarIcons, isAndroid14OrAbove) {
-        window?.let {
-            if (!isAndroid14OrAbove) {
-                // For Android 13 and below, set system bar colors via window
-                @Suppress("DEPRECATION")
-                it.statusBarColor = primary.toArgb()
-                @Suppress("DEPRECATION")
-                it.navigationBarColor = navigationBarColor.toArgb()
-                WindowCompat.getInsetsController(it, it.decorView).apply {
-                    isAppearanceLightStatusBars = lightStatusBarIcons
-                    isAppearanceLightNavigationBars = lightNavigationBarIcons
-                }
-            } else {
-                // For Android 14+, set system bars to transparent for Compose to draw behind
-                it.statusBarColor = android.graphics.Color.TRANSPARENT
-                it.navigationBarColor = android.graphics.Color.TRANSPARENT
-                WindowCompat.getInsetsController(it, it.decorView).apply {
-                    isAppearanceLightStatusBars = lightStatusBarIcons
-                    isAppearanceLightNavigationBars = lightNavigationBarIcons
-                }
-            }
-        }
-    }
-
-    Scaffold(
-        contentWindowInsets = WindowInsets.safeDrawing
-    ) { innerPadding ->
-        Box(Modifier.fillMaxSize()) {
-            if (isAndroid14OrAbove) {
-                // Paint primary behind the status bar (edge‑to‑edge)
-                Box(
-                    Modifier
-                        .background(primary)
-                        .windowInsetsTopHeight(WindowInsets.statusBars)
-                        .fillMaxWidth()
-                )
-                // Paint navigationBarColor behind the navigation bar (edge‑to‑edge)
-                Box(
-                    Modifier
-                        .background(navigationBarColor)
-                        .windowInsetsBottomHeight(WindowInsets.navigationBars)
-                        .fillMaxWidth()
-                        .align(Alignment.BottomCenter)
-                )
-            }
-            DashboardContent(
-                onCardClick = onCardClick,
-                modifier = Modifier.padding(innerPadding)
-            )
-        }
     }
 }
 
