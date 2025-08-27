@@ -24,7 +24,6 @@ data class ScreenItem(
     val backgroundColor: Color
 )
 
-
 object ScreenDataSource {
 
     val academicEssentials = listOf(
@@ -42,7 +41,7 @@ object ScreenDataSource {
     )
 
     val collegeLayer = listOf(
-        ScreenItem("Lab Evaluation", Icons.AutoMirrored.Filled.FactCheck, Color(0xFFCDDC39)), // Lime
+        ScreenItem("Fill My Cycle", Icons.AutoMirrored.Filled.FactCheck, Color(0xFFCDDC39)), // Lime
         ScreenItem("75% Club", Icons.Outlined.Percent, Color(0xFF607D8B)), // Blue Grey
         ScreenItem("Academic Calendar", Icons.Default.CalendarMonth, Color(0xFF009688)), // Teal
         ScreenItem("Past Papers", Icons.AutoMirrored.Filled.MenuBook, Color(0xFF795548)), // Brown

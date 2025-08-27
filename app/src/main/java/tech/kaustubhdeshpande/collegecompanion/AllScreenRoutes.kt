@@ -15,7 +15,7 @@ import tech.kaustubhdeshpande.collegecompanion.screens.collegeLayer.academicCale
 import tech.kaustubhdeshpande.collegecompanion.screens.collegeLayer.attendanceCalculator.AttendanceScreen
 import tech.kaustubhdeshpande.collegecompanion.screens.collegeLayer.detaieldacademiccalendar.SemesterPlan
 import tech.kaustubhdeshpande.collegecompanion.screens.collegeLayer.holidayHacker.LongLeavePlanner
-import tech.kaustubhdeshpande.collegecompanion.screens.collegeLayer.labsheet.LabSheetScreen
+import tech.kaustubhdeshpande.collegecompanion.screens.collegeLayer.labsheet.FillMyCycleScreen
 import tech.kaustubhdeshpande.collegecompanion.screens.collegeLayer.pyq.PYQScreen
 import tech.kaustubhdeshpande.collegecompanion.screens.dashboard.DashboardScreen
 import tech.kaustubhdeshpande.collegecompanion.screens.documentsandComms.excuseGenerator.ExcuseGeneratorScreen
@@ -78,7 +78,7 @@ fun AllScreensGraph(
                             "Holidays Tracker" -> LettersAndCommunicationScreens.Holidays.name
                             //College Layer cards
                             "Academic Calendar" -> CollegeLayerScreens.AcademicCalendar.name
-                            "Lab Evaluation" -> CollegeLayerScreens.LabSheet.name
+                            "Fill My Cycle" -> CollegeLayerScreens.LabSheet.name
                             "Past Papers" -> CollegeLayerScreens.Pyq.name
                             "75% Club" -> CollegeLayerScreens.Club75.name
                             "Semester Plan" -> CollegeLayerScreens.SemesterPlan.name
@@ -155,7 +155,7 @@ fun AllScreensGraph(
         }
 
         composable(CollegeLayerScreens.LabSheet.name) {
-            LabSheetScreen(
+            FillMyCycleScreen(
                 navigateBack = { navController.popBackStack() }
             )
         }

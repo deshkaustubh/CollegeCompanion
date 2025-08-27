@@ -36,7 +36,7 @@ import tech.kaustubhdeshpande.collegecompanion.ui.theme.Internship1ProjectTheme
 @SuppressLint("SetJavaScriptEnabled")
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun LabSheetScreen(
+fun FillMyCycleScreen(
     navigateBack: () -> Unit
 ) {
     val systemUiController = rememberSystemUiController()
@@ -84,7 +84,7 @@ fun LabSheetScreen(
                     .statusBarsPadding(),
                 title = {
                     Text(
-                        text = "Lab Evaluation Sheet",
+                        text = "Fill My Cycle",
                         style = MaterialTheme.typography.headlineLarge,
                         fontSize = 16.sp,
                         fontWeight = FontWeight.Bold
@@ -132,6 +132,6 @@ fun LabSheetScreen(
 @Composable
 fun LabSheetPreview() {
     Internship1ProjectTheme {
-        LabSheetScreen { }
+        FillMyCycleScreen { }
     }
 }
