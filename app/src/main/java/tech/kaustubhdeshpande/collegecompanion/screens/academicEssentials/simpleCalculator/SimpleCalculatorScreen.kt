@@ -1,11 +1,14 @@
 package tech.kaustubhdeshpande.collegecompanion.screens.academicEssentials.simpleCalculator
 
+import android.app.Activity
+import android.os.Build
 import android.os.SystemClock
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material3.CenterAlignedTopAppBar
@@ -26,10 +29,13 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.luminance
+import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.core.view.WindowCompat
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import com.google.firebase.analytics.FirebaseAnalytics
 
@@ -38,17 +44,38 @@ import com.google.firebase.analytics.FirebaseAnalytics
 fun SimpleCalculatorScreen(
     navigateBack: () -> Unit
 ) {
-    val systemUiController = rememberSystemUiController()
-    val statusBarColor = Color(0xFF0a3579)
-    val navigationBarColor = Color(0xFFe5f2fb)
-
-    SideEffect {
-        systemUiController.setStatusBarColor(color = statusBarColor)
-        systemUiController.setNavigationBarColor(color = navigationBarColor)
-    }
-
-    // --- Firebase Analytics Tracking ---
     val context = LocalContext.current
+    val window = (context as? Activity)?.window
+    val primary = MaterialTheme.colorScheme.primary
+    val onPrimary = MaterialTheme.colorScheme.onPrimary
+    val navigationBarColor = Color(0xFFe5f2fb)
+    val lightStatusBarIcons = onPrimary.luminance() < 0.5
+    val lightNavigationBarIcons = navigationBarColor.luminance() > 0.5
+    val isAndroid14OrAbove = Build.VERSION.SDK_INT >= 34
+
+    // Set system bar colors: status bar = onPrimary, navigation = custom
+    LaunchedEffect(lightStatusBarIcons, lightNavigationBarIcons, isAndroid14OrAbove) {
+        window?.let {
+            if (!isAndroid14OrAbove) {
+                @Suppress("DEPRECATION")
+                it.statusBarColor = primary.toArgb() // status bar = onPrimary
+                @Suppress("DEPRECATION")
+                it.navigationBarColor = navigationBarColor.toArgb()
+                WindowCompat.getInsetsController(it, it.decorView).apply {
+                    isAppearanceLightStatusBars = lightStatusBarIcons
+                    isAppearanceLightNavigationBars = lightNavigationBarIcons
+                }
+            } else {
+                it.statusBarColor = android.graphics.Color.TRANSPARENT
+                it.navigationBarColor = android.graphics.Color.TRANSPARENT
+                WindowCompat.getInsetsController(it, it.decorView).apply {
+                    isAppearanceLightStatusBars = lightStatusBarIcons
+                    isAppearanceLightNavigationBars = lightNavigationBarIcons
+                }
+            }
+        }
+    }
+    // --- Firebase Analytics Tracking ---
     val firebaseAnalytics = FirebaseAnalytics.getInstance(context)
     val enterTime = SystemClock.elapsedRealtime()
 
@@ -73,6 +100,7 @@ fun SimpleCalculatorScreen(
     Scaffold(
         topBar = {
             CenterAlignedTopAppBar(
+                modifier = Modifier.background(primary).statusBarsPadding(),
                 title = {
                     Text(
                         text = "Calculator",
@@ -92,7 +120,7 @@ fun SimpleCalculatorScreen(
                         Icon(
                             imageVector = Icons.AutoMirrored.Filled.ArrowBack,
                             contentDescription = "Menu",
-                            tint = Color.Black,
+                            tint = primary,
                         )
                     }
                 }
