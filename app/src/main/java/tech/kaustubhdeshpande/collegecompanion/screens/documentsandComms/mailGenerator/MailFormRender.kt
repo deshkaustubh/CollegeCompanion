@@ -1,5 +1,6 @@
 package tech.kaustubhdeshpande.collegecompanion.screens.documentsandComms.mailGenerator
 
+import android.os.SystemClock
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -176,11 +177,20 @@ fun MailFormRenderer(
             Spacer(Modifier.height(24.dp))
         }
 
+        // Debounce state for copy buttons
+        var lastCopySubjectClickTime by remember { mutableStateOf(0L) }
+        var lastCopyBodyClickTime by remember { mutableStateOf(0L) }
+        val debounceInterval = 500L // milliseconds
+
         Row(horizontalArrangement = Arrangement.spacedBy(12.dp)) {
             Button(
                 onClick = {
-                    copyToClipboard(context, template.generateSubject(fieldValues))
-                    onCopySubject()
+                    val now = SystemClock.elapsedRealtime()
+                    if (now - lastCopySubjectClickTime > debounceInterval) {
+                        lastCopySubjectClickTime = now
+                        copyToClipboard(context, template.generateSubject(fieldValues))
+                        onCopySubject()
+                    }
                 },
                 modifier = Modifier.weight(1f)
             ) {
@@ -189,8 +199,12 @@ fun MailFormRenderer(
 
             Button(
                 onClick = {
-                    copyToClipboard(context, template.generateBody(fieldValues))
-                    onCopyBody()
+                    val now = SystemClock.elapsedRealtime()
+                    if (now - lastCopyBodyClickTime > debounceInterval) {
+                        lastCopyBodyClickTime = now
+                        copyToClipboard(context, template.generateBody(fieldValues))
+                        onCopyBody()
+                    }
                 },
                 modifier = Modifier.weight(1f)
             ) {

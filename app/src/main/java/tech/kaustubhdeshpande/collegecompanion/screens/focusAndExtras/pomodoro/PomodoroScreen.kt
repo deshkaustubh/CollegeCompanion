@@ -32,6 +32,10 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.SideEffect
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.onFocusChanged
@@ -82,6 +86,9 @@ fun PomodoroScreen(
     }
 // --- End Analytics Tracking ---
 
+    var lastBackPressTime by rememberSaveable { mutableStateOf(0L) }
+    val debounceInterval = 500L // milliseconds
+
     Scaffold(
         topBar = {
             CenterAlignedTopAppBar(
@@ -100,7 +107,13 @@ fun PomodoroScreen(
                 ),
                 navigationIcon = {
                     IconButton(
-                        onClick = { navigateBack() }
+                        onClick = {
+                            val now = SystemClock.elapsedRealtime()
+                            if (now - lastBackPressTime > debounceInterval) {
+                                lastBackPressTime = now
+                                navigateBack()
+                            }
+                        }
                     ) {
                         Icon(
                             imageVector = Icons.AutoMirrored.Filled.ArrowBack,
@@ -129,6 +142,9 @@ fun PomodoroContent(modifier: Modifier = Modifier) {
     }
     val progress = state.timeRemaining.toFloat() / totalDuration.coerceAtLeast(1)
 
+    var lastStartPauseClickTime by rememberSaveable { mutableStateOf(0L) }
+    var lastResetClickTime by rememberSaveable { mutableStateOf(0L) }
+    val debounceInterval = 500L // milliseconds
 
     Column(
         modifier = modifier
@@ -215,7 +231,11 @@ fun PomodoroContent(modifier: Modifier = Modifier) {
         ) {
             Button(
                 onClick = {
-                    if (state.isRunning) viewModel.pauseTimer() else viewModel.startTimer()
+                    val now = SystemClock.elapsedRealtime()
+                    if (now - lastStartPauseClickTime > debounceInterval) {
+                        lastStartPauseClickTime = now
+                        if (state.isRunning) viewModel.pauseTimer() else viewModel.startTimer()
+                    }
                 },
                 colors = ButtonDefaults.buttonColors(containerColor = MaterialTheme.colorScheme.tertiary)
             ) {
@@ -223,7 +243,13 @@ fun PomodoroContent(modifier: Modifier = Modifier) {
             }
 
             Button(
-                onClick = { viewModel.resetTimer() },
+                onClick = {
+                    val now = SystemClock.elapsedRealtime()
+                    if (now - lastResetClickTime > debounceInterval) {
+                        lastResetClickTime = now
+                        viewModel.resetTimer()
+                    }
+                },
                 colors = ButtonDefaults.buttonColors(containerColor = MaterialTheme.colorScheme.secondary)
             ) {
                 Text("Reset")
@@ -238,4 +264,3 @@ fun PomodoroContent(modifier: Modifier = Modifier) {
         )
     }
 }
-

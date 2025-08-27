@@ -2,6 +2,7 @@ package tech.kaustubhdeshpande.collegecompanion.screens.collegeLayer.holidayHack
 
 import android.content.Intent
 import android.os.Build
+import android.os.SystemClock
 import androidx.annotation.RequiresApi
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -43,9 +44,10 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableIntStateOf
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -88,7 +90,9 @@ fun LongLeavePlanner(
             monthsRaw.drop(idx) + monthsRaw.take(idx)
         }
     }
-    var selectedMonthIdx by remember { mutableIntStateOf(0) }
+    var selectedMonthIdx by remember { mutableStateOf(0) }
+    var lastBackPressTime by rememberSaveable { mutableStateOf(0L) }
+    val debounceInterval = 500L // milliseconds
 
     Scaffold(
         topBar = {
@@ -109,7 +113,15 @@ fun LongLeavePlanner(
                     titleContentColor = MaterialTheme.colorScheme.primary
                 ),
                 navigationIcon = {
-                    IconButton(onClick = navigateBack) {
+                    IconButton(
+                        onClick = {
+                            val now = SystemClock.elapsedRealtime()
+                            if (now - lastBackPressTime > debounceInterval) {
+                                lastBackPressTime = now
+                                navigateBack()
+                            }
+                        }
+                    ) {
                         Icon(
                             imageVector = Icons.AutoMirrored.Filled.ArrowBack,
                             contentDescription = "Back",

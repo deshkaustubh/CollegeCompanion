@@ -97,6 +97,9 @@ fun SimpleCalculatorScreen(
     }
 // --- End Analytics Tracking ---
 
+    var lastBackPressTime by rememberSaveable { mutableStateOf(0L) }
+    val debounceInterval = 500L // milliseconds
+
     Scaffold(
         topBar = {
             CenterAlignedTopAppBar(
@@ -115,7 +118,13 @@ fun SimpleCalculatorScreen(
                 ),
                 navigationIcon = {
                     IconButton(
-                        onClick = { navigateBack() }
+                        onClick = {
+                            val now = SystemClock.elapsedRealtime()
+                            if (now - lastBackPressTime > debounceInterval) {
+                                lastBackPressTime = now
+                                navigateBack()
+                            }
+                        }
                     ) {
                         Icon(
                             imageVector = Icons.AutoMirrored.Filled.ArrowBack,
@@ -158,5 +167,3 @@ fun SimpleCalculatorContent(modifier: Modifier = Modifier) {
         }
     }
 }
-
-

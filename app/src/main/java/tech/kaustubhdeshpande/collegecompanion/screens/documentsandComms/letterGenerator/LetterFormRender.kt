@@ -2,6 +2,7 @@ package tech.kaustubhdeshpande.collegecompanion.screens.documentsandComms.letter
 
 
 import android.os.Build
+import android.os.SystemClock
 import androidx.annotation.RequiresApi
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
@@ -56,7 +57,18 @@ fun LetterFormRenderer(
             .padding(12.dp)
             .verticalScroll(rememberScrollState())
     ) {
-        TextButton(onClick = onBack) {
+        // Debounce state for copy and back buttons
+        var lastCopyClickTime by remember { mutableStateOf(0L) }
+        var lastBackClickTime by remember { mutableStateOf(0L) }
+        val debounceInterval = 500L // milliseconds
+
+        TextButton(onClick = {
+            val now = SystemClock.elapsedRealtime()
+            if (now - lastBackClickTime > debounceInterval) {
+                lastBackClickTime = now
+                onBack()
+            }
+        }) {
             Text("❮❮ Back to templates")
         }
         Spacer(Modifier.height(8.dp))
@@ -148,8 +160,12 @@ fun LetterFormRenderer(
         Spacer(Modifier.height(16.dp))
         Button(
             onClick = {
-                copyToClipboard(context, template.generateLetter(fieldValues))
-                onCopy()
+                val now = SystemClock.elapsedRealtime()
+                if (now - lastCopyClickTime > debounceInterval) {
+                    lastCopyClickTime = now
+                    copyToClipboard(context, template.generateLetter(fieldValues))
+                    onCopy()
+                }
             },
             modifier = Modifier.fillMaxWidth()
         ) {

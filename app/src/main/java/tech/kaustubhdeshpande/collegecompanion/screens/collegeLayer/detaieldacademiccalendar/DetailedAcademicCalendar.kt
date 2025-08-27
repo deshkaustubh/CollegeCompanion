@@ -42,6 +42,7 @@ import androidx.compose.runtime.SideEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -63,6 +64,7 @@ import okio.buffer
 import okio.sink
 import java.io.File
 import java.io.IOException
+import java.util.Locale
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -106,6 +108,9 @@ fun SemesterPlan(
     var downloadedBytes by remember { mutableStateOf(0L) }
     var totalBytes by remember { mutableStateOf(0L) }
 
+    var lastBackPressTime by rememberSaveable { mutableStateOf(0L) }
+    val debounceInterval = 500L // milliseconds
+
     Scaffold(
         topBar = {
             CenterAlignedTopAppBar(
@@ -126,7 +131,13 @@ fun SemesterPlan(
                 ),
                 navigationIcon = {
                     IconButton(
-                        onClick = { navigateBack() }
+                        onClick = {
+                            val now = SystemClock.elapsedRealtime()
+                            if (now - lastBackPressTime > debounceInterval) {
+                                lastBackPressTime = now
+                                navigateBack()
+                            }
+                        }
                     ) {
                         Icon(
                             imageVector = Icons.AutoMirrored.Filled.ArrowBack,
@@ -244,7 +255,7 @@ private fun downloadPdfToCacheWithProgress(
                 }
                 sink.close()
                 onComplete(file)
-            } catch (e: IOException) {
+            } catch (_: IOException) {
                 onComplete(null)
             }
         }
@@ -262,7 +273,7 @@ fun DownloadProgressBar(
 ) {
     Column(horizontalAlignment = Alignment.CenterHorizontally) {
         LinearProgressIndicator(
-            progress = if (total > 0) downloaded.toFloat() / total else 0f,
+            progress = { if (total > 0) downloaded.toFloat() / total else 0f },
             modifier = Modifier
                 .fillMaxWidth(0.7f)
                 .height(6.dp)
@@ -270,9 +281,9 @@ fun DownloadProgressBar(
         Spacer(Modifier.height(12.dp))
         Text(
             text = if (total > 0) {
-                "Downloaded ${formatFileSize(downloaded)} of ${formatFileSize(total)}"
+                String.format(Locale.getDefault(), "Downloaded %.2f MB of %.2f MB", downloaded / 1048576.0, total / 1048576.0)
             } else {
-                "Downloaded ${formatFileSize(downloaded)}"
+                String.format(Locale.getDefault(), "Downloaded %.2f MB", downloaded / 1048576.0)
             },
             style = MaterialTheme.typography.bodySmall
         )
@@ -284,9 +295,9 @@ fun formatFileSize(bytes: Long): String {
     val mb = kb * 1024
     val gb = mb * 1024
     return when {
-        bytes >= gb -> String.format("%.2f GB", bytes / gb.toFloat())
-        bytes >= mb -> String.format("%.2f MB", bytes / mb.toFloat())
-        bytes >= kb -> String.format("%.1f KB", bytes / kb.toFloat())
+        bytes >= gb -> String.format(Locale.getDefault(), "%.2f GB", bytes / gb.toFloat())
+        bytes >= mb -> String.format(Locale.getDefault(), "%.2f MB", bytes / mb.toFloat())
+        bytes >= kb -> String.format(Locale.getDefault(), "%.1f KB", bytes / kb.toFloat())
         else -> "$bytes bytes"
     }
 }
@@ -345,7 +356,7 @@ fun getPageCountFromPdf(file: File): Int {
         val count = renderer.pageCount
         renderer.close()
         count
-    } catch (e: Exception) {
+    } catch (_: Exception) {
         1
     } finally {
         fileDescriptor.close()
@@ -364,7 +375,7 @@ fun renderPdfPage(file: File, pageIndex: Int): Bitmap? {
         page.close()
         renderer.close()
         bitmap
-    } catch (e: Exception) {
+    } catch (_: Exception) {
         null
     } finally {
         fileDescriptor.close()

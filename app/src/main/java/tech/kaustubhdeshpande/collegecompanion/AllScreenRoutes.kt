@@ -2,6 +2,15 @@ package tech.kaustubhdeshpande.collegecompanion
 
 import android.os.Build
 import androidx.annotation.RequiresApi
+import androidx.compose.animation.core.FastOutLinearInEasing
+import androidx.compose.animation.core.LinearOutSlowInEasing
+import androidx.compose.animation.core.tween
+import androidx.compose.animation.fadeIn
+import androidx.compose.animation.fadeOut
+import androidx.compose.animation.scaleIn
+import androidx.compose.animation.scaleOut
+import androidx.compose.animation.slideInHorizontally
+import androidx.compose.animation.slideOutHorizontally
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
@@ -61,7 +70,45 @@ fun AllScreensGraph(
         navController = navController,
         startDestination = AcademicEssentialsScreens.AcademicEssentialsDashboard.name
     ) {
-        composable(AcademicEssentialsScreens.AcademicEssentialsDashboard.name) {
+        composable(
+            AcademicEssentialsScreens.AcademicEssentialsDashboard.name,
+            enterTransition = {
+                slideInHorizontally(
+                    initialOffsetX = { it * 2 },
+                    animationSpec = tween(250, easing = FastOutLinearInEasing)
+                ) + scaleIn(
+                    initialScale = 0.7f,
+                    animationSpec = tween(250, easing = FastOutLinearInEasing)
+                ) + fadeIn(animationSpec = tween(150))
+            },
+            exitTransition = {
+                slideOutHorizontally(
+                    targetOffsetX = { -it * 2 },
+                    animationSpec = tween(250, easing = LinearOutSlowInEasing)
+                ) + scaleOut(
+                    targetScale = 0.7f,
+                    animationSpec = tween(250, easing = LinearOutSlowInEasing)
+                ) + fadeOut(animationSpec = tween(150))
+            },
+            popEnterTransition = {
+                slideInHorizontally(
+                    initialOffsetX = { -it * 2 },
+                    animationSpec = tween(250, easing = FastOutLinearInEasing)
+                ) + scaleIn(
+                    initialScale = 0.7f,
+                    animationSpec = tween(250, easing = FastOutLinearInEasing)
+                ) + fadeIn(animationSpec = tween(150))
+            },
+            popExitTransition = {
+                slideOutHorizontally(
+                    targetOffsetX = { it * 2 },
+                    animationSpec = tween(250, easing = LinearOutSlowInEasing)
+                ) + scaleOut(
+                    targetScale = 0.7f,
+                    animationSpec = tween(250, easing = LinearOutSlowInEasing)
+                ) + fadeOut(animationSpec = tween(150))
+            }
+        ) {
             DashboardScreen(
                 onCardClick = { optionCardText ->
                     navController.navigate(
@@ -194,4 +241,3 @@ fun AllScreensGraph(
 
     }
 }
-
