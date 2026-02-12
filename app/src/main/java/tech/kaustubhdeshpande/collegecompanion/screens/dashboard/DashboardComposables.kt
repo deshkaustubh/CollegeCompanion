@@ -285,48 +285,48 @@ fun LayerSection(
 
 
 val dailyQuotes = listOf(
-    // Day 1-5: The Fresh Start & High Energy
-    "Sooraj se pehle uth, kismat se aage nikal.",
-    "Aaj ka din tera hai, bas jeet ke aana.",
-    "Aag andar hai, bas jalne de.",
-    "Khel abhi shuru hua hai, picture abhi baaki hai.",
-    "Ruk mat, abhi toh bas shuruaat hai.",
+    // Day 1–5: Legendary Openers
+    "Mogambo khush hua!",                                   // Mr. India — iconic villain line :contentReference[oaicite:1]{index=1}
+    "Kitne aadmi the?",                                     // Sholay — cult classic :contentReference[oaicite:2]{index=2}
+    "Mere paas maa hai.",                                   // Deewar — emotional blockbuster line :contentReference[oaicite:3]{index=3}
+    "Babumoshai, zindagi badi honi chahiye, lambi nahi.",    // Anand — life lesson :contentReference[oaicite:4]{index=4}
+    "Bade bade deshon mein aisi chhoti chhoti baatein hoti rehti hain… Senorita.", // DDLJ — everyday iconic :contentReference[oaicite:5]{index=5}
 
-    // Day 6-10: The Grind & Building Momentum
-    "Thakna mana hai, rukna gunah hai.",
-    "Har saans ek mauka hai, waste mat kar.",
-    "Shor kam, kaam zyada. Success automatic.",
-    "Kal ka intezaar mat kar, aaj hi hisaab kar.",
-    "Bahane mat bana, naya record bana.",
+    // Day 6–10: Friendship & Love Classics
+    "Dosti ka ek usool hai madam — no sorry, no thank you.", // Maine Pyaar Kiya — friendship classic :contentReference[oaicite:6]{index=6}
+    "Beta, tumse na ho payega.",                            // Gangs of Wasseypur — popular meme quote :contentReference[oaicite:7]{index=7}
+    "Aaj khush to bahut hoge tum.",                         // Deewaar — heartfelt line :contentReference[oaicite:8]{index=8}
+    "Uska to na bad luck hi kharab hai.",                    // Rangeela — frequently quoted :contentReference[oaicite:9]{index=9}
+    "Hum jahan khade hote hain, line wahi se shuru hoti hai.", // Kaalia — swagger quote :contentReference[oaicite:10]{index=10}
 
-    // Day 11-15: Pushing Through the Middle & Self-Belief
-    "Mushkil nahi, bas mazedaar hai.",
-    "Jo toofan mein palte hain, wahi duniya badalte hain.",
-    "Limit bas ek word hai, tu usse bada hai.",
-    "Ziddi ban, kismat apne aap badlegi.",
-    "Tera competition tu khud hai, baaki sab sidekicks hain.",
+    // Day 11–15: Powerful & Fun
+    "Don ko pakadna mushkil hi nahi, namumkin hai.",       // Don — confidence line :contentReference[oaicite:11]{index=11}
+    "Ek chutki sindoor ki keemat tum kya jaano Ramesh Babu?",// Om Shanti Om — meme favorite :contentReference[oaicite:12]{index=12}
+    "Tareekh pe tareekh, tareekh pe tareekh!",              // Damini — dramatic complaint :contentReference[oaicite:13]{index=13}
+    "Aloo le lo… kaande le lo…",                            // Om Shanti Om — comic style :contentReference[oaicite:14]{index=14}
+    "Pushpa, I hate tears!",                                // Amar Prem — classic vintage line :contentReference[oaicite:15]{index=15}
 
-    // Day 16-20: Finding Rhythm & Deep Focus
-    "Bas chalte reh, manzil khud aayegi.",
-    "Focus itna rakh ki kismat bhi sharma jaaye.",
-    "Sapne dekh mat, unhe poora kar.",
-    "Bheed se alag nahi, bheed se aage chal.",
-    "Duniya ke saamne bana, unke saamne jeet.",
+    // Day 16–20: Emotional & Relatable
+    "Main apni favourite hoon.",                            // Jab We Met — self-love line :contentReference[oaicite:16]{index=16}
+    "Kaustubh… naam toh suna hoga.",                           // Dil To Pagal Hai — smooth intro :contentReference[oaicite:17]{index=17}
+    "Rishtey mein toh hum tumhare baap lagte hai, naam hai Shahenshah!", // Shahenshah — swagger classic :contentReference[oaicite:18]{index=18}
+    "Zindagi mein teen cheezon ke peechey kabhi nahin bhagna chahiye — bus, train aur chhokri.", // Ishq — fun principle :contentReference[oaicite:19]{index=19}
+    "Picture abhi baaki hai mere dost.",                    // Om Shanti Om — optimistic finish :contentReference[oaicite:20]{index=20}
 
-    // Day 21-25: Accelerating & Seeing the Goal
-    "Aasmaan chhota padega, ek baar udke toh dekh.",
-    "Apna time aayega nahi, main laaunga.",
-    "Duniya jhukti hai, bas jhukane wala chahiye.",
-    "History mat padh, history bana.",
-    "Tu woh toofan hai jo sab uda dega.",
+    // Day 21–25: Everyday & Memorable
+    "Ye Hath Humko De De Thakur!",                         // Sholay — dramatic plea :contentReference[oaicite:21]{index=21}
+    "All izz well!",                                        // 3 Idiots — casual mantra :contentReference[oaicite:22]{index=22}
+    "Koi pyaar kare toh tumse kare, tum jaise ho waise kare.",           // Bobby — romantic advice :contentReference[oaicite:23]{index=23}
+    "I can talk English, I can walk English… because English is a very phunny language.", // Namak Halal — classic cool line :contentReference[oaicite:24]{index=24}
+    "Hindustan zindabad tha, zindabad hai, aur zindabad rahega!", // Gadar: Ek Prem Katha — patriotic classic :contentReference[oaicite:25]{index=25}
 
-    // Day 26-31: The Final Push & Victory
-    "Jab tak todunga nahi, tab tak chhodunga nahi.",
-    "Haarne ka darr? Mujhe jeetne ka nasha hai.",
-    "Mehnat itni kar ki success bhi bole 'tera hi tha'.",
-    "Teri kahani tu likhega, duniya bas padhegi.",
-    "Naam yaad rakhna — KD. Vision clear, game fierce, aur har move mein masterstroke.",
-    "Jeetne ka maza tab hai, jab sab haarne ka wait karein."
+    // Day 26–31: Fun & Classic Closeouts
+    "Ye adaalat jazbaato se nahi chalte, milord!",          // Court drama classic (used in many films) :contentReference[oaicite:26]{index=26}
+    "Utha le re baba…",                                     // Hera Pheri — comedy favorite :contentReference[oaicite:27]{index=27}
+    "Jab tak baithne ko na kaha jaye…",                     // Police banter line (classic style) :contentReference[oaicite:28]{index=28}
+    "Basanti, tumhara naam kya hai?",                      // Sholay — memorable intro :contentReference[oaicite:29]{index=29}
+    "Tum log mujhe dhund rahe ho aur main yaha intezaar kar raha hun.", // Dramatic classic (Bollywood style) :contentReference[oaicite:30]{index=30}
+    "How’s the josh? High, sir!",                           // URI: The Surgical Strike — energetic catchphrase :contentReference[oaicite:31]{index=31}
 )
 
 

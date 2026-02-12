@@ -152,7 +152,7 @@ fun SemesterPlan(
 
         var pdfFile by remember { mutableStateOf<File?>(null) }
         var isLoading by remember { mutableStateOf(true) }
-        val url = "https://drive.google.com/uc?export=download&id=12f92H9moJRjPNxGarj_n7IUro63h_Rdg"
+        val url = "https://drive.google.com/uc?export=download&id=1u2RqFhpt1hqnpYLX0xeRji5-zzMDPLHf"
         val context = LocalContext.current
 
         LaunchedEffect(url) {

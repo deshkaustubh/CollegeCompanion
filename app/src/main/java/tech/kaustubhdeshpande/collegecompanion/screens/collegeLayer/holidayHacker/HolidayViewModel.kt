@@ -14,7 +14,7 @@ import java.time.Month
 
 @RequiresApi(Build.VERSION_CODES.O)
 class HolidayViewModel : ViewModel() {
-    private val _holidays = MutableStateFlow(maharashtraHolidays2025)
+    private val _holidays = MutableStateFlow(maharashtraHolidays2026)
     val holidays: StateFlow<List<Holiday>> = _holidays.asStateFlow()
 
     private val _breakSuggestions = MutableStateFlow<Map<Month, List<BreakSuggestion>>>(emptyMap())

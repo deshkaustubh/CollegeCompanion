@@ -141,7 +141,7 @@ fun AcademicCalendarScreen(
 
         var pdfFile by remember { mutableStateOf<File?>(null) }
         var isLoading by remember { mutableStateOf(true) }
-        val url = "https://drive.google.com/uc?export=download&id=190X7eOx6bs-TQkNV3LZ7ktityHx7STB5"
+        val url = "https://drive.google.com/uc?export=download&id=11FA5iz__gHEFLosggjHCwYBcitEdH0FP"
         val context = LocalContext.current
 
         LaunchedEffect(url) {

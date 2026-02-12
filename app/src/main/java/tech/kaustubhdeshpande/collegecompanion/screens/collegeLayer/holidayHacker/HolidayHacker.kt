@@ -323,7 +323,7 @@ fun BreakCard(
     ) {
         Column(modifier = Modifier.padding(20.dp)) {
             Text(
-                text = "🎉 ${breakInfo.length}-Day Break!",
+                text = "${breakInfo.holidays.joinToString { it.emoji }} ${breakInfo.length}-Day Break!",
                 style = MaterialTheme.typography.titleLarge,
                 color = MaterialTheme.colorScheme.primary,
                 fontWeight = FontWeight.Bold
