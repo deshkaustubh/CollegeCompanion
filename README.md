@@ -32,9 +32,9 @@ CollegeCompanion is an Android app built to make student academic life simpler b
     <td align="center"><b>Lab Evaluation Sheet</b></td>
   </tr>
   <tr>
-    <td><img src="![img_2.png](img_2.png)" alt="Dashboard" width="220" height="440" style="object-fit: contain;" /></td>
-    <td><img src="![img_1.png](img_1.png)" alt="Semester Plan" width="220" height="440" style="object-fit: contain;" /></td>
-    <td><img src="![img_3.png](img_3.png)" alt="PDF Loading" width="220" height="440" style="object-fit: contain;" /></td>
+    <td><img src="img_2.png" alt="Dashboard" width="220" height="440" style="object-fit: contain;" /></td>
+    <td><img src="img_1.png" alt="Semester Plan" width="220" height="440" style="object-fit: contain;" /></td>
+    <td><img src="img_3.png" alt="PDF Loading" width="220" height="440" style="object-fit: contain;" /></td>
   </tr>
   <tr>
     <td align="center"><b>Holiday Tracker</b></td>
@@ -42,9 +42,9 @@ CollegeCompanion is an Android app built to make student academic life simpler b
     <td align="center"><b>Long Leave Planner</b></td>
   </tr>
   <tr>
-    <td><img src="![img_4.png](img_4.png)" alt="PDF Viewer" width="220" height="440" style="object-fit: contain;" /></td>
-    <td><img src="![img_5.png](img_5.png)" alt="Navigation" width="220" height="440" style="object-fit: contain;" /></td>
-    <td><img src="![img_6.png](img_6.png)" alt="Cache Updated" width="220" height="440" style="object-fit: contain;" /></td>
+    <td><img src="img_4.png" alt="PDF Viewer" width="220" height="440" style="object-fit: contain;" /></td>
+    <td><img src="img_5.png" alt="Navigation" width="220" height="440" style="object-fit: contain;" /></td>
+    <td><img src="img_6.png" alt="Cache Updated" width="220" height="440" style="object-fit: contain;" /></td>
   </tr>
 </table>
 
