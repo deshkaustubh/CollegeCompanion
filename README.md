@@ -1,5 +1,11 @@
 # CollegeCompanion
 
+<p align="center">
+  <a href="https://play.google.com/store/apps/details?id=tech.kaustubhdeshpande.collegecompanion">
+    <img src="https://img.shields.io/badge/Download_on_Google_Play-414141?style=for-the-badge&logo=google-play&logoColor=white" alt="Google Play Store"/>
+  </a>
+</p>
+
 ## Concise Project Overview
 CollegeCompanion is an Android app built to make student academic life simpler by centralizing semester-related resources in one place. Instead of repeatedly searching through chats, portals, and file links, users can quickly access important planning documents directly inside the app. A major focus of this project is smooth in-app PDF access with practical caching behavior so commonly used documents open faster while still supporting content updates.
 
