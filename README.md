@@ -18,6 +18,7 @@ CollegeCompanion is an Android app built to make student academic life simpler b
 - **UI:** Modern Android UI stack (Compose-oriented project direction)
 - **Document Rendering:** Android PDF rendering APIs
 - **Backend/Services:** Firebase (configured in app module)
+- **Analytics & User Insights:** Microsoft Clarity, Firebase Analytics
 - **IDE:** Android Studio
 - **Version Control:** Git + GitHub
 
@@ -52,31 +53,45 @@ CollegeCompanion is an Android app built to make student academic life simpler b
 
 
 ## Play Store Link
-The App is published on Play Store:
 
-`https://play.google.com/store/apps/details?id=tech.kaustubhdeshpande.collegecompanion`
+<p align="center">
+  <a href="https://play.google.com/store/apps/details?id=tech.kaustubhdeshpande.collegecompanion">
+    <img src="https://img.shields.io/badge/Download_on_Google_Play-414141?style=for-the-badge&logo=google-play&logoColor=white" alt="Google Play Store"/>
+  </a>
+</p>
 
 ## About Me
 
 Hi, I’m **Kaustubh Suryakant Deshpande** — a 3rd‑year B.Tech student specializing in **Internet of Things (IoT)** at Thakur College of Engineering and Technology, Mumbai.  
-I’m passionate about building **robust, crash‑free Android apps and libraries** using **Kotlin, Jetpack Compose, and Material 3**, with a strong focus on **clarity, reproducibility, and collaborative workflows**.
+I’m passionate about building **robust, crash‑free Android and Kotlin Multiplatform (KMP) apps and libraries**, with a strong focus on **clarity, reproducibility, and collaborative workflows**.
 
 ### What I Do
-- Develop Android/Kotlin projects with **MVVM architecture, Hilt DI, Coroutines, and Flows**
+- Develop Android/Kotlin projects with **Jetpack Compose, Material 3, MVVM architecture, Hilt DI, Coroutines, and Flows**
+- Explore and contribute to **Kotlin Multiplatform (KMP)** projects, including shared logic, Room database integration, and Compose Multiplatform UI
 - Contribute to open‑source projects (Calf KMP library, CI/CD workflows, Kotlin ecosystem mentorship)
-- Design **secure CI/CD pipelines** with GitHub Actions & Netlify, emphasizing secrets management
-- Create visually polished documentation and PRs that make technical work recruiter‑friendly
+- Design **secure CI/CD pipelines** with GitHub Actions & Netlify, emphasizing secrets management and reproducibility
 
 ### Current Goals
-- Preparing **Google Summer of Code (GSoC)** proposals focused on Kotlin education and workflow automation
+- Preparing **Google Summer of Code (GSoC)** proposals focused on Kotlin education, workflow automation, and multiplatform development
 - Actively participating in **Kotlin workshops** and hackathons to stay aligned with ecosystem practices
-- Building a professional identity as an Android/Kotlin developer with measurable impact
+- Building a professional identity as an Android/Kotlin developer with measurable impact across platforms
 
-### Connect With Me
-- [GitHub](https://github.com/deshkaustubh)
-- [LinkedIn](https://www.linkedin.com/in/deshkaustubh)
-- [Email](mailto:contact.deshkaustubh@gmail.com)
+## Connect With Me
+
+<p align="center">
+  <a href="https://github.com/deshkaustubh">
+    <img src="https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white" alt="GitHub"/>
+  </a>
+  <a href="https://www.linkedin.com/in/deshkaustubh">
+    <img src="https://img.shields.io/badge/LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn"/>
+  </a>
+  <a href="mailto:contact.deshkaustubh@gmail.com">
+    <img src="https://img.shields.io/badge/Email-D14836?style=for-the-badge&logo=gmail&logoColor=white" alt="Email"/>
+  </a>
+</p>
+
 
 ---
 *I believe in clarity, reproducibility, and thoughtful collaboration — values that guide both my code and my career.*
+
 
